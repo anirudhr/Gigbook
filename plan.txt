@@ -1,0 +1,1 @@
+Trust = f(age, reviews, ratings, recos, missinginfo)
