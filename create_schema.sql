@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS rel_user_attends_concert;
 DROP TABLE IF EXISTS rel_user_fan_band;
 DROP TABLE IF EXISTS band_links;
 DROP TABLE IF EXISTS rel_band_performs_concert;
-DROP TABLE IF EXISTS rel_list_contains_concert;
+DROP TABLE IF EXISTS rel_user_recos_concert;
 DROP TABLE IF EXISTS recolist;
 DROP TABLE IF EXISTS concert;
 DROP TABLE IF EXISTS venue;
@@ -23,7 +23,7 @@ CREATE TABLE user (     uname VARCHAR(20),
                         firstname VARCHAR(20) NOT NULL,
                         city VARCHAR(20) NOT NULL,
                         birthdate CHAR(10) NOT NULL, /*10 = sizeof('yyyy-mm-dd')*/
-                        email VARCHAR(20) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/ 
+                        email VARCHAR(50) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/ 
                         PRIMARY KEY (uname),
                         UNIQUE (email)
                     );
@@ -52,11 +52,6 @@ CREATE TABLE genre    (     gname VARCHAR(20),
                             gparent VARCHAR(20) NULL,
                             PRIMARY KEY (gname),
                             FOREIGN KEY (gparent) REFERENCES genre(gname)
-                        );
-CREATE TABLE recolist   (   listid VARCHAR(20),
-                            uname VARCHAR(20) NOT NULL,
-                            PRIMARY KEY (listid),
-                            FOREIGN KEY (uname) REFERENCES user(uname)
                         );
 CREATE TABLE band_links (   bname VARCHAR(20) NOT NULL,
                             linktext VARCHAR(20) NULL,
@@ -96,8 +91,8 @@ CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(20) NOT NULL,
                                             FOREIGN KEY (bname) REFERENCES band(bname),
                                             FOREIGN KEY (cname) REFERENCES concert(cname)
                                         );
-CREATE TABLE rel_list_contains_concert  (   listid VARCHAR(20) NOT NULL,
+CREATE TABLE rel_user_recos_concert  (      uname VARCHAR(20) NOT NULL,
                                             cname VARCHAR(20) NOT NULL,
-                                            FOREIGN KEY (listid) REFERENCES recolist(listid),
+                                            FOREIGN KEY (uname) REFERENCES user(uname),
                                             FOREIGN KEY (cname) REFERENCES concert(cname)
                                         );
