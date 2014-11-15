@@ -8,7 +8,7 @@ BEGIN
     VALUES (inp_cname, inp_vname, inp_ctime, inp_tkturl, inp_cover);
     DECLARE inp_cid INT;
     SELECT cid INTO inp_cid FROM concert
-    WHERE vname = inp_vname AND ctime = inp_ctime;
+    WHERE vname = inp_vname AND ctime = inp_ctime; /*guaranteed 1 row because UNIQUE(vname, ctime)*/
     INSERT INTO rel_band_performs_concert (bname, cid)
     VALUES (inp_bname, inp_cid);
 END//
