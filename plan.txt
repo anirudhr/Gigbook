@@ -1,1 +1,6 @@
 user.reputation = f(user.joindate, rel_user_attends_concert.review, rel_user_attends_concert.rating, rel_user_recos_concert, missinginfo)
+
+3 SPs to post concert info:
+    1. Author = Gigbook
+    2. Author = band    //band can only post info about self
+    3. Author = user    //user can only post info if reputation is high enough
