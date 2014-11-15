@@ -40,11 +40,11 @@ CREATE TABLE venue  (
                         PRIMARY KEY (vname),
                         UNIQUE (building, street, city, state, zip)
                     );
-CREATE TABLE concert    (   cname VARCHAR(20),
+CREATE TABLE concert    (   cid INT AUTO_INCREMENT,
                             vname VARCHAR(20) NOT NULL,
                             ctime CHAR(16) NOT NULL,  /*16 = sizeof('yyyy-mm-dd-hh-mm')*/
                             tktprice DECIMAL NOT NULL,
-                            PRIMARY KEY (cname),
+                            PRIMARY KEY (cid),
                             UNIQUE (vname, ctime),
                             FOREIGN KEY (vname) REFERENCES venue(vname)
                         );
@@ -64,9 +64,9 @@ CREATE TABLE rel_user_fan_band  (   uname VARCHAR(20) NOT NULL,
                                     FOREIGN KEY (bname) REFERENCES band(bname)
                                 );
 CREATE TABLE rel_user_likes_genre   (   uname VARCHAR(20) NOT NULL,
-                                    gname VARCHAR(20) NOT NULL,
-                                    FOREIGN KEY (uname) REFERENCES user(uname),
-                                    FOREIGN KEY (gname) REFERENCES genre(gname)
+                                        gname VARCHAR(20) NOT NULL,
+                                        FOREIGN KEY (uname) REFERENCES user(uname),
+                                        FOREIGN KEY (gname) REFERENCES genre(gname)
                                 );
 CREATE TABLE rel_user_follows_user  (   follower VARCHAR(20) NOT NULL,
                                         followee VARCHAR(20) NOT NULL,
@@ -74,12 +74,12 @@ CREATE TABLE rel_user_follows_user  (   follower VARCHAR(20) NOT NULL,
                                         FOREIGN KEY (followee) REFERENCES user(uname)
                                     );
 CREATE TABLE rel_user_attends_concert   (   uname VARCHAR(20) NOT NULL,
-                                            cname VARCHAR(20) NOT NULL,
+                                            cid INT NOT NULL,
                                             review VARCHAR(64) NULL,
                                             rating int NULL,
-                                            PRIMARY KEY (uname, cname),
+                                            PRIMARY KEY (uname, cid),
                                             FOREIGN KEY (uname) REFERENCES user(uname),
-                                            FOREIGN KEY (cname) REFERENCES concert(cname)
+                                            FOREIGN KEY (cid) REFERENCES concert(cid)
                                         );
 CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(20) NOT NULL,
                                         gname VARCHAR(20) NOT NULL,
@@ -87,12 +87,12 @@ CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(20) NOT NULL,
                                         FOREIGN KEY (gname) REFERENCES genre(gname)
                                     );
 CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(20) NOT NULL,
-                                            cname VARCHAR(20) NOT NULL,
+                                            cid INT NOT NULL,
                                             FOREIGN KEY (bname) REFERENCES band(bname),
-                                            FOREIGN KEY (cname) REFERENCES concert(cname)
+                                            FOREIGN KEY (cid) REFERENCES concert(cid)
                                         );
-CREATE TABLE rel_user_recos_concert  (      uname VARCHAR(20) NOT NULL,
-                                            cname VARCHAR(20) NOT NULL,
+CREATE TABLE rel_user_recos_concert     (   uname VARCHAR(20) NOT NULL,
+                                            cid INT NOT NULL,
                                             FOREIGN KEY (uname) REFERENCES user(uname),
-                                            FOREIGN KEY (cname) REFERENCES  concert(cname)
+                                            FOREIGN KEY (cid) REFERENCES  concert(cid)
                                         );
