@@ -23,7 +23,7 @@ CREATE TABLE user (     uname VARCHAR(20),
                         firstname VARCHAR(20) NOT NULL,
                         city VARCHAR(20) NOT NULL,
                         birthdate CHAR(10) NOT NULL, /*10 = sizeof('yyyy-mm-dd')*/
-                        email VARCHAR(20) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/ 
+                        email VARCHAR(50) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/ 
                         PRIMARY KEY (uname),
                         UNIQUE (email)
                     );
