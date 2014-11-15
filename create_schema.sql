@@ -94,5 +94,5 @@ CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(20) NOT NULL,
 CREATE TABLE rel_user_recos_concert  (      uname VARCHAR(20) NOT NULL,
                                             cname VARCHAR(20) NOT NULL,
                                             FOREIGN KEY (uname) REFERENCES user(uname),
-                                            FOREIGN KEY (cname) REFERENCES concert(cname)
+                                            FOREIGN KEY (cname) REFERENCES  concert(cname)
                                         );
