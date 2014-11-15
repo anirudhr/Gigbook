@@ -1,3 +1,5 @@
+:indentSize=4:tabSize=4:noTabs=true:wrap=soft:
+
 user.reputation = f(user.joindate, rel_user_attends_concert.review, rel_user_attends_concert.rating, rel_user_recos_concert, missinginfo)
 
 3 SPs to post concert info:
