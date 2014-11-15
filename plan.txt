@@ -2,7 +2,34 @@
 
 user.reputation = f(user.joindate, rel_user_attends_concert.review, rel_user_attends_concert.rating, rel_user_recos_concert, user_input)
 
-3 SPs to post concert info:
-    1. Author = Gigbook
-    2. Author = band    //band can only post info about self
-    3. Author = user    //user can only post info if reputation is high enough
+reputation = repA + repB + repC = repD + repE
+repA =  {   1, if DATEDIFF(NOW(), user.joindate) = 1 months
+            2, if -------------"---------------- > 1 months & <= 6 months
+            3, if -------------"---------------- > 6 months & <= 1 year
+            4, if -------------"---------------- > 1 year
+        }
+repB =  {   2, if COUNT(rel_user_attends_concert.review) >  0 & <=  5
+            4, if -----------------"--------------------- >  5 & <= 10
+            6, if -----------------"--------------------- > 10 & <= 50
+            8, if -----------------"--------------------- > 50
+        }
+repC =  {   1, if COUNT(rel_user_attends_concert.rating) >  0 & <=  5
+            2, if -----------------"-------------------- >  5 & <= 10
+            3, if -----------------"-------------------- > 10 & <= 50
+            4, if -----------------"-------------------- > 50
+        }
+repD =  {   2, if COUNT(rel_user_recos_concert.cid) >  0 & <=  5
+            4, if -----------------"--------------- >  5 & <= 10
+            6, if -----------------"--------------- > 10 & <= 50
+            8, if -----------------"--------------- > 50
+        }
+repE =  {   2, if COUNT(user_input.cid) >  0 & <=  5
+            4, if -----------"--------- >  5 & <= 10
+            6, if -----------"--------- > 10 & <= 50
+            8, if -----------"--------- > 50
+        }
+
+
+2 SPs to post concert info:
+    1. Author = Gigbook || Author = band    //band can only post info about self
+    3. Author = user                        //user can only post info if reputation is >= 16
