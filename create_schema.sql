@@ -5,7 +5,9 @@ CREATE DATABASE IF NOT EXISTS gigbook_schema;
 USE gigbook_schema;
 
 DROP TABLE IF EXISTS rel_band_plays_genre;
-DROP TABLE IF EXISTS user_likes_genre;
+DROP TABLE IF EXISTS rel_user_likes_genre;
+DROP TABLE IF EXISTS rel_user_follows_user;
+DROP TABLE IF EXISTS rel_user_attends_concert;
 DROP TABLE IF EXISTS rel_user_fan_band;
 DROP TABLE IF EXISTS band_links;
 DROP TABLE IF EXISTS rel_band_performs_concert;
@@ -31,7 +33,8 @@ CREATE TABLE band_links (   bname VARCHAR(20) NOT NULL,
                             FOREIGN KEY (bname) REFERENCES band(bname)*/
                         );
 CREATE TABLE rel_user_fan_band  (   uname VARCHAR(20) NOT NULL,
-                                    bname VARCHAR(20) NOT NULL/*,
+                                    bname VARCHAR(20) NOT NULL,
+                                    fdate CHAR(10) /*10 = sizeof('yyyy-mm-dd')*//*,
                                     FOREIGN KEY (uname) REFERENCES user(uname),
                                     FOREIGN KEY (bname) REFERENCES band(bname)*/
                                 );
@@ -40,11 +43,24 @@ CREATE TABLE genre    (   gname VARCHAR(20),
                             PRIMARY KEY (gname)/*,
                             FOREIGN KEY (gparent) REFERENCES genre(gname)*/
                         );
-CREATE TABLE user_likes_genre   (   uname VARCHAR(20) NOT NULL,
+CREATE TABLE rel_user_likes_genre   (   uname VARCHAR(20) NOT NULL,
                                     gname VARCHAR(20) NOT NULL/*,
                                     FOREIGN KEY (uname) REFERENCES user(uname),
                                     FOREIGN KEY (gname) REFERENCES genre(gname)*/
                                 );
+CREATE TABLE rel_user_follows_user  (   follower VARCHAR(20) NOT NULL,
+                                        followee VARCHAR(20) NOT NULL/*,
+                                        FOREIGN KEY (follower) REFERENCES user(uname),
+                                        FOREIGN KEY (followee) REFERENCES user(uname)*/
+                                    );
+CREATE TABLE rel_user_attends_concert   (   uname VARCHAR(20) NOT NULL,
+                                            cname VARCHAR(20) NOT NULL,
+                                            review VARCHAR(64) NULL,
+                                            rating int NULL,
+                                            PRIMARY KEY (uname, cname)/*,
+                                            FOREIGN KEY (uname) REFERENCES user(uname),
+                                            FOREIGN KEY (cname) REFERENCES concert(cname)*/
+                                        );
 CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(20),
                                         gname VARCHAR(20) NOT NULL/*,
                                         FOREIGN KEY (bname) REFERENCES band(bname),
@@ -52,11 +68,7 @@ CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(20),
                                     );
 CREATE TABLE venue  (
                         vname VARCHAR(20),
-                        building VARCHAR(5),
-                        street VARCHAR(20),
-                        city VARCHAR(20),
-                        state char(2),
-                        zip CHAR(5),
+                        building VARCHAR(5), street VARCHAR(20), city VARCHAR(20), state char(2), zip CHAR(5),
                         capacity int,
                         url varchar(64),
                         PRIMARY KEY (vname),
