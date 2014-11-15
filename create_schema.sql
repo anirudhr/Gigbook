@@ -3,7 +3,7 @@
 
 CREATE DATABASE IF NOT EXISTS gigbook_schema;
 USE gigbook_schema;
-
+DROP TABLE IF EXISTS user_input;
 DROP TABLE IF EXISTS rel_band_plays_genre;
 DROP TABLE IF EXISTS rel_user_likes_genre;
 DROP TABLE IF EXISTS rel_user_follows_user;
@@ -43,6 +43,7 @@ CREATE TABLE venue  (
                         UNIQUE (building, street, city, state, zip)
                     );
 CREATE TABLE concert    (   cid INT AUTO_INCREMENT,
+                            cname VARCHAR(20) NULL,
                             vname VARCHAR(20) NOT NULL,
                             ctime CHAR(16) NOT NULL,  /*16 = sizeof('yyyy-mm-dd-hh-mm')*/
                             tkturl varchar(64) NULL,
@@ -99,3 +100,14 @@ CREATE TABLE rel_user_recos_concert     (   uname VARCHAR(20) NOT NULL,
                                             FOREIGN KEY (uname) REFERENCES user(uname),
                                             FOREIGN KEY (cid) REFERENCES  concert(cid)
                                         );
+CREATE TABLE user_input (   uname VARCHAR(20) NOT NULL,
+                            cid INT NOT NULL,
+                            vname VARCHAR(20) NOT NULL,
+                            ctime CHAR(16) NOT NULL,
+                            tkturl varchar(64) NULL,
+                            cover DECIMAL NOT NULL,
+                            UNIQUE (vname, ctime),
+                            FOREIGN KEY (vname) REFERENCES venue(vname),
+                            FOREIGN KEY (uname) REFERENCES user(uname),
+                            FOREIGN KEY (cid) REFERENCES  concert(cid)
+                        );
