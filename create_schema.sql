@@ -22,7 +22,7 @@ CREATE TABLE user (     uname VARCHAR(20),
                         lastname VARCHAR(20) NOT NULL,
                         firstname VARCHAR(20) NOT NULL,
                         password VARCHAR(64) NOT NULL,
-                        lastlogintime CHAR(19) NOT NULL,  /*19 = sizeof('yyyy-mm-dd hh:mm:ss')*/
+                        lastlogintime CHAR(19) NULL,  /*19 = sizeof('yyyy-mm-dd hh:mm:ss')*/
                         city VARCHAR(20) NOT NULL,
                         birthdate CHAR(10) NOT NULL, /*10 = sizeof('yyyy-mm-dd')*/
                         email VARCHAR(50) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/
