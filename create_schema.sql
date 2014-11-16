@@ -45,7 +45,7 @@ CREATE TABLE venue  (
 CREATE TABLE concert    (   cid INT AUTO_INCREMENT,
                             cname VARCHAR(20) NULL,
                             vname VARCHAR(20) NOT NULL,
-                            ctime CHAR(16) NOT NULL,  /*16 = sizeof('yyyy-mm-dd-hh-mm')*/
+                            ctime CHAR(16) NOT NULL,  /*16 = sizeof('yyyy-mm-dd hh:mm')*/
                             tkturl varchar(64) NULL,
                             cover DECIMAL NOT NULL,
                             PRIMARY KEY (cid),
