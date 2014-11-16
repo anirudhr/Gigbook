@@ -97,8 +97,10 @@ CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(20) NOT NULL,
                                         );
 CREATE TABLE rel_user_recos_concert     (   uname VARCHAR(20) NOT NULL,
                                             cid INT NOT NULL,
+                                            gname VARCHAR(20) NOT NULL,
                                             FOREIGN KEY (uname) REFERENCES user(uname),
-                                            FOREIGN KEY (cid) REFERENCES  concert(cid)
+                                            FOREIGN KEY (cid) REFERENCES  concert(cid),
+                                            FOREIGN KEY (gname) REFERENCES genre(gname)
                                         );
 CREATE TABLE user_input (   uname VARCHAR(20) NOT NULL,
                             cid INT NOT NULL,
