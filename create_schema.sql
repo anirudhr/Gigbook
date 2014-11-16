@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS rel_user_attends_concert;
 DROP TABLE IF EXISTS rel_user_fan_band;
 DROP TABLE IF EXISTS band_links;
 DROP TABLE IF EXISTS rel_band_performs_concert;
-DROP TABLE IF EXISTS rel_user_recos_concert;
+DROP TABLE IF EXISTS rel_recolist_contains_concert;
 DROP TABLE IF EXISTS recolist;
 DROP TABLE IF EXISTS concert;
 DROP TABLE IF EXISTS venue;
@@ -97,13 +97,17 @@ CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(20) NOT NULL,
                                             FOREIGN KEY (bname) REFERENCES band(bname),
                                             FOREIGN KEY (cid) REFERENCES concert(cid)
                                         );
-CREATE TABLE rel_user_recos_concert     (   uname VARCHAR(20) NOT NULL,
-                                            cid INT NOT NULL,
-                                            gname VARCHAR(20) NOT NULL,
-                                            FOREIGN KEY (uname) REFERENCES user(uname),
-                                            FOREIGN KEY (cid) REFERENCES  concert(cid),
-                                            FOREIGN KEY (gname) REFERENCES genre(gname)
-                                        );
+CREATE TABLE recolist   (    lid INT AUTO_INCREMENT, uname VARCHAR(20) NOT NULL,
+                            gname VARCHAR(20) NOT NULL,
+                            PRIMARY KEY (lid),
+                            FOREIGN KEY (uname) REFERENCES user(uname),
+                            FOREIGN KEY (gname) REFERENCES genre(gname)
+                        );
+CREATE TABLE rel_recolist_contains_concert  (   lid INT NOT NULL,
+                                                cid INT NOT NULL,
+                                                FOREIGN KEY (lid) REFERENCES recolist(lid),
+                                                FOREIGN KEY (cid) REFERENCES concert(cid)
+                                            );
 CREATE TABLE user_input (   uname VARCHAR(20) NOT NULL,
                             cid INT NOT NULL,
                             vname VARCHAR(20) NULL,
