@@ -97,7 +97,8 @@ CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(20) NOT NULL,
                                             FOREIGN KEY (bname) REFERENCES band(bname),
                                             FOREIGN KEY (cid) REFERENCES concert(cid)
                                         );
-CREATE TABLE recolist   (    lid INT AUTO_INCREMENT, uname VARCHAR(20) NOT NULL,
+CREATE TABLE recolist   (   lid INT AUTO_INCREMENT,
+                            uname VARCHAR(20) NOT NULL,
                             gname VARCHAR(20) NOT NULL,
                             PRIMARY KEY (lid),
                             FOREIGN KEY (uname) REFERENCES user(uname),
