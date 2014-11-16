@@ -21,6 +21,8 @@ DROP TABLE IF EXISTS genre;
 CREATE TABLE user (     uname VARCHAR(20),
                         lastname VARCHAR(20) NOT NULL,
                         firstname VARCHAR(20) NOT NULL,
+                        password VARCHAR(64) NOT NULL,
+                        lastlogintime CHAR(19) NOT NULL,  /*19 = sizeof('yyyy-mm-dd hh:mm:ss')*/
                         city VARCHAR(20) NOT NULL,
                         birthdate CHAR(10) NOT NULL, /*10 = sizeof('yyyy-mm-dd')*/
                         email VARCHAR(50) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/
@@ -80,7 +82,7 @@ CREATE TABLE rel_user_follows_user  (   follower VARCHAR(20) NOT NULL,
 CREATE TABLE rel_user_attends_concert   (   uname VARCHAR(20) NOT NULL,
                                             cid INT NOT NULL,
                                             review VARCHAR(64) NULL,
-                                            rating int NULL,
+                                            rating float NULL,
                                             PRIMARY KEY (uname, cid),
                                             FOREIGN KEY (uname) REFERENCES user(uname),
                                             FOREIGN KEY (cid) REFERENCES concert(cid)
