@@ -97,18 +97,16 @@ CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(20) NOT NULL,
                                             FOREIGN KEY (bname) REFERENCES band(bname),
                                             FOREIGN KEY (cid) REFERENCES concert(cid)
                                         );
-CREATE TABLE recolist   (   lid INT AUTO_INCREMENT,
-                            lname VARCHAR(20) NOT NULL,
+CREATE TABLE recolist   (   lname VARCHAR(20) NOT NULL,
                             uname VARCHAR(20) NOT NULL,
                             gname VARCHAR(20) NOT NULL,
-                            PRIMARY KEY (lid),
-                            UNIQUE (lname),
+                            PRIMARY KEY (lname),
                             FOREIGN KEY (uname) REFERENCES user(uname),
                             FOREIGN KEY (gname) REFERENCES genre(gname)
                         );
-CREATE TABLE rel_recolist_contains_concert  (   lid INT NOT NULL,
+CREATE TABLE rel_recolist_contains_concert  (   lname INT NOT NULL,
                                                 cid INT NOT NULL,
-                                                FOREIGN KEY (lid) REFERENCES recolist(lid),
+                                                FOREIGN KEY (lname) REFERENCES recolist(lname),
                                                 FOREIGN KEY (cid) REFERENCES concert(cid)
                                             );
 CREATE TABLE user_input (   uname VARCHAR(20) NOT NULL,
