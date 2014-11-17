@@ -24,17 +24,18 @@ CREATE TABLE user (     uname VARCHAR(50),
                         lastname VARCHAR(50) NOT NULL,
                         firstname VARCHAR(50) NOT NULL,
                         password VARCHAR(64) NOT NULL,
-                        lastlogintime CHAR(19) NULL,  /*19 = sizeof('yyyy-mm-dd hh:mm:ss')*/
+                        lastlogintime DATETIME NULL,/*CHAR(19) NULL,  /*19 = sizeof('yyyy-mm-dd hh:mm:ss')*/
                         city VARCHAR(50) NOT NULL,
-                        birthdate CHAR(10) NOT NULL, /*10 = sizeof('yyyy-mm-dd')*/
+                        birthdate DATE NOT NULL,/*CHAR(10) NOT NULL, /*10 = sizeof('yyyy-mm-dd')*/
                         email VARCHAR(50) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/
-                        joindate CHAR(10) NOT NULL,
+                        joindate DATE NOT NULL,/*CHAR(10) NOT NULL,*/
                         reputation FLOAT NOT NULL DEFAULT 0,
                         PRIMARY KEY (uname),
                         UNIQUE (email)
                     );
 CREATE TABLE band   (   bname VARCHAR(50),
                         bio TEXT,
+                        popularity FLOAT NOT NULL DEFAULT 0,
                         PRIMARY KEY (bname)
                     );
 CREATE TABLE venue  (
@@ -125,7 +126,11 @@ CREATE TABLE user_input (   uname VARCHAR(50) NOT NULL,
                             FOREIGN KEY (cid) REFERENCES  concert(cid)
                         );
                         
-CREATE VIEW user_reputation AS
-    SELECT ;
+/*CREATE VIEW user_reputation AS
+    SELECT uname AS u1, ( CASE
+        WHEN (SELECT joindate FROM user WHERE uname=u1) < (SELECT CURDATE() + INTERVAL 15 DAY) THEN 1
+        ELSE 0
+    ) AS rep FROM user
+    ;
 CREATE VIEW band_popularity AS
-    SELECT;
+    SELECT;*/
