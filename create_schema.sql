@@ -18,6 +18,8 @@ DROP TABLE IF EXISTS venue;
 DROP TABLE IF EXISTS band;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS genre;
+DROP VIEW IF EXISTS user_reputation;
+DROP VIEW IF EXISTS band_popularity;
 CREATE TABLE user (     uname VARCHAR(50),
                         lastname VARCHAR(50) NOT NULL,
                         firstname VARCHAR(50) NOT NULL,
@@ -122,3 +124,8 @@ CREATE TABLE user_input (   uname VARCHAR(50) NOT NULL,
                             FOREIGN KEY (uname) REFERENCES user(uname),
                             FOREIGN KEY (cid) REFERENCES  concert(cid)
                         );
+                        
+CREATE VIEW user_reputation AS
+    SELECT;
+CREATE VIEW band_popularity AS
+    SELECT;
