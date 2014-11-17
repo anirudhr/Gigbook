@@ -29,7 +29,7 @@ CREATE TABLE user (     uname VARCHAR(50),
                         birthdate CHAR(10) NOT NULL, /*10 = sizeof('yyyy-mm-dd')*/
                         email VARCHAR(50) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/
                         joindate CHAR(10) NOT NULL,
-                        reputation FLOAT NOT NULL,
+                        reputation FLOAT NOT NULL DEFAULT 0,
                         PRIMARY KEY (uname),
                         UNIQUE (email)
                     );
@@ -126,6 +126,6 @@ CREATE TABLE user_input (   uname VARCHAR(50) NOT NULL,
                         );
                         
 CREATE VIEW user_reputation AS
-    SELECT;
+    SELECT ;
 CREATE VIEW band_popularity AS
     SELECT;
