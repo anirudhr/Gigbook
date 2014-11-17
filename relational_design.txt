@@ -1,30 +1,39 @@
-User (uname, lastname, firstname, city, birthdate, email, joindate, reputation)
+User (uname, password, lastname, firstname, lastlogintime, city, birthdate, email, joindate, reputation)
 Band (bname, bio)
 Venue (vname, building, street, city, capacity, url)
-Concert (cid, cname, vname, ctime, tkturl, cover)
+Concert (cid, cname, vname, ctime, postedtime, tkturl, cover)
 FOREIGN KEY (vname) REFERENCES venue (vname)
 Genre (gname, gparent)
 FOREIGN KEY (gparent) REFERENCES genre (gname)
 Band_links (bname, linktext)
 FOREIGN KEY (bname) REFERENCES band (bname)
-user_fan_band (uname, bname, fdate)
+rel_user_fan_band (uname, bname, fdate)
 FOREIGN KEY (uname) REFERENCES user (uname),
 FOREIGN KEY (bname) REFERENCES band (bname)
-user_likes_genre (uname, gname)
+rel_user_likes_genre (uname, gname)
 FOREIGN KEY (uname) REFERENCES user (uname),
 FOREIGN KEY (gname) REFERENCES genre (gname)
-user_follows_user (follower, followee)
+rel_user_follows_user (follower, followee)
 FOREIGN KEY (follower) REFERENCES user (uname),
 FOREIGN KEY (followee) REFERENCES user (uname)
 rel_user_attends_concert (uname, cid, review, rating)
 FOREIGN KEY (uname) REFERENCES user (uname),
 FOREIGN KEY (cid) REFERENCES concert (cid)
-band_plays_genre (bname, cid)
+rel_band_plays_genre (bname, gname)
 FOREIGN KEY (bname) REFERENCES band (bname),
+FOREIGN KEY (gname) REFERENCES genre(gname)
+rel_band_performs_concert (bname, cid)
+FOREIGN KEY (bname) REFERENCES band(bname),
+FOREIGN KEY (cid) REFERENCES concert(cid)
+Recolist( lname, uname, gname)
+FOREIGN KEY (uname) REFERENCES user(uname),
+FOREIGN KEY (gname) REFERENCES genre(gname)
+rel_recolist_contains_concert (lname, cid)
+FOREIGN KEY (lname) REFERENCES recolist(lname),
 FOREIGN KEY (cid) REFERENCES concert (cid)
-user_recos_concert (uname, cid)
-FOREIGN KEY (uname) REFERENCES user (uname),
-FOREIGN KEY (cid) REFERENCES concert (cid)
-User_input (uname, cid, vname, ctime, tkturl, cover)
-FOREIGN KEY (vname) REFERENCES venue (vname),
-FOREIGN KEY (cid) REFERENCES concert (cid)
+User_input (uname, cid, vname, ctime, tkturl, cover, postedtime)
+FOREIGN KEY (vname) REFERENCES venue(vname),
+FOREIGN KEY (uname) REFERENCES user(uname),
+FOREIGN KEY (cid) REFERENCES concert(cid)
+
+
