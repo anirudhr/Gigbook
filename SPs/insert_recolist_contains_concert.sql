@@ -1,5 +1,5 @@
 /*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
-/*SP to  create a list of recommended concerts as a user and update the user's reputation.*/
+/*SP to  create a list of recommended concerts as a user (and update the user's reputation?).*/
 DELIMITER //
 CREATE PROCEDURE sp_recolist_contains_concert(IN inp_lname VARCHAR(20), IN inp_cid INT) /*if inp_cname or inp_tkturl are NULL, they will be inserted as NULL values*/
 BEGIN
