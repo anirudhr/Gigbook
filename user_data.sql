@@ -1,13 +1,16 @@
 /* User Data: */
 /* NOTE: All these values that are used are sample values. PHP Prepared statements will be used to accept these values */
 /* To sign up: */
+
+USE gigbook_schema;
+
 INSERT INTO `user` (`uname`, `lastname`, `firstname`, `city`, `birthdate`, `email`,`joindate`) VALUES
-('Earl', 'Simmons', 'Earl', 'Jamaica', '1994-03-03', 'earlsimms@gmail.com',NOW())
+('EarlSimmons', 'Simmons', 'Earl', 'Jamaica', '1994-03-03', 'earlsimms@gmail.com',NOW());
 
 /*To edit their profiles ( user is allowed to change lastname, firstname, city, birthdate, email )*/
 UPDATE user
 SET city="Brooklyn", email = "earlsimms@yahoo.com"
-WHERE uname = "Earl"
+WHERE uname = "Earl";
 
 /* To follow another user: */
 INSERT INTO rel_user_follows_user(follower, followee) VALUES('Alice','Bob');
