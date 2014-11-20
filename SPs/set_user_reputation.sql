@@ -3,8 +3,8 @@
 DELIMITER //
 CREATE PROCEDURE sp_user_reputation(IN username VARCHAR(50), OUT reputation FLOAT DEFAULT 0)
 BEGIN
-    DECLARE repA, repB, repC, repD, repE FLOAT DEFAULT 0;
-    DECLARE age, num_review, num_rating, num_reco, num_user_input INT DEFAULT 0;
+    DECLARE repA, repB, repC, repD, repE, repF FLOAT DEFAULT 0;
+    DECLARE age, num_review, num_rating, num_reco, num_user_input, num_follower INT DEFAULT 0;
     
     SELECT DATEDIFF(NOW(), user.joindate) INTO age FROM user WHERE user.uname = username;
     IF      age >= 365 THEN SET repA = 4;
@@ -41,6 +41,13 @@ BEGIN
     ELSEIF  num_user_input >   0 THEN SET repE = 2;
     ENDIF;
     
-    SET reputation = SELECT SUM(repA, repB, repC, repD, repE); /*repA + repB + repC + repD + repE;*/
+    SELECT COUNT(rel_user_follows_user.follower) INTO num_follower FROM rel_user_follows_user WHERE rel_user_follows_user.followee = username;
+    IF      num_follower >= 50 THEN SET repF = 4;
+    ELSEIF  num_follower >= 10 THEN SET repF = 3;
+    ELSEIF  num_follower >=  5 THEN SET repF = 2;
+    ELSEIF  num_follower >   0 THEN SET repF = 1;
+    ENDIF;
+    
+    SET reputation = SELECT SUM(repA, repB, repC, repD, repE, repF); /*repA + repB + repC + repD + repE + repF;*/
 END//
 DELIMITER ;
