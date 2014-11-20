@@ -3,9 +3,9 @@
 user.reputation = f(user.joindate, rel_user_attends_concert.review, rel_user_attends_concert.rating, rel_user_recos_concert, user_input)
 
 reputation = repA + repB + repC = repD + repE
-repA =  {   1, if DATEDIFF(NOW(), user.joindate) >= 15-29 days
-            2, if -------------"---------------- >= 30-179 days
-            3, if -------------"---------------- >= 180-364 days
+repA =  {   1, if DATEDIFF(NOW(), user.joindate) in 15-29 days
+            2, if -------------"---------------- in 30-179 days
+            3, if -------------"---------------- in 180-364 days
             4, if -------------"---------------- >= 365 days
         }
 repB =  {   2, if COUNT(rel_user_attends_concert.review) >  0 & <=  5
