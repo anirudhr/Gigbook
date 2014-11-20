@@ -65,8 +65,8 @@ Band popularity factors:
              5 if lists >=  5
              1 if lists >   0
 ++ COUNT(rel_user_attends_concert.uname) FROM rel_user_attends_concert JOIN rel_band_performs_concert ON cid= WHERE rel_band_performs_concert.bname = bandname
-    popE =  20 if attenders >= 50
-            15 if attenders >= 25
-            10 if attenders >= 10
-             5 if attenders >=  5
-             1 if attenders >   0
+    popE =  20 if attendees >= 50
+            15 if attendees >= 25
+            10 if attendees >= 10
+             5 if attendees >=  5
+             1 if attendees >   0
