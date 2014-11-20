@@ -28,12 +28,18 @@ repE =  {   2, if COUNT(user_input.cid) in 1-4
             6, if -----------"--------- in 10-49
             8, if -----------"--------- >= 50
         }
-max rep = 32
+        
+repF =  {   1, if COUNT(rel_user_follows_user.follower) in 1-4
+            2, if -------------------"----------------- in 5-9
+            3, if -------------------"----------------- in 10-49
+            4, if -------------------"----------------- >= 50
+        }
+max rep = 36
 min rep = 1
 
 2 SPs to post concert info:
     1. Author = Gigbook || Author = band    //band can only post info about self
-    3. Author = user                        //user can only post info if reputation is >= 16
+    3. Author = user                        //user can only post info if reputation is >= 18
     
 ================================================================================
 
