@@ -45,7 +45,28 @@ min rep = 1
 
 Band popularity factors:
 ++ AVG(rel_user_attends_concert.rating) FROM rel_user_attends_concert JOIN rel_band_performs_concert ON cid= WHERE rel_band_performs_concert.bname = bandname
+    popA = avg rating * 4 
 ++ COUNT(rel_user_fan_band.uname) FROM rel_user_fan_band WHERE rel_user_fan_band.bname = bandname
+    popB =  20 if fans >= 50
+            15 if fans >= 25
+            10 if fans >= 10
+             5 if fans >=  5
+             1 if fans >   0
 ++ COUNT(rel_user_likes_genre.uname) FROM rel_user_likes_genre JOIN rel_band_plays_genre ON gname= WHERE rel_band_plays_genre.bname = bandname
+    popC =  20 if likers >= 50
+            15 if likers >= 25
+            10 if likers >= 10
+             5 if likers >=  5
+             1 if likers >   0
 ++ COUNT(rel_recolist_contains_concert.cid) FROM rel_recolist_contains_concert JOIN rel_band_performs_concert ON cid= WHERE rel_band_performs_concert.bname = bandname
+    popD =  20 if lists >= 50
+            15 if lists >= 25
+            10 if lists >= 10
+             5 if lists >=  5
+             1 if lists >   0
 ++ COUNT(rel_user_attends_concert.uname) FROM rel_user_attends_concert JOIN rel_band_performs_concert ON cid= WHERE rel_band_performs_concert.bname = bandname
+    popE =  20 if attenders >= 50
+            15 if attenders >= 25
+            10 if attenders >= 10
+             5 if attenders >=  5
+             1 if attenders >   0
