@@ -1,6 +1,8 @@
 /*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
 /*SP which returns reputation for a specific username.*/
+USE gigbook_schema;
 DELIMITER //
+DROP PROCEDURE IF EXISTS sp_user_reputation;
 CREATE PROCEDURE sp_user_reputation(IN username VARCHAR(50), OUT reputation FLOAT)
 BEGIN
     DECLARE repA , repB, repC, repD, repE, repF FLOAT DEFAULT 0;
@@ -34,7 +36,7 @@ BEGIN
     ELSEIF  num_reco >   0 THEN SET repD = 2;
     END IF;
     
-    SELECT COUNT(user_input.uname) INTO num_user_input FROM rel_user_attends_concert WHERE user_input.uname = username;
+    SELECT COUNT(user_input.uname) INTO num_user_input FROM rel_user_attends_concert JOIN user_input ON user_input.uname = rel_user_attends_concert.uname WHERE user_input.uname = username;
     IF      num_user_input >= 50 THEN SET repE = 8;
     ELSEIF  num_user_input >= 10 THEN SET repE = 6;
     ELSEIF  num_user_input >=  5 THEN SET repE = 4;
