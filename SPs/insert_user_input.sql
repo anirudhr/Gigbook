@@ -5,7 +5,7 @@ CREATE PROCEDURE sp_user_input(IN inp_bname VARCHAR(20), IN inp_cname VARCHAR(20
 BEGIN
     INSERT INTO user_input (uname, vname, ctime, tkturl, cover)
     SELECT inp_uname, inp_vname, inp_ctime, inp_tkturl, inp_cover
-    WHERE (SELECT reputation FROM user WHERE uname = inp_uname) > 16;
+    WHERE (SELECT reputation FROM user WHERE uname = inp_uname) > 18;
     /*http://stackoverflow.com/questions/6854996/mysql-insert-if-custom-if-statements*/
 END//
 DELIMITER ;
