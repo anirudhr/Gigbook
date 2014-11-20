@@ -28,12 +28,18 @@ repE =  {   2, if COUNT(user_input.cid) in 1-4
             6, if -----------"--------- in 10-49
             8, if -----------"--------- >= 50
         }
-
+max rep = 32
+min rep = 1
 
 2 SPs to post concert info:
     1. Author = Gigbook || Author = band    //band can only post info about self
     3. Author = user                        //user can only post info if reputation is >= 16
+    
+================================================================================
 
-
-max rep = 32
-min rep = 1
+Band popularity factors:
+++ AVG(rel_user_attends_concert.rating) FROM rel_user_attends_concert JOIN rel_band_performs_concert ON cid= WHERE rel_band_performs_concert.bname = bandname
+++ COUNT(rel_user_fan_band.uname) FROM rel_user_fan_band WHERE rel_user_fan_band.bname = bandname
+++ COUNT(rel_user_likes_genre.uname) FROM rel_user_likes_genre JOIN rel_band_plays_genre ON gname= WHERE rel_band_plays_genre.bname = bandname
+++ COUNT(rel_recolist_contains_concert.cid) FROM rel_recolist_contains_concert JOIN rel_band_performs_concert ON cid= WHERE rel_band_performs_concert.bname = bandname
+++ COUNT(rel_user_attends_concert.uname) FROM rel_user_attends_concert JOIN rel_band_performs_concert ON cid= WHERE rel_band_performs_concert.bname = bandname
