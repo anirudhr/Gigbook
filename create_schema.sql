@@ -80,6 +80,7 @@ CREATE TABLE rel_user_likes_genre   (   uname VARCHAR(50) NOT NULL,
                                 );
 CREATE TABLE rel_user_follows_user  (   follower VARCHAR(50) NOT NULL,
                                         followee VARCHAR(50) NOT NULL,
+                                        PRIMARY KEY (follower, followee),
                                         FOREIGN KEY (follower) REFERENCES user(uname),
                                         FOREIGN KEY (followee) REFERENCES user(uname)
                                     );
