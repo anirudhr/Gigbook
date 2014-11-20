@@ -3,6 +3,8 @@
 DELIMITER //
 CREATE PROCEDURE sp_user_reputation()
 BEGIN
-    
+    DECLARE repA, repB, repC, repD, repE INT DEFAULT 0;
+    DECLARE age INT DEFAULT 0;
+    SET 
 END//
 DELIMITER ;
