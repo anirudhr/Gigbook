@@ -2,8 +2,8 @@
 /*SP to select a list of bands sorted in descending order by:
 -> band popularity . does user like genre*/
 DELIMITER //
-CREATE PROCEDURE sp_band_suggest_list()
+CREATE PROCEDURE sp_band_suggest_list(IN username VARCHAR(50))
 BEGIN
-    
+    /*sp_band_popularity(IN bandname VARCHAR(50), OUT popularity FLOAT DEFAULT 0)*/
 END//
 DELIMITER ;
