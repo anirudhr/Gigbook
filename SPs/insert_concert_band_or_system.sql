@@ -1,5 +1,6 @@
 /*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
 /*SP to insert concert information as the system / as a band that is playing in the concert. The same SP applies to both scenarios as differentiation will be done during call in backend PHP code.*/
+USE gigbook_schema;
 DELIMITER //
 
 DROP PROCEDURE IF EXISTS sp_insert_concert_band_or_system;
