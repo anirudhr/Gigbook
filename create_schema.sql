@@ -29,13 +29,13 @@ CREATE TABLE user (     uname VARCHAR(50),
                         birthdate DATE NOT NULL,/*CHAR(10) NOT NULL, /*10 = sizeof('yyyy-mm-dd')*/
                         email VARCHAR(50) NOT NULL, /*CONSTRAINT email_format CHECK (REGEXP_LIKE (email, '^\w+(\.\w+)*+@\w+(\.\w+)+$'))*/
                         joindate DATE NOT NULL,/*CHAR(10) NOT NULL,*/
-                        reputation FLOAT NOT NULL DEFAULT 0,
+                        /*reputation FLOAT NOT NULL DEFAULT 0,*/
                         PRIMARY KEY (uname),
                         UNIQUE (email)
                     );
 CREATE TABLE band   (   bname VARCHAR(50),
                         bio TEXT,
-                        popularity FLOAT NOT NULL DEFAULT 0,
+                        /*popularity FLOAT NOT NULL DEFAULT 0,*/
                         PRIMARY KEY (bname)
                     );
 CREATE TABLE venue  (
