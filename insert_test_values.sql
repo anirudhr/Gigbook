@@ -7,12 +7,12 @@ USE gigbook_schema;
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`uname`, `lastname`, `firstname`, `password`, `lastlogintime`, `city`, `birthdate`, `email`, `joindate`, `reputation`) VALUES
-('Alice', 'Adams', 'Alice', 'alice123', NULL, 'Brooklyn', '1991-02-11', 'aliceadams@gmail.com', '2010-12-02', 0),
-('Bob', 'Dcruz', 'Bob', 'bob123', NULL, 'Queens', '1989-02-14', 'bob123@gmail.com', '2011-02-11', 0),
-('Charlie', 'Dsouza', 'Charlie', 'charlie123', NULL, 'Astoria', '1986-10-08', 'charliedsouza@gmail.com', '2011-05-05', 0),
-('Dean', 'Martis', 'Dean', 'dean123', NULL, 'Manhattan', '1988-07-01', 'deimos@gmail.com', '2012-11-11', 0),
-('Earl', 'Simmons', 'Earl', 'earl123', NULL, 'Brooklyn', '1994-03-03', 'earlsimms@yahoo.com', '2014-11-15', 0);
+INSERT INTO `user` (`uname`, `lastname`, `firstname`, `password`, `lastlogintime`, `city`, `birthdate`, `email`, `joindate`) VALUES
+('Alice', 'Adams', 'Alice', 'alice123', NULL, 'Brooklyn', '1991-02-11', 'aliceadams@gmail.com', '2010-12-02'),
+('Bob', 'Dcruz', 'Bob', 'bob123', NULL, 'Queens', '1989-02-14', 'bob123@gmail.com', '2011-02-11'),
+('Charlie', 'Dsouza', 'Charlie', 'charlie123', NULL, 'Astoria', '1986-10-08', 'charliedsouza@gmail.com', '2011-05-05'),
+('Dean', 'Martis', 'Dean', 'dean123', NULL, 'Manhattan', '1988-07-01', 'deimos@gmail.com', '2012-11-11'),
+('Earl', 'Simmons', 'Earl', 'earl123', NULL, 'Brooklyn', '1994-03-03', 'earlsimms@yahoo.com', '2014-11-15');
 
 --
 -- Dumping data for table `venue`
