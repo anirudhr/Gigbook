@@ -1,6 +1,7 @@
 /*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
 /*SP to insert concert information as the system / as a band that is playing in the concert. The same SP applies to both scenarios as differentiation will be done during call in backend PHP code.*/
 DELIMITER //
+DROP PROCEDURE IF EXISTS sp_insert_concert_band_or_system;
 CREATE PROCEDURE sp_insert_concert_band_or_system(IN inp_bname VARCHAR(20), IN inp_cname VARCHAR(20), IN inp_vname VARCHAR(20), IN inp_ctime CHAR(16), IN inp_tkturl VARCHAR(64), IN inp_cover DECIMAL) /*if inp_cname or inp_tkturl are NULL, they will be inserted as NULL values*/
 BEGIN
     /*we do not need to check if inp_bname is a valid value present in band(bname). If system, we will be selecting inp_bname from a drop-down with values populated from band(bname). If band, inp_bname is the band's own name, which has to be in band(bname) in order for them to be logged in.*/
