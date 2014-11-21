@@ -1,8 +1,5 @@
 /*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
-/*SP to select a list of (future only) concerts sorted in descending order by:
--> immediacy of concert: ascending datediff from NOW
--> band popularity . does user like band
--> band popularity . does user like genre*/
+/*SP to select a (future only) concert in which a band the user likes is playing, which the user is not already attending.*/
 USE gigbook_schema;
 DELIMITER //
 DROP PROCEDURE IF EXISTS sp_concert_suggest_list;

@@ -1,6 +1,5 @@
 /*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
-/*SP to select a list of bands sorted in descending order by:
--> band popularity . does user like genre*/
+/*SP to select a band that plays a genre which the user likes, or a genre whose child genre the user likes, which the user does not already like.*/
 USE gigbook_schema;
 DELIMITER //
 DROP PROCEDURE IF EXISTS sp_band_suggest_list;
