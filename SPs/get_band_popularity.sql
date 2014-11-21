@@ -3,7 +3,7 @@
 USE gigbook_schema;
 DELIMITER //
 DROP PROCEDURE IF EXISTS sp_band_popularity;
-CREATE PROCEDURE sp_band_popularity(IN bandname VARCHAR(50), OUT popularity FLOAT DEFAULT 0)
+CREATE PROCEDURE sp_band_popularity(IN bandname VARCHAR(50), OUT popularity FLOAT )
 BEGIN
     DECLARE popA, popB, popC, popD, popE FLOAT DEFAULT 0;
     DECLARE fans, likers, lists, attendees INT DEFAULT 0;
@@ -42,7 +42,7 @@ BEGIN
     ELSEIF  attendees >   0 THEN SET popE =  1;
     END IF;
     
-    SET popularity = SELECT SUM(popA, popB, popC, popD, popE);
+    SET popularity = popA + popB + popC + popD + popE;
     
 END//
 DELIMITER ;
