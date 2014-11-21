@@ -16,16 +16,27 @@ BEGIN
     ORDER BY RAND() LIMIT 1;
     SELECT gparent INTO inp_gparent FROM genre
     WHERE gname = inp_gname;
-    
-    SELECT bname INTO out_bname FROM rel_band_plays_genre
-    WHERE rel_band_plays_genre.gname IN (
-                                            SELECT gname FROM genre
-                                            WHERE gparent = inp_gparent
-                                        )
-    AND bname NOT IN    (
-                            SELECT rel_user_fan_band.bname FROM rel_user_fan_band
-                            WHERE uname = inp_uname
-                        )
-    ORDER BY RAND() LIMIT 1;
+    IF inp_gparent IS NOT NULL THEN
+        SELECT bname INTO out_bname FROM rel_band_plays_genre
+        WHERE rel_band_plays_genre.gname IN (
+                                                SELECT gname FROM genre
+                                                WHERE gparent = inp_gparent
+                                                OR gparent = inp_gname
+                                            )
+        AND bname NOT IN    (
+                                SELECT rel_user_fan_band.bname FROM rel_user_fan_band
+                                WHERE uname = inp_uname
+                            )
+        ORDER BY RAND() LIMIT 1;
+    ELSE
+        SELECT bname INTO out_bname FROM rel_band_plays_genre
+        WHERE rel_band_plays_genre.gname = inp_gname
+        AND bname NOT IN    (
+                                SELECT rel_user_fan_band.bname FROM rel_user_fan_band
+                                WHERE uname = inp_uname
+                            )
+        ORDER BY RAND() LIMIT 1;
+    END IF;
+    SELECT inp_uname, inp_gname, inp_gparent, out_bname;
 END//
 DELIMITER ;
