@@ -11,11 +11,13 @@ BEGIN
     ORDER BY RAND() LIMIT 1;
     
     SELECT concert.cid INTO out_cid FROM concert
+    JOIN rel_band_performs_concert ON rel_band_performs_concert.cid = concert.cid
     WHERE DATEDIFF(concert.ctime, NOW()) >= 0
+    AND rel_band_performs_concert.bname = inp_bname
     AND concert.cid NOT IN  (
                         SELECT rel_user_attends_concert.cid FROM rel_user_attends_concert
                         WHERE rel_user_attends_concert.uname = inp_uname
                     );
-    SELECT inp_uname, out_cid; /*This line is for testing only*/
+    SELECT inp_uname, inp_bname, out_cid; /*This line is for testing only*/
 END//
 DELIMITER ;
