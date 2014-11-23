@@ -67,10 +67,10 @@ INSERT INTO `concert` (`cid`, `cname`, `vname`, `ctime`, `tkturl`, `cover`) VALU
 (1, 'Jazz Fest', 'Rockwood music hall', '2014-12-27 10:30', 'www.rockwoodmusichall.com/', '30'),
 (2, 'Carnival of Rock', 'Madison Square', '2014-11-20 19:45', 'www.thegarden.com', '55'),
 (3, 'Metallica Concert', 'Terminal 5', '2014-12-12 18:00', 'www.terminal5nyc.com', '60'),
-(4, 'The Rolling Stones Concert', 'Terminal 5', '2014-12-23 18:00', 'www.terminal5nyc.com', '60');
-
-
-
+(4, 'Dark side of the moon concert', 'Terminal 5', '2014-12-23 18:00', 'www.terminal5nyc.com', '60'),
+(5, 'Jazz Fest', 'Rockwood music hall', '2014-12-28 10:30', 'www.rockwoodmusichall.com/', '30'),
+(6, 'Metallica Concert', 'Terminal 5', '2015-01-12 18:00', 'www.terminal5nyc.com', '60'),
+(7, 'The Rolling Stone Concert', 'Madison Square', '2014-12-20 19:45', 'www.thegarden.com', '80');
 --
 -- Dumping data for table `recolist`
 --
@@ -88,6 +88,9 @@ INSERT INTO `rel_band_performs_concert` (`bname`, `cid`) VALUES
 ('Metallica', 3),
 ('Linkin Park', 2),
 ('Kenny G', 1),
+('Ray Charles', 5),
+('Metallica', 6),
+('The Rolling Stones', 7),
 ('Linkin Park',4);
 
 
@@ -103,7 +106,7 @@ INSERT INTO `rel_band_plays_genre` (`bname`, `gname`) VALUES
 ('Linkin Park', 'Rock'),
 ('Ray Charles', 'Jazz'),
 ('Fear','Punk rock'),
-('Adolescents','Punk rock'),
+('Adolescents','Progressive rock'),
 ('Alkaline Trio', 'Punk rock'), 
 ('Intro5pect', 'Punk rock'),
 ('Eric Clapton', 'Blues'),
@@ -137,9 +140,13 @@ INSERT INTO `rel_user_attends_concert` (`uname`, `cid`, `review`, `rating`) VALU
 
 INSERT INTO `rel_user_fan_band` (`uname`, `bname`, `fdate`) VALUES
 ('Alice', 'Linkin Park', '2014-11-15'),
+('Alice', 'The Rolling Stones', '2014-11-15'),
 ('Bob', 'Linkin Park', '2012-12-12'),
+('Bob', 'Adolescents', '2012-12-12'),
 ('Charlie', 'Kenny G', '2013-01-05'),
-('Dean', 'Metallica', '2013-01-01');
+('Charlie', 'Ray Charles', '2013-01-05'),
+('Dean', 'Metallica', '2013-01-01'),
+('Earl', 'Metallica', '2012-11-01');
 
 --
 -- Dumping data for table `rel_user_follows_user`
