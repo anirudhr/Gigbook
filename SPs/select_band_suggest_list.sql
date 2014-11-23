@@ -30,7 +30,7 @@ BEGIN
         ORDER BY RAND() LIMIT 1;
     ELSE
         SELECT bname INTO out_bname FROM rel_band_plays_genre
-        WHERE rel_band_plays_genre.gname = inp_gname
+        WHERE rel_band_plays_genre.gname = @inp_gname
         AND bname NOT IN    (
                                 SELECT rel_user_fan_band.bname FROM rel_user_fan_band
                                 WHERE uname = inp_uname

@@ -66,7 +66,8 @@ INSERT INTO `genre` (`gname`, `gparent`) VALUES
 INSERT INTO `concert` (`cid`, `cname`, `vname`, `ctime`, `tkturl`, `cover`) VALUES
 (1, 'Jazz Fest', 'Rockwood music hall', '2014-12-27 10:30', 'www.rockwoodmusichall.com/', '30'),
 (2, 'Carnival of Rock', 'Madison Square', '2014-11-20 19:45', 'www.thegarden.com', '55'),
-(3, 'Metallica Concert', 'Terminal 5', '2014-12-12 18:00', 'www.terminal5nyc.com', '60');
+(3, 'Metallica Concert', 'Terminal 5', '2014-12-12 18:00', 'www.terminal5nyc.com', '60'),
+(4, 'The Rolling Stones Concert', 'Terminal 5', '2014-12-23 18:00', 'www.terminal5nyc.com', '60');
 
 
 
@@ -86,7 +87,9 @@ INSERT INTO `recolist` (`lname`, `uname`, `gname`) VALUES
 INSERT INTO `rel_band_performs_concert` (`bname`, `cid`) VALUES
 ('Metallica', 3),
 ('Linkin Park', 2),
-('Kenny G', 1);
+('Kenny G', 1),
+('Linkin Park',4);
+
 
 --
 -- Dumping data for table `rel_band_plays_genre`
