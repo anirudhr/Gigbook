@@ -33,7 +33,15 @@ INSERT INTO `band` (`bname`, `bio`) VALUES
 ('Linkin Park', 'Linkin Park is an American rock band from Agoura Hills, California. Formed in 1996, the band rose to international fame with their debut album Hybrid Theory, which was certified Diamond by the RIAA in 2005 and multi-platinum in several other countries.Their following studio album Meteora continued the band''s success, topping the Billboard 200 album chart in 2003, and was followed by extensive touring and charity work around the world.In 2003, MTV2 named Linkin Park the sixth-greatest band of the music video era and the third-best of the new millennium.'),
 ('Megadeth', 'Megadeth is an American thrash metal band from Los Angeles, California. The group was formed in 1983 by guitarist Dave Mustaine and bassist David Ellefson, shortly after Mustaine''s dismissal from Metallica.'),
 ('Metallica', 'Metallica has released nine studio albums, four live albums, five extended plays, 26 music videos, and 37 singles. The band has won nine Grammy Awards and five of its albums have consecutively debuted at number one on the Billboard 200. '),
-('Ray Charles', 'Ray Charles Robinson (September 23, 1930 – June 10, 2004) was an American singer-songwriter, musician and composer known as Ray Charles and sometimes referred to as "The Genius". He was a pioneer in the genre of soul music during the 1950s by fusing rhythm and blues, gospel, and blues styles into early performances recorded by Atlantic Records.');
+('Ray Charles', 'Ray Charles Robinson was an American singer-songwriter, musician and composer known as Ray Charles and sometimes referred to as "The Genius". He was a pioneer in the genre of soul music during the 1950s by fusing rhythm and blues, gospel, and blues styles into early performances recorded by Atlantic Records.'),
+('Fear', 'Fear Began at the dawning of the punk in 1997 although their style (along with the Circle Jerks and Black Flag) helped to define LA style hardcore. Led by Lee Ving''s destinctive vocals, and their fast agressive music, Fear are remembered as some of the founding fathers of hardcore punk.'), 
+('Adolescents', 'One of Southern California''s best-loved hardcore bands, the Adolescents helped establish the blueprint for Orange County punk, along with Agent Orange and Social Distortion. Although their music was the most standard-issue of the three, the Adolescents'' blazing energy and quintessential teenage snottiness gave them an instant connection with their audience, and defied their upbringing in California''s bastion of staid conservatism.')
+('Eric Clapton', ' Eric Clapton is one of the most revered and influential guitarists of all time. From his early days with the Yardbirds, through John Mayall’s Bluesbreakers, Cream, Blind Faith, Derek And The Dominos and on to his solo career he has had consistent critical and commercial success.“Planes, Trains And Eric” follows Eric Clapton and his band on the Far and Middle Eastern leg of his 2014 World Tour. The film features 13 full length performances from the tour intercut with interviews with Eric Clapton and the band members, rehearsal and soundcheck footage, travel by trains and planes, presentations and “fly on the wall” filming of all the many aspects of being on the road with Eric Clapton.'), 
+('The Rolling Stones', 'The Rolling Stones were inducted into the Rock and Roll Hall of Fame in 1989, and the UK Music Hall of Fame in 2004. Rolling Stone magazine ranked them fourth on the "100 Greatest Artists of All Time" list, and their estimated album sales are above 250 million. They have released twenty-nine studio albums, eighteen live albums and numerous compilations. Let It Bleed (1969) was their first of five consecutive number one studio and Live albums in the UK. Sticky Fingers (1971) was the first of eight consecutive number one studio albums in the US. In 2008 the band ranked 10th on the "Billboard Hot 100 All-Time Top Artists" chart. In 2012, the band celebrated their 50th anniversary.');
+('New York Dolls', 'Cross-dressing, drug using, glam punks, the New York Dolls were punk before punk had a name. Formed shortly after the VU explosion, the New York Dolls were pioneers in their own right. Though the band quickly dissolved, everyone who saw them wanted to what they did, they wanted to be punks, they wanted the drugs, they wanted to dress up like women. Member Johnny Thunders went on to form his own band, also legendary'), 
+('Intro5pect', 'The band were officially formed in 1997 as a reaction to what was an apparent commercialization of the punk genre. Their first demo was released in 1998 and their first official release came in 1999 when newly founded indie label Geykido Comet Records released the band''s song Education as a limited edition 7" vinyl.')
+('Alkaline Trio', 'Alkaline Trio is a three-member Illinois punk rock band from McHenry, Illinois, formed in 1996. The band consists of Matt Skiba (vocals, guitar), Dan Andriano (vocals, bass), and Derek Grant (drums).');
+('Bankrupt','Bankrupt is a punk rock band from Budapest, Hungary. They are one of the most known Hungarian bands outside Hungary in their genre, having received coverage by UK, US and Canadian online magazines.Since their formation in 1996, the band has released three full-length albums and three CD-EPs. The title song of their most recent release Rewound was played in rotation by Hungarian Radio''s music channel MR2 and the music video of its Hungarian version Retro was played in rotation by MTV Hungary.');
 --
 -- Dumping data for table `genre`
 --
@@ -90,7 +98,15 @@ INSERT INTO `rel_band_plays_genre` (`bname`, `gname`) VALUES
 ('Megadeth', 'Thrash Metal'),
 ('Metallica', 'Thrash Metal'),
 ('Linkin Park', 'Rock'),
-('Ray Charles', 'Jazz');
+('Ray Charles', 'Jazz')
+('Fear','Punk rock')
+('Adolescents','Punk rock')
+('Alkaline Trio', 'Punk rock'), 
+('Intro5pect', 'Punk rock')
+('Eric Clapton', 'Blues'),
+( 'New York Dolls', 'Punk rock')
+('Bankrupt', 'Punk rock')
+('The Rolling Stones', 'Rock');
 
 --
 -- Dumping data for table `rel_recolist_contains_concert`
