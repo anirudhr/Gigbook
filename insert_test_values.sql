@@ -8,12 +8,12 @@ USE gigbook_schema;
 --
 
 INSERT INTO `user` (`uname`, `lastname`, `firstname`, `password`, `lastlogintime`, `city`, `birthdate`, `email`, `joindate`) VALUES
-('Alice', 'Adams', 'Alice', 'alice123', '2014-11-22 11:30', 'Brooklyn', '1991-02-11', 'aliceadams@gmail.com', '2010-12-02'),
-('Bob', 'Dcruz', 'Bob', 'bob123', '2014-07-11 11:30', 'Queens', '1989-02-14', 'bob123@gmail.com', '2011-02-11'),
+('Alice', 'Adams', 'Alice', 'alice123', '2014-11-22 11:30', 'Brooklyn', '1991-02-11', 'aliceadams@gmail.com', '2002-12-02'),
+('Bob', 'Dcruz', 'Bob', 'bob123', '2014-07-11 11:30', 'Queens', '1989-02-14', 'bob123@gmail.com', '2002-02-11'),
 ('Charlie', 'Dsouza', 'Charlie', 'charlie123', '2014-06-11 11:30', 'Astoria', '1986-10-08', 'charliedsouza@gmail.com', '2011-05-05'),
 ('Dean', 'Martis', 'Dean', 'dean123', '2014-11-15 09:30', 'Manhattan', '1988-07-01', 'deimos@gmail.com', '2012-11-11'),
-('Earl', 'Simmons', 'Earl', 'earl123', '2014-11-19 10:30', 'Brooklyn', '1994-03-03', 'earlsimms@yahoo.com', '2014-11-15');
-
+('Earl', 'Simmons', 'Earl', 'earl123', '2014-11-19 10:30', 'Brooklyn', '1994-03-03', 'earlsimms@yahoo.com', '2014-11-15'),
+('Travis','Guidry','Travis','trav123','2014-11-23 10:45','Brooklyn','1986-12-15','travisg@yahoo.com','2014-01-02');
 --
 -- Dumping data for table `venue`
 --
@@ -71,7 +71,15 @@ INSERT INTO `concert` (`cid`, `cname`, `vname`, `ctime`, `postedtime`,`tkturl`, 
 (5, 'Jazz Fest', 'Rockwood music hall', '2014-11-28 10:30',' 2014-11-25 10:30','www.rockwoodmusichall.com/', '30'),
 (6, 'Metallica Concert', 'Terminal 5', '2015-01-12 18:00', '2015-01-10 18:00','www.terminal5nyc.com', '60'),
 (7, 'The Rolling Stone Concert', 'Madison Square', '2014-12-20 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
-(8, 'Jazz Concert', 'Rockwood music hall', '2014-12-28 10:30', '2014-12-25 10:30','www.rockwoodmusichall.com/', '30');
+(8, 'Jazz Concert', 'Rockwood music hall', '2014-12-28 10:30', '2014-12-25 10:30','www.rockwoodmusichall.com/', '30'),
+(9, 'Fear US', 'Madison Square', '2014-12-22 15:45','2014-12-18 19:45', 'www.thegarden.com', '75'),
+(10, 'Adolescents Concert', 'Madison Square', '2014-12-25 20:45','2014-12-18 19:45', 'www.thegarden.com', '43'),
+(11, 'New York Dolls Concert', 'Madison Square', '2014-12-12 19:45','2014-12-18 19:45', 'www.thegarden.com', '23'),
+(12, 'Intro5pect Concert', 'Madison Square', '2014-12-06 19:45','2014-12-18 19:45', 'www.thegarden.com', '66'),
+(13, 'Alkaline Trio Concert', 'Madison Square', '2014-12-01 19:45','2014-12-18 19:45', 'www.thegarden.com', '56'),
+(14, 'Bankrupt Concert', 'Madison Square', '2014-12-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '46'),
+(15, 'The Rolling Stone Concert', 'Madison Square', '2014-12-03 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(16, 'The Rolling Stone Concert', 'Madison Square', '2015-01-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '80');
 --
 -- Dumping data for table `recolist`
 --
@@ -122,7 +130,15 @@ INSERT INTO `rel_band_plays_genre` (`bname`, `gname`) VALUES
 INSERT INTO `rel_recolist_contains_concert` (`lname`, `cid`) VALUES
 ('Charlie''s Jazzy List', 1),
 ('Bob''s "Rock"in List!', 2),
-('Bob''s "Rock"in List!', 7),
+('Bob''s "Rock"in List!', 4),
+('Bob''s "Rock"in List!', 9),
+('Bob''s "Rock"in List!', 10),
+('Bob''s "Rock"in List!', 11),
+('Bob''s "Rock"in List!', 12),
+('Bob''s "Rock"in List!', 13),
+('Bob''s "Rock"in List!', 14),
+('Bob''s "Rock"in List!', 15),
+('Bob''s "Rock"in List!', 16),
 ('Earl''s List of Thrash metal concerts', 3);
 
 --
@@ -131,7 +147,16 @@ INSERT INTO `rel_recolist_contains_concert` (`lname`, `cid`) VALUES
 
 INSERT INTO `rel_user_attends_concert` (`uname`, `cid`, `review`, `rating`) VALUES
 ('Alice', 2, 'Awesome!! Linking park is \r\nsimply mind-blowing', 4),
-('Bob', 2, NULL, 4),
+('Bob', 2, "Good", 3),
+('Bob', 4, "Great!", 5),
+('Bob', 9, "Awesome..", 5),
+('Bob', 10, "Wasnt so good", 2),
+('Bob', 11, "Good", 4),
+('Bob', 12, "Enjoyed it!!", 4),
+('Bob', 13, "Very nice", 4),
+('Bob', 14, "Good", 4),
+('Bob', 15, "Rocking!!", 4),
+('Bob', 16, "Fantastic!!", 4),
 ('Charlie', 2, NULL, 3),
 ('Dean', 3, 'Metallica Rocks!!', 4),
 ('Earl', 3, NULL, 3);
@@ -157,6 +182,10 @@ INSERT INTO `rel_user_fan_band` (`uname`, `bname`, `fdate`) VALUES
 INSERT INTO `rel_user_follows_user` (`follower`, `followee`) VALUES
 ('Alice', 'Bob'),
 ('Dean', 'Earl'),
+('Dean', 'Bob'),
+('Earl', 'Bob'),
+('Travis', 'Bob'),
+('Charlie', 'Bob'),
 ('Alice', 'Charlie');
 
 --

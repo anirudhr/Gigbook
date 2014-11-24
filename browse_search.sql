@@ -9,7 +9,7 @@ and pg.gname = g.gname
 and c.vname = v.vname
 and v.city = "New York"
 and g.gname = "Jazz"
-and c.ctime <= CURDATE()+ INTERVAL 7 DAY
+and c.ctime <= CURDATE()+ INTERVAL 7 DAY;
 
 /* Query 2 */
 /* Display all concerts recommended by people they follow in the next month 
@@ -22,13 +22,13 @@ and f.followee = r.uname
 and r.lname = cc.lname
 and cc.cid = c.cid
 and u.uname = "Alice"
-and MONTH(c.ctime) = MONTH(CURDATE() + INTERVAL 1 MONTH)
+and MONTH(c.ctime) = MONTH(CURDATE() + INTERVAL 1 MONTH);
 
 /* Query 3 */
 /* Display all new concerts since the time they logged in */
 SELECT c.cname 
 FROM user u, concert c
 WHERE c.postedtime >= u.lastlogintime
-and u.uname="Alice"
+and u.uname="Alice";
 
 
