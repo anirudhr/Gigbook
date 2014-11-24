@@ -8,11 +8,11 @@ USE gigbook_schema;
 --
 
 INSERT INTO `user` (`uname`, `lastname`, `firstname`, `password`, `lastlogintime`, `city`, `birthdate`, `email`, `joindate`) VALUES
-('Alice', 'Adams', 'Alice', 'alice123', NULL, 'Brooklyn', '1991-02-11', 'aliceadams@gmail.com', '2010-12-02'),
-('Bob', 'Dcruz', 'Bob', 'bob123', NULL, 'Queens', '1989-02-14', 'bob123@gmail.com', '2011-02-11'),
-('Charlie', 'Dsouza', 'Charlie', 'charlie123', NULL, 'Astoria', '1986-10-08', 'charliedsouza@gmail.com', '2011-05-05'),
-('Dean', 'Martis', 'Dean', 'dean123', NULL, 'Manhattan', '1988-07-01', 'deimos@gmail.com', '2012-11-11'),
-('Earl', 'Simmons', 'Earl', 'earl123', NULL, 'Brooklyn', '1994-03-03', 'earlsimms@yahoo.com', '2014-11-15');
+('Alice', 'Adams', 'Alice', 'alice123', '2014-11-22 11:30', 'Brooklyn', '1991-02-11', 'aliceadams@gmail.com', '2010-12-02'),
+('Bob', 'Dcruz', 'Bob', 'bob123', '2014-07-11 11:30', 'Queens', '1989-02-14', 'bob123@gmail.com', '2011-02-11'),
+('Charlie', 'Dsouza', 'Charlie', 'charlie123', '2014-06-11 11:30', 'Astoria', '1986-10-08', 'charliedsouza@gmail.com', '2011-05-05'),
+('Dean', 'Martis', 'Dean', 'dean123', '2014-11-15 09:30', 'Manhattan', '1988-07-01', 'deimos@gmail.com', '2012-11-11'),
+('Earl', 'Simmons', 'Earl', 'earl123', '2014-11-19 10:30', 'Brooklyn', '1994-03-03', 'earlsimms@yahoo.com', '2014-11-15');
 
 --
 -- Dumping data for table `venue`
@@ -63,14 +63,15 @@ INSERT INTO `genre` (`gname`, `gparent`) VALUES
 -- Dumping data for table `concert`
 --
 
-INSERT INTO `concert` (`cid`, `cname`, `vname`, `ctime`, `tkturl`, `cover`) VALUES
-(1, 'Jazz Fest', 'Rockwood music hall', '2014-12-27 10:30', 'www.rockwoodmusichall.com/', '30'),
-(2, 'Carnival of Rock', 'Madison Square', '2014-11-20 19:45', 'www.thegarden.com', '55'),
-(3, 'Metallica Concert', 'Terminal 5', '2014-12-12 18:00', 'www.terminal5nyc.com', '60'),
-(4, 'Dark side of the moon concert', 'Terminal 5', '2014-12-23 18:00', 'www.terminal5nyc.com', '60'),
-(5, 'Jazz Fest', 'Rockwood music hall', '2014-12-28 10:30', 'www.rockwoodmusichall.com/', '30'),
-(6, 'Metallica Concert', 'Terminal 5', '2015-01-12 18:00', 'www.terminal5nyc.com', '60'),
-(7, 'The Rolling Stone Concert', 'Madison Square', '2014-12-20 19:45', 'www.thegarden.com', '80');
+INSERT INTO `concert` (`cid`, `cname`, `vname`, `ctime`, `postedtime`,`tkturl`, `cover`) VALUES
+(1, 'Jazz Fest', 'Rockwood music hall', '2014-11-27 10:30', '2014-11-20 10:30','www.rockwoodmusichall.com/', '30'),
+(2, 'Carnival of Rock', 'Madison Square', '2014-11-20 19:45','2014-11-17 19:45', 'www.thegarden.com', '55'),
+(3, 'Metallica Concert', 'Terminal 5', '2014-12-12 18:00', '2014-12-11 19:45','www.terminal5nyc.com', '60'),
+(4, 'Dark side of the moon concert', 'Terminal 5', '2014-12-23 18:00', '2014-12-20 18:00','www.terminal5nyc.com', '60'),
+(5, 'Jazz Fest', 'Rockwood music hall', '2014-11-28 10:30',' 2014-11-25 10:30','www.rockwoodmusichall.com/', '30'),
+(6, 'Metallica Concert', 'Terminal 5', '2015-01-12 18:00', '2015-01-10 18:00','www.terminal5nyc.com', '60'),
+(7, 'The Rolling Stone Concert', 'Madison Square', '2014-12-20 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(8, 'Jazz Concert', 'Rockwood music hall', '2014-12-28 10:30', '2014-12-25 10:30','www.rockwoodmusichall.com/', '30');
 --
 -- Dumping data for table `recolist`
 --
@@ -121,6 +122,7 @@ INSERT INTO `rel_band_plays_genre` (`bname`, `gname`) VALUES
 INSERT INTO `rel_recolist_contains_concert` (`lname`, `cid`) VALUES
 ('Charlie''s Jazzy List', 1),
 ('Bob''s "Rock"in List!', 2),
+('Bob''s "Rock"in List!', 7),
 ('Earl''s List of Thrash metal concerts', 3);
 
 --
