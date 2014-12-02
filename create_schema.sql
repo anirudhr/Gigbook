@@ -21,6 +21,8 @@ DROP TABLE IF EXISTS genre;
 DROP VIEW IF EXISTS user_reputation;
 DROP VIEW IF EXISTS band_popularity;
 CREATE TABLE user (     uname VARCHAR(50),
+                        bio TEXT,
+                        profilepic_uri VARCHAR(200),
                         lastname VARCHAR(50) NOT NULL,
                         firstname VARCHAR(50) NOT NULL,
                         password VARCHAR(64) NOT NULL,
@@ -65,8 +67,20 @@ CREATE TABLE genre    (     gname VARCHAR(50),
                             FOREIGN KEY (gparent) REFERENCES genre(gname)
                         );
 CREATE TABLE band_links (   bname VARCHAR(50) NOT NULL,
-                            linktext VARCHAR(50) NULL,
+                            linkurl VARCHAR(50) NOT NULL,
+                            linkinfo TEXT NULL,
                             FOREIGN KEY (bname) REFERENCES band(bname)
+                        );
+CREATE TABLE user_posts (   uname VARCHAR(50) NOT NULL,
+                            postid INT AUTO_INCREMENT,
+                            bname VARCHAR(50) NOT NULL,
+                            cid INT NULL,
+                            postinfo TEXT NULL,
+                            PRIMARY KEY (postid),
+                            UNIQUE (uname),
+                            FOREIGN KEY (uname) REFERENCES user(uname),
+                            FOREIGN KEY (bname) REFERENCES band(bname),
+                            FOREIGN KEY (cid) REFERENCES concert(cid)
                         );
 CREATE TABLE rel_user_fan_band  (   uname VARCHAR(50) NOT NULL,
                                     bname VARCHAR(50) NOT NULL,
