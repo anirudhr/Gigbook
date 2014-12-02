@@ -1,5 +1,5 @@
 /*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
-/*SP to  create a list of recommended concerts as a user and update the user's reputation.*/
+/*SP to let a user follow another user.*/
 USE gigbook_schema;
 DELIMITER //
 DROP PROCEDURE IF EXISTS sp_insert_follows;

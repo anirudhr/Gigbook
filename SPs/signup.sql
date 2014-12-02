@@ -1,5 +1,5 @@
 /*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
-/*SP to  create a list of users*/
+/*SP to allow user to signup*/
 USE gigbook_schema;
 
 DELIMITER //
