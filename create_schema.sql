@@ -39,24 +39,26 @@ CREATE TABLE band   (   bname VARCHAR(50),
                         PRIMARY KEY (bname)
                     );
 CREATE TABLE venue  (
+                        vid INT AUTO_INCREMENT,
                         vname VARCHAR(50),
                         building VARCHAR(5) NOT NULL, street VARCHAR(50) NOT NULL,
                         city VARCHAR(50) NOT NULL, state char(2) NOT NULL, zip CHAR(5) NOT NULL,
                         capacity int,
                         url varchar(64) NULL,
-                        PRIMARY KEY (vname),
+                        PRIMARY KEY (vid),
+                        UNIQUE (vname, city),
                         UNIQUE (building, street, city, state, zip)
                     );
 CREATE TABLE concert    (   cid INT AUTO_INCREMENT,
                             cname VARCHAR(50) NULL,
-                            vname VARCHAR(50) NOT NULL,
+                            vid INT NOT NULL,
                             ctime CHAR(16) NOT NULL,  /*16 = sizeof('yyyy-mm-dd hh:mm')*/
                             postedtime CHAR(16) NOT NULL,
                             tkturl varchar(64) NULL,
                             cover DECIMAL NOT NULL,
                             PRIMARY KEY (cid),
-                            UNIQUE (vname, ctime),
-                            FOREIGN KEY (vname) REFERENCES venue(vname)
+                            UNIQUE (vid, ctime),
+                            FOREIGN KEY (vid) REFERENCES venue(vid)
                         );
 CREATE TABLE genre    (     gname VARCHAR(50),
                             gparent VARCHAR(50) NULL,
@@ -116,13 +118,13 @@ CREATE TABLE rel_recolist_contains_concert  (   lname VARCHAR(50) NOT NULL,
                                             );
 CREATE TABLE user_input (   uname VARCHAR(50) NOT NULL,
                             cid INT NOT NULL,
-                            vname VARCHAR(50) NULL,
+                            vid INT NULL,
                             ctime CHAR(16) NULL,
                             tkturl varchar(64) NULL,
                             cover DECIMAL NULL,
 							postedtime CHAR(16) NOT NULL,
-                            UNIQUE (vname, ctime),
-                            FOREIGN KEY (vname) REFERENCES venue(vname),
+                            UNIQUE (vid, ctime),
+                            FOREIGN KEY (vid) REFERENCES venue(vid),
                             FOREIGN KEY (uname) REFERENCES user(uname),
                             FOREIGN KEY (cid) REFERENCES  concert(cid)
                         );
