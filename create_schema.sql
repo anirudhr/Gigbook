@@ -38,8 +38,7 @@ CREATE TABLE band   (   bname VARCHAR(50),
                         /*popularity FLOAT NOT NULL DEFAULT 0,*/
                         PRIMARY KEY (bname)
                     );
-CREATE TABLE venue  (
-                        vid INT AUTO_INCREMENT,
+CREATE TABLE venue  (   vid INT AUTO_INCREMENT,
                         vname VARCHAR(50),
                         building VARCHAR(5) NOT NULL, street VARCHAR(50) NOT NULL,
                         city VARCHAR(50) NOT NULL, state char(2) NOT NULL, zip CHAR(5) NOT NULL,
