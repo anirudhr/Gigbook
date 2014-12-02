@@ -1,10 +1,18 @@
+/*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
 ++ Added venue ID 'vid' to relation 'venue' because venue name should be unique only within a city. e.g. Hard Rock Cafe can be present in many cities.
+
+++ Added a new relation 'user_posts' to store user profile posts with info about EITHER new bands OR upcoming concerts. User will select whether to post about a band or a concert. If user selects to post about a concert, its band will already be added.
+
+++ Added the following profile attributes to 'band_links':
+	-- linkinfo TEXT: describing the link (this will be used to post info about upcoming concerts)
+
 ++ Images (directory structure: /images/<relation>/<primary key>/):
-	-- user: profile pic (1:n)
-	-- band: profile pic (1:n)
-	-- concert: images (1:n)
-	-- rel_user_attends_concert: images (1:n)
-	-- genre: characteristic image (1:1) //compulsory
+	-- user: profile pic (multiple images per uname)
+	-- band: profile pic (multiple images per bname)
+	-- genre: characteristic image (1 image for a genre) //compulsory
+	-- concert: images (multiple images per cid)
+	-- rel_user_attends_concert: images (multiple images per rel_user_attends_concert(uname, cid))
+
 ++ Added the following profile attributes to 'user':
 	-- bio TEXT
 	-- profilepic_uri VARCHAR(200)
@@ -12,8 +20,5 @@
 	-- profilepic_uri VARCHAR(200)
 ++ Added the following profile attributes to 'genre':
 	-- genrepic_uri VARCHAR(200)
-++ Added a new relation 'user_posts' to store user profile posts with info about EITHER new bands OR upcoming concerts. User will select whether to post about a band or a concert. If user selects to post about a concert, its band will already be added.
 ++ Added a new relation 'concert_images' to store image URIs for concerts posted by bands
 ++ Added a new relation 'rel_user_posts_concertimages' to store image URIs for images taken by users attending concerts
-++ Added the following profile attributes to 'band_links':
-	-- linkinfo TEXT: describing the link (this will be used to post info about upcoming concerts)
