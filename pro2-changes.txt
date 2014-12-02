@@ -4,9 +4,16 @@
 	-- band: profile pic (1:n)
 	-- concert: images (1:n)
 	-- rel_user_attends_concert: images (1:n)
+	-- genre: characteristic image (1:1) //compulsory
 ++ Added the following profile attributes to 'user':
 	-- bio TEXT
 	-- profilepic_uri VARCHAR(200)
+++ Added the following profile attributes to 'band':
+	-- profilepic_uri VARCHAR(200)
+++ Added the following profile attributes to 'genre':
+	-- genrepic_uri VARCHAR(200)
 ++ Added a new relation 'user_posts' to store user profile posts with info about EITHER new bands OR upcoming concerts. User will select whether to post about a band or a concert. If user selects to post about a concert, its band will already be added.
+++ Added a new relation 'concert_images' to store image URIs for concerts posted by bands
+++ Added a new relation 'rel_user_posts_concertimages' to store image URIs for images taken by users attending concerts
 ++ Added the following profile attributes to 'band_links':
 	-- linkinfo TEXT: describing the link (this will be used to post info about upcoming concerts)
