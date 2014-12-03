@@ -10,7 +10,7 @@
 <?php
 require("connectdb.php");
 require("user_homepage_functions.php");
-
+/************UNCOMMENT WHEN ADDING TO MAIN
 if (!isset($_COOKIE['usrcookie'])) {
 	echo "<script language='javascript'>window.location='login.php';</script>"; //go back to login page
 }
@@ -19,6 +19,8 @@ if (!isset($_COOKIE['usrcookie'])) {
 	echo "<script language='javascript'>window.location='login.php';</script>"; //go back to login page
 }
 $uname = $_COOKIE['usrcookie'];
+************/
+$uname = 
 echo "You are user" . $uname;
 /*user home page contents:
 ++ profile pic
