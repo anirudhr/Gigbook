@@ -31,15 +31,14 @@ function get3concerts($mysqli, $uname, &$cids, &$cnames, &$bnames) {
 	}
 }
 
-function get3bands($mysqli, $uname, &$bnames) {
+function get3bandsfan($mysqli, $uname, &$bnames) {
 	$stmt = $mysqli->stmt_init();
-	
-	$get3bands_query = " SELECT bname FROM rel_user_fan_band
+	$get3bandsfan_query = " SELECT bname FROM rel_user_fan_band
                           WHERE uname = ?
                           ORDER BY RAND()
                           LIMIT 3"
 	
-	if(!$stmt->prepare($get3bands_query)) {
+	if(!$stmt->prepare($get3bandsfan_query)) {
 		//fail
 	}
 	else {
@@ -54,4 +53,25 @@ function get3bands($mysqli, $uname, &$bnames) {
 		}
 	}
 }
+
+function get3bandsreco($mysqli, $uname, &$bnames) {//sp_band_suggest_list
+    $stmt = $mysqli->stmt_init();
+    $get3bandsreco_query = "CALL sp_band_suggest_list(?, ?)"
+    if(!$stmt->prepare($get3bandsreco_query)) {
+		//fail
+	}
+	else {
+		$stmt->bind_param('s', $uname);
+		for ($count = 0; $count < 3; $count++;) {
+		    if (!$stmt->execute()) {
+                //fail
+            }
+            $bname = NULL;
+            $stmt->bind_result($bname);
+            $stmt->fetch();
+            array_push($bnames, $bname);
+        }
+	}
+}
 ?>
+<!--/*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/-->

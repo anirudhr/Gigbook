@@ -34,7 +34,8 @@ $next3concerts_cids = array(); $next3concerts_cnames = array(); $next3concerts_b
 $rand3bands_fan = array();
 $rand3bands_reco = array();
 get3concerts($mysqli, $uname, &$next3concerts_cids, &$next3concerts_cnames, &$next3concerts_bnames);
-get3bands($mysqli, $uname, &$rand3bands_fan);
+get3bandsfan($mysqli, $uname, &$rand3bands_fan);
+get3bandsreco($mysqli, $uname, &$rand3bands_reco);
 
 ?>
 </body>
