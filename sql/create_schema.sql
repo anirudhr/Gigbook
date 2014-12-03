@@ -22,7 +22,7 @@ DROP VIEW IF EXISTS user_reputation;
 DROP VIEW IF EXISTS band_popularity;
 CREATE TABLE user (     uname VARCHAR(50),
                         bio TEXT NOT NULL,
-                        profilepic_uri VARCHAR(200) NULL,
+                        /*profilepic_uri VARCHAR(200) NULL,*/
                         lastname VARCHAR(50) NOT NULL,
                         firstname VARCHAR(50) NOT NULL,
                         password VARCHAR(64) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE user (     uname VARCHAR(50),
                     );
 CREATE TABLE band   (   bname VARCHAR(50),
                         bio TEXT NOT NULL,
-                        profilepic_uri VARCHAR(200) NOT NULL,
+                        /*profilepic_uri VARCHAR(200) NOT NULL,*/
                         /*popularity FLOAT NOT NULL DEFAULT 0,*/
                         PRIMARY KEY (bname)
                     );
@@ -64,7 +64,7 @@ CREATE TABLE concert    (   cid INT AUTO_INCREMENT,
                         );
 CREATE TABLE genre    (     gname VARCHAR(50),
                             gparent VARCHAR(50) NULL,
-                            genrepic_uri VARCHAR(200) NOT NULL,
+                            /*genrepic_uri VARCHAR(200) NOT NULL,*/
                             PRIMARY KEY (gname),
                             FOREIGN KEY (gparent) REFERENCES genre(gname)
                         );
@@ -74,7 +74,7 @@ CREATE TABLE band_links (   bname VARCHAR(50) NOT NULL,
                             FOREIGN KEY (bname) REFERENCES band(bname)
                         );
 CREATE TABLE concert_images (   cid INT NOT NULL,
-                                concertpic_uri VARCHAR(200) NOT NULL,
+                                /*concertpic_uri VARCHAR(200) NOT NULL,*/
                                 FOREIGN KEY (cid) REFERENCES concert(cid)
                         );
 CREATE TABLE user_posts (   uname VARCHAR(50) NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE rel_user_attends_concert   (   uname VARCHAR(50) NOT NULL,
                                         );
 CREATE TABLE rel_user_posts_concertimages   (   uname VARCHAR(50) NOT NULL,
                                                 cid INT NOT NULL,
-                                                concertpic_uri VARCHAR(200) NOT NULL,
+                                                /*concertpic_uri VARCHAR(200) NOT NULL,*/
                                                 FOREIGN KEY (uname, cid) REFERENCES rel_user_attends_concert (uname, cid)
                                         );
 CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(50) NOT NULL,

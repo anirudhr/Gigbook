@@ -17,11 +17,11 @@
 
 ++ Added the following profile attributes to 'user':
 	-- bio TEXT
-	-- profilepic_uri VARCHAR(200)
+	-- NO profilepic_uri VARCHAR(200)
 ++ Added the following profile attributes to 'band':
-	-- profilepic_uri VARCHAR(200)
+	-- NO profilepic_uri VARCHAR(200)
 ++ Added the following profile attributes to 'genre':
-	-- genrepic_uri VARCHAR(200)
+	-- NO genrepic_uri VARCHAR(200)
 ++ Added a new relation 'concert_images' to store image URIs for concerts posted by bands
 ++ Added a new relation 'rel_user_posts_concertimages' to store image URIs for images taken by users attending concerts
 **************IMAGES STUFF ENDS
