@@ -37,6 +37,7 @@ CREATE TABLE user (     uname VARCHAR(50),
                     );
 CREATE TABLE band   (   bname VARCHAR(50),
                         bio TEXT NOT NULL,
+						password VARCHAR(64) NOT NULL,
                         profilepic_uri VARCHAR(200) NOT NULL,
                         /*popularity FLOAT NOT NULL DEFAULT 0,*/
                         PRIMARY KEY (bname)
