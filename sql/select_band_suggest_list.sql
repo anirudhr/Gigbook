@@ -5,7 +5,6 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS sp_band_suggest_list;
 CREATE PROCEDURE sp_band_suggest_list(IN inp_uname VARCHAR(50), OUT out_bname VARCHAR(50))
 BEGIN
-    /*sp_band_popularity(IN bandname VARCHAR(50), OUT popularity FLOAT DEFAULT 0)*/
     /*
     1. Select genre that user likes at random. If applicable, select its parent genre.
     2. Select 1 band that the user isn't a fan of that play the genre or parent, at random.
