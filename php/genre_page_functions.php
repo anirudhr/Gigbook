@@ -11,7 +11,7 @@ function get_bands_playing_genre($mysqli, $gname) {// Returns array of band name
 			throw new Exception("get_bands_playing_genre: failed to execute");
 		}
 		$bname = NULL;
-		$stmt->bind_result($cid, $cname, $bname);
+		$stmt->bind_result($bname);
 		$bnames = array();
 		while($stmt->fetch()) {
 			array_push($bnames, $bname);
@@ -30,6 +30,9 @@ function get_bands_playing_genre($mysqli, $gname) {// Returns array of band name
         }
         $stmt->fetch();
         $result = $mysqli->query('SELECT @popularity as popularity');
+        if (!$result) {
+          throw new Exception("Get popularity failed for band " . $bname);
+        }
         $row = $result->fetch_assoc();
         $bandbypopularities[$row['popularity']] = $bandname;
       }
