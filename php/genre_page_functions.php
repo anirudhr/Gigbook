@@ -22,7 +22,7 @@ function get_bands_playing_genre($mysqli, $gname) {// Returns array of band name
       throw new Exception("get_popularity_by_band_query: failed to prepare");
     }
     else {
-      $bandbypopularities = array();
+      $popularities_by_band = array();
       foreach ($bnames as $bandname) {
         $stmt->bind_param('s', $bandname);
         if (!$stmt->execute()) {
@@ -34,10 +34,10 @@ function get_bands_playing_genre($mysqli, $gname) {// Returns array of band name
           throw new Exception("Get popularity failed for band " . $bname);
         }
         $row = $result->fetch_assoc();
-        $bandbypopularities[$row['popularity']] = $bandname;
+        $popularities_by_band[$bandname] = $row['popularity'];
       }
-      krsort($bandbypopularities);//sort high to low by keys
-      return $bandbypopularities;
+      //rsort($popularities_by_band);//sort high to low by values
+      return $popularities_by_band;
 		}
 	}
 }
