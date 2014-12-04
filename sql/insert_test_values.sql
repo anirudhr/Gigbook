@@ -41,7 +41,8 @@ INSERT INTO `band` (`bname`, `bio`) VALUES
 ('New York Dolls', 'Cross-dressing, drug using, glam punks, the New York Dolls were punk before punk had a name. Formed shortly after the VU explosion, the New York Dolls were pioneers in their own right. Though the band quickly dissolved, everyone who saw them wanted to what they did, they wanted to be punks, they wanted the drugs, they wanted to dress up like women. Member Johnny Thunders went on to form his own band, also legendary'), 
 ('Intro5pect', 'The band were officially formed in 1997 as a reaction to what was an apparent commercialization of the punk genre. Their first demo was released in 1998 and their first official release came in 1999 when newly founded indie label Geykido Comet Records released the band''s song Education as a limited edition 7" vinyl.'),
 ('Alkaline Trio', 'Alkaline Trio is a three-member Illinois punk rock band from McHenry, Illinois, formed in 1996. The band consists of Matt Skiba (vocals, guitar), Dan Andriano (vocals, bass), and Derek Grant (drums).'),
-('Bankrupt','Bankrupt is a punk rock band from Budapest, Hungary. They are one of the most known Hungarian bands outside Hungary in their genre, having received coverage by UK, US and Canadian online magazines.Since their formation in 1996, the band has released three full-length albums and three CD-EPs. The title song of their most recent release Rewound was played in rotation by Hungarian Radio''s music channel MR2 and the music video of its Hungarian version Retro was played in rotation by MTV Hungary.');
+('Bankrupt','Bankrupt is a punk rock band from Budapest, Hungary. They are one of the most known Hungarian bands outside Hungary in their genre, having received coverage by UK, US and Canadian online magazines.Since their formation in 1996, the band has released three full-length albums and three CD-EPs. The title song of their most recent release Rewound was played in rotation by Hungarian Radio''s music channel MR2 and the music video of its Hungarian version Retro was played in rotation by MTV Hungary.'),
+('A-ha!', 'Who cares');
 --
 -- Dumping data for table `genre`
 --
@@ -121,7 +122,8 @@ INSERT INTO `rel_band_plays_genre` (`bname`, `gname`) VALUES
 ('Eric Clapton', 'Blues'),
 ( 'New York Dolls', 'Punk rock'),
 ('Bankrupt', 'Punk rock'),
-('The Rolling Stones', 'Rock');
+('The Rolling Stones', 'Rock'),
+('A-ha!', 'Rock');
 
 --
 -- Dumping data for table `rel_recolist_contains_concert`
