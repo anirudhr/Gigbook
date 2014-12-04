@@ -36,6 +36,6 @@ BEGIN
                             )
         ORDER BY RAND() LIMIT 1;
     END IF;
-    SELECT inp_uname, inp_gname, inp_gparent, out_bname; /*This line is for testing only*/
+    /*SELECT inp_uname, inp_gname, inp_gparent, out_bname; /*This line is for testing only*/
 END//
 DELIMITER ;
