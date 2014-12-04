@@ -6,9 +6,13 @@ DROP PROCEDURE IF EXISTS sp_band_popularity;
 CREATE PROCEDURE sp_band_popularity(IN bandname VARCHAR(50), OUT popularity FLOAT )
 BEGIN
     DECLARE popA, popB, popC, popD, popE FLOAT DEFAULT 0;
-    DECLARE fans, likers, lists, attendees INT DEFAULT 0;
+    DECLARE rating, fans, likers, lists, attendees INT DEFAULT 0;
     
-    SELECT AVG(rel_user_attends_concert.rating)*4 INTO popA FROM rel_user_attends_concert JOIN rel_band_performs_concert ON rel_user_attends_concert.cid = rel_band_performs_concert.cid WHERE rel_band_performs_concert.bname = bandname;
+    SELECT AVG(rel_user_attends_concert.rating)*4 INTO rating FROM rel_user_attends_concert JOIN rel_band_performs_concert ON rel_user_attends_concert.cid = rel_band_performs_concert.cid WHERE rel_band_performs_concert.bname = bandname;
+    
+    IF      rating IS NOT NULL THEN SET popA = rating;
+    ELSE    SET popA = 0;
+    END IF;
     
     SELECT COUNT(rel_user_fan_band.uname) INTO fans FROM rel_user_fan_band WHERE rel_user_fan_band.bname = bandname;
     IF      fans >= 50 THEN SET popB = 20;
@@ -43,6 +47,7 @@ BEGIN
     END IF;
     
     SET popularity = popA + popB + popC + popD + popE;
+    SELECT popularity;
     
 END//
 DELIMITER ;

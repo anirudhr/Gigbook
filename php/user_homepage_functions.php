@@ -20,9 +20,6 @@ function get_n_concerts($mysqli, $uname) {//Function that returns an array of ar
 		throw new Exception("get_n_concerts: failed to prepare statement");
 	}
 	else {
-	    $cids = array();
-	    $cnames = array();
-	    $bnames = array();
 		$stmt->bind_param('s', $uname);
 		if (!$stmt->execute()) {
 			throw new Exception("get_n_concerts: failed to execute");
@@ -31,8 +28,10 @@ function get_n_concerts($mysqli, $uname) {//Function that returns an array of ar
 		$cname = NULL;
 		$bname = NULL;
 		$stmt->bind_result($cid, $cname, $bname);
+    $cids = array();
+    $cnames = array();
+    $bnames = array();
 		while($stmt->fetch()) {
-		    //print "\t" . $cid . " " . $cname . " " . $bname . "<br/>";
 			array_push($cids, $cid);
 			array_push($cnames, $cname);
 			array_push($bnames, $bname);
