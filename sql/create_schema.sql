@@ -7,8 +7,11 @@ DROP TABLE IF EXISTS user_input;
 DROP TABLE IF EXISTS rel_band_plays_genre;
 DROP TABLE IF EXISTS rel_user_likes_genre;
 DROP TABLE IF EXISTS rel_user_follows_user;
+DROP TABLE IF EXISTS rel_user_posts_concertimages;
 DROP TABLE IF EXISTS rel_user_attends_concert;
 DROP TABLE IF EXISTS rel_user_fan_band;
+DROP TABLE IF EXISTS user_posts;
+DROP TABLE IF EXISTS concert_images;
 DROP TABLE IF EXISTS band_links;
 DROP TABLE IF EXISTS rel_band_performs_concert;
 DROP TABLE IF EXISTS rel_recolist_contains_concert;
@@ -68,9 +71,12 @@ CREATE TABLE genre    (     gname VARCHAR(50),
                             PRIMARY KEY (gname),
                             FOREIGN KEY (gparent) REFERENCES genre(gname)
                         );
-CREATE TABLE band_links (   bname VARCHAR(50) NOT NULL,
+CREATE TABLE band_links (   linkid INT AUTO_INCREMENT,
+                            bname VARCHAR(50) NOT NULL,
                             linkurl VARCHAR(50) NOT NULL,
                             linkinfo TEXT NULL,
+                            postedtime CHAR(16) NOT NULL,
+                            PRIMARY KEY(linkid),
                             FOREIGN KEY (bname) REFERENCES band(bname)
                         );
 CREATE TABLE concert_images (   cid INT NOT NULL,
@@ -82,6 +88,7 @@ CREATE TABLE user_posts (   uname VARCHAR(50) NOT NULL,
                             bname VARCHAR(50) NOT NULL,
                             cid INT NULL,
                             postinfo TEXT NULL,
+                            postedtime CHAR(16) NOT NULL,
                             PRIMARY KEY (postid),
                             UNIQUE (uname),
                             FOREIGN KEY (uname) REFERENCES user(uname),

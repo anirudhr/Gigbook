@@ -3,7 +3,7 @@
 $GETCOUNTSMALL = 3;
 $GETCOUNTLARGE = 10;
 
-function get_n_concerts($mysqli, $uname) {
+function get_n_concerts($mysqli, $uname) {//Function that returns an array of arrays (cids, cnames, bnames) $GETCOUNTSMALL long. Use: list($cids, $cnames, $bnames) = get_n_concerts($mysqli, $usrname);
   global $GETCOUNTSMALL;
 	$stmt = $mysqli->stmt_init();
 	
@@ -41,7 +41,7 @@ function get_n_concerts($mysqli, $uname) {
 	}
 }
 
-function get_n_bands_fan($mysqli, $uname) {
+function get_n_bands_fan($mysqli, $uname) {//Function that returns an array of $GETCOUNTSMALL bnames which the user is a fan of
   global $GETCOUNTSMALL;
 	$stmt = $mysqli->stmt_init();
 	$get_n_bands_fan_query = " SELECT bname FROM rel_user_fan_band
@@ -67,7 +67,7 @@ function get_n_bands_fan($mysqli, $uname) {
 	}
 }
 
-function get_n_bands_reco($mysqli, $uname) {//sp_band_suggest_list
+function get_n_bands_reco($mysqli, $uname) {//Function that returns up to $GETCOUNTSMALL recommended bands, no duplicates per call
   global $GETCOUNTSMALL;
   $stmt = $mysqli->stmt_init();
   $get_n_bands_reco_query = "CALL sp_band_suggest_list(?, @bname)";
@@ -92,7 +92,7 @@ function get_n_bands_reco($mysqli, $uname) {//sp_band_suggest_list
           $num_dup_check--;
         }
         else {
-          array_push($bnames, $bname);
+          array_push($bnames, $bname); //only add if not a dupe
         }
       }
     }
@@ -100,17 +100,79 @@ function get_n_bands_reco($mysqli, $uname) {//sp_band_suggest_list
   }
 }
 
-function get_n_user_posts($mysqli, $uname) {
-  global $GETCOUNTLARGE;
-  //static array containing posts loaded so far?
+function get_n_user_posts($mysqli, $uname) { //get posts by users that this user follows, sorted by time
+  //global $GETCOUNTLARGE;
+  //static $loadedposts = //string containing postids loaded so far
   $stmt = $mysqli->stmt_init();
-  $get_n_user_posts_query = "SELECT user_posts.uname, ";
+  $get_n_user_posts_query = " SELECT user_posts.uname, user_posts.postid, user_posts.bname, user_posts.cid, user_posts.postinfo
+                              FROM user_posts
+                              JOIN rel_user_follows_user ON rel_user_follows_user.followee = user_posts.uname
+                              WHERE rel_user_follows_user.follower = ?
+                              ORDER BY user_posts.postedtime ASC"; //no limit
+  if(!$stmt->prepare($get_n_user_posts_query)) {
+		throw new Exception("get_n_user_posts: failed to prepare");
+	}
+	else {
+		$stmt->bind_param('s', $uname);
+		if (!$stmt->execute()) {
+			throw new Exception("get_n_user_posts: failed to execute");
+		}
+		$uname = NULL;
+		$postid = NULL;
+		$bname = NULL;
+		$cid = NULL;
+		$postinfo = NULL;
+		$stmt->bind_result($uname, $postid, $bname, $cid, $postinfo);
+		$unames = array();
+		$postids = array();
+		$bnames = array();
+		$cids = array();
+		$postinfos = array();
+		while($stmt->fetch()) {
+			array_push($unames, $uname);
+      array_push($postids, $postid);
+      array_push($bnames, $bname);
+      array_push($cids, $cid);
+      array_push($postinfos, $postinfo);
+		}
+		return array($postids, $bnames, $cids, $postinfos);
+	}
 }
 
-function get_n_band_links($mysqli, $uname) {
-  global $GETCOUNTLARGE;
+function get_n_band_links($mysqli, $uname) {//get links posted by bands the user is a fan of sorted in order
+  //global $GETCOUNTLARGE;
+  //static $loadedposts = //string containing linkids loaded so far
   $stmt = $mysqli->stmt_init();
-  $get_n_user_posts_query = "SELECT ";
+  $get_n_band_links_query = " SELECT linkid, bname, linkurl, linkinfo
+                              FROM band_links
+                              JOIN rel_user_fan_band ON rel_user_fan_band.bname = band_links.bname
+                              WHERE uname = ?
+                              ORDER BY band_links.postedtime ASC";//no limits
+  if(!$stmt->prepare($get_n_band_links_query)) {
+		throw new Exception("get_n_band_links_query: failed to prepare");
+	}
+	else {
+		$stmt->bind_param('s', $uname);
+		if (!$stmt->execute()) {
+			throw new Exception("get_n_band_links_query: failed to execute");
+		}
+		$linkid = NULL;
+		$bname = NULL;
+		$linkurl = NULL;
+		$linkinfo = NULL;
+		$stmt->bind_result($linkid, $linkurl, $linkinfo);
+		$linkids = array();
+		$bnames = array();
+		$linkurls = array();
+		$linkinfos = array();
+		while($stmt->fetch()) {
+			array_push($linkids, $linkid);
+			array_push($bnames, $bname);
+			array_push($linkurls, $linkurl);
+			array_push($linkinfos, $linkinfo);
+		}
+		return array($linkids, $bnames, $linkurls, $linkinfos);
+	}
 }
 ?>
 <!--/*:indentSize=2:tabSize=2:noTabs=true:wrap=soft:*/-->
