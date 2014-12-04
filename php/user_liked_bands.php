@@ -12,9 +12,9 @@ require("connectdb.php");
 require("user_liked_bands_functions.php");
 $uname = 'Alice';
 try {
-  list($user_liked_bnames, $user_liked_gnames) = get_user_liked_bands($mysqli, $uname);
+  list($user_liked_bnames, $user_liked_cids, $user_liked_cnames) = get_user_liked_bands($mysqli, $uname);
   for ($i = 0; $i < count($user_liked_bnames); $i++) {
-    print $user_liked_bnames[$i] . " : " . $user_liked_gnames[$i] . "<br/>";
+    print $user_liked_bnames[$i] . " : " . $user_liked_cids[$i] . " : " . $user_liked_cnames[$i] . "<br/>";
   }
 }
 catch (Exception $e) {
