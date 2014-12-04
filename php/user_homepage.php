@@ -32,33 +32,33 @@ print "You are user " . $uname . "<br/>";
 	-- user_posts
 */
 $profilepic = '/images/user/'.$uname.'.jpg';
-$next3concerts_cids = array(); $next3concerts_cnames = array(); $next3concerts_bnames = array();
-$rand3bands_fan = array();
-$rand3bands_reco = array();
+$next_n_concerts_cids = array(); $next_n_concerts_cnames = array(); $next_n_concerts_bnames = array();
+$rand_n_bands_fan = array();
+$rand_n_bands_reco = array();
 try {
-  list($next3concerts_cids, $next3concerts_cnames, $next3concerts_bnames) = get3concerts($mysqli, $uname);
-  get3bandsfan($mysqli, $uname, $rand3bands_fan);
-  get3bandsreco($mysqli, $uname, $rand3bands_reco);
+  list($next_n_concerts_cids, $next_n_concerts_cnames, $next_n_concerts_bnames) = get_n_concerts($mysqli, $uname);
+  $rand_n_bands_fan = get_n_bands_fan($mysqli, $uname);
+  $rand_n_bands_reco = get_n_bands_reco($mysqli, $uname);
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
   exit();
 }
-print "Next 3 concerts:" . "<br/>";
-for ($i = 0; $i < 3 && $i < count($next3concerts_cids); $i++) {
-  print "\tcid: " . $next3concerts_cids[$i] . "<br/>";
-  print "\tcname: " . $next3concerts_cnames[$i] . "<br/>";
-  print "bname: " . $next3concerts_bnames[$i] . "<br/>";
+print "Next n concerts:" . "<br/>";
+for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
+  print "\tcid: " . $next_n_concerts_cids[$i] . "<br/>";
+  print "\tcname: " . $next_n_concerts_cnames[$i] . "<br/>";
+  print "bname: " . $next_n_concerts_bnames[$i] . "<br/>";
 }
 
-print "Random 3 bands that you like: " . "<br/>";
-for ($i = 0; $i < 3 && $i < count($rand3bands_fan); $i++) {
-  print "$i: " . $rand3bands_fan[$i] . "<br/>";
+print "Random n bands that you like: " . "<br/>";
+for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_fan); $i++) {
+  print "$i: " . $rand_n_bands_fan[$i] . "<br/>";
 }
 
-print "Random 3 bands that you may like: " . "<br/>";
-for ($i = 0; $i < 3 && $i < count($rand3bands_reco); $i++) {
-  print "$i: " . $rand3bands_reco[$i] . "<br/>";
+print "Random n bands that you may like: " . "<br/>";
+for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_reco); $i++) {
+  print "$i: " . $rand_n_bands_reco[$i] . "<br/>";
 }
 ?>
 </body>
