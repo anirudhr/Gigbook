@@ -73,33 +73,31 @@ function get_n_bands_reco($mysqli, $uname) {//Function that returns up to $GETCO
   if(!$stmt->prepare($get_n_bands_reco_query)) {
     throw new Exception("get_n_bands_reco: failed to prepare");
   }
-  else {
-    $stmt->bind_param('s', $uname);
-    $num_dup_check = 5; //Check for duplicate recommendations 5 times;
-    $bnames = array();
-    for ($count = 0; $count < $GETCOUNTSMALL; $count++) {
-      if (!$stmt->execute()) {
-        throw new Exception("get_n_bands_reco: failed to execute");
+  $stmt->bind_param('s', $uname);
+  $num_dup_check = 5; //Check for duplicate recommendations 5 times;
+  $bnames = array();
+  for ($count = 0; $count < $GETCOUNTSMALL; $count++) {
+    if (!$stmt->execute()) {
+      throw new Exception("get_n_bands_reco: failed to execute");
+    }
+    $stmt->fetch();
+    $result = $mysqli->query('SELECT @bname as bname');
+    if (!$result) {
+      throw new Exception("Get bname failed");
+    }
+    $row = $result->fetch_assoc();
+    $bname = $row['bname'];
+    if ($num_dup_check > 0) {
+      if (in_array($bname, $bnames)) {
+        $count--;
+        $num_dup_check--;
       }
-      $stmt->fetch();
-      $result = $mysqli->query('SELECT @bname as bname');
-        if (!$result) {
-          throw new Exception("Get bname failed");
-        }
-      $row = $result->fetch_assoc();
-      $bname = $row['bname'];
-      if ($num_dup_check > 0) {
-        if (in_array($bname, $bnames)) {
-          $count--;
-          $num_dup_check--;
-        }
-        else {
-          array_push($bnames, $bname); //only add if not a dupe
-        }
+      else {
+        array_push($bnames, $bname); //only add if not a dupe
       }
     }
-    return $bnames;
   }
+  return $bnames;
 }
 
 function get_n_user_posts($mysqli, $uname) { //get posts by users that this user follows, sorted by time
