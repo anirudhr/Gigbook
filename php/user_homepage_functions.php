@@ -83,6 +83,9 @@ function get_n_bands_reco($mysqli, $uname) {//Function that returns up to $GETCO
       }
       $stmt->fetch();
       $result = $mysqli->query('SELECT @bname as bname');
+        if (!$result) {
+          throw new Exception("Get bname failed");
+        }
       $row = $result->fetch_assoc();
       $bname = $row['bname'];
       if ($num_dup_check > 0) {

@@ -47,7 +47,7 @@ BEGIN
     END IF;
     
     SET popularity = popA + popB + popC + popD + popE;
-    SELECT popularity;
+    /*SELECT popularity;*/
     
 END//
 DELIMITER ;
