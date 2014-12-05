@@ -8,7 +8,7 @@ BEGIN
     DECLARE inp_reputation FLOAT DEFAULT 0;
     CALL sp_user_reputation(inp_uname, inp_reputation);
     /* SELECT inp_reputation; */
-    IF inp_reputation >= 18 THEN
+    IF inp_reputation >= 15 THEN
         /*SELECT 1;*/
         INSERT INTO user_input (uname,cid, vname, ctime, tkturl, cover, postedtime)
         VALUES( inp_uname, inp_cid, inp_vname, inp_ctime, inp_tkturl, inp_cover,NOW());
