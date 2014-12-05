@@ -534,11 +534,41 @@ CREATE TABLE recolist   (   lname VARCHAR(50) NOT NULL,
                             FOREIGN KEY (uname) REFERENCES user(uname),
                             FOREIGN KEY (gname) REFERENCES genre(gname)
                         );
+INSERT INTO `recolist` (`lname`, `uname`, `gname`) VALUES
+('Bob''s Rockamagical Set Of Gigs!', 'Bob', 'Rock'),
+('Charlie''s Jazzy List', 'Charlie', 'Jazz'),
+('Rockbox Of Alice', 'Alice', 'Rock'),
+('Thrash monsters', 'Earl', 'Thrash Metal');
+
 CREATE TABLE rel_recolist_contains_concert  (   lname VARCHAR(50) NOT NULL,
                                                 cid INT NOT NULL,
                                                 FOREIGN KEY (lname) REFERENCES recolist(lname),
                                                 FOREIGN KEY (cid) REFERENCES concert(cid)
                                             );
+INSERT INTO `rel_recolist_contains_concert` (`lname`, `cid`) VALUES
+('Charlie''s Jazzy List', 1),
+('Charlie''s Jazzy List', 11),
+('Charlie''s Jazzy List', 24),
+('Charlie''s Jazzy List', 26),
+('Bob''s Rockamagical Set Of Gigs!', 2),
+('Bob''s Rockamagical Set Of Gigs!', 4),
+('Bob''s Rockamagical Set Of Gigs!', 11),
+('Bob''s Rockamagical Set Of Gigs!', 13),
+('Bob''s Rockamagical Set Of Gigs!', 14),
+('Bob''s Rockamagical Set Of Gigs!', 15),
+('Bob''s Rockamagical Set Of Gigs!', 16),
+('Rockbox Of Alice', 9),
+('Rockbox Of Alice', 10),
+('Rockbox Of Alice', 12),
+('Rockbox Of Alice', 13),
+('Rockbox Of Alice', 14),
+('Rockbox Of Alice', 15),
+('Thrash monsters', 3),
+('Thrash monsters', 6),
+('Thrash monsters', 12),
+('Thrash monsters', 23),
+('Thrash monsters', 35);
+
 CREATE TABLE user_input (   uname VARCHAR(50) NOT NULL,
                             cid INT NOT NULL,
                             vid INT NULL,
@@ -551,12 +581,5 @@ CREATE TABLE user_input (   uname VARCHAR(50) NOT NULL,
                             FOREIGN KEY (uname) REFERENCES user(uname),
                             FOREIGN KEY (cid) REFERENCES  concert(cid)
                         );
-                        
-/*CREATE VIEW user_reputation AS
-    SELECT uname AS u1, ( CASE
-        WHEN (SELECT joindate FROM user WHERE uname=u1) < (SELECT CURDATE() + INTERVAL 15 DAY) THEN 1
-        ELSE 0
-    ) AS rep FROM user
-    ;
-CREATE VIEW band_popularity AS
-    SELECT;*/
+
+/**/
