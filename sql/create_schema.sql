@@ -314,11 +314,34 @@ CREATE TABLE rel_user_likes_genre   (   uname VARCHAR(50) NOT NULL,
                                         FOREIGN KEY (gname) REFERENCES genre(gname)
                                 );
 INSERT INTO `rel_user_likes_genre` (`uname`, `gname`) VALUES
+('Alice', 'Blues'),
+('Alice', 'Jazz'),
+('Alice', 'Metal'),
 ('Alice', 'Rock'),
+('Bob', 'Acid Jazz'),
+('Bob', 'Bebop'),
+('Bob', 'Country'),
+('Bob', 'Hip Hop'),
+('Bob', 'Jazz'),
 ('Bob', 'Rock'),
+('Bob', 'Thrash Metal'),
+('Charlie', 'Country'),
+('Charlie', 'Jazz'),
+('Charlie', 'Life Metal'),
+('Charlie', 'Rock'),
+('Dean', 'Acid Jazz'),
+('Dean', 'Life Metal'),
+('Dean', 'Punk Rock'),
+('Dean', 'Rock'),
 ('Dean', 'Thrash Metal'),
+('Earl', 'Blues'),
+('Earl', 'Hip Hop'),
+('Earl', 'Punk Rock'),
 ('Earl', 'Thrash Metal'),
-('Charlie', 'Jazz');
+('Travis', 'Free Jazz'),
+('Travis', 'Progressive Rock'),
+('Travis', 'Punk Rock'),
+('Travis', 'Rock');
 
 CREATE TABLE rel_user_follows_user  (   follower VARCHAR(50) NOT NULL,
                                         followee VARCHAR(50) NOT NULL,
@@ -326,6 +349,25 @@ CREATE TABLE rel_user_follows_user  (   follower VARCHAR(50) NOT NULL,
                                         FOREIGN KEY (follower) REFERENCES user(uname),
                                         FOREIGN KEY (followee) REFERENCES user(uname)
                                     );
+INSERT INTO `rel_user_follows_user` (`follower`, `followee`) VALUES
+('Bob', 'Alice'),
+('Charlie', 'Alice'),
+('Dean', 'Alice'),
+('Earl', 'Alice'),
+('Travis', 'Alice'),
+('Alice', 'Bob'),
+('Dean', 'Bob'),
+('Travis', 'Bob'),
+('Alice', 'Charlie'),
+('Bob', 'Charlie'),
+('Earl', 'Charlie'),
+('Travis', 'Charlie'),
+('Alice', 'Earl'),
+('Bob', 'Earl'),
+('Alice', 'Travis'),
+('Charlie', 'Travis'),
+('Earl', 'Travis');
+                                    
 CREATE TABLE rel_user_attends_concert   (   uname VARCHAR(50) NOT NULL,
                                             cid INT NOT NULL,
                                             review VARCHAR(64) NULL,
@@ -436,6 +478,7 @@ INSERT INTO `rel_user_attends_concert` (`uname`, `cid`, `review`, `rating`) VALU
 ('Charlie', 35, NULL, NULL),
 ('Dean', 35, NULL, NULL),
 ('Earl', 35, NULL, NULL);
+
 CREATE TABLE rel_user_posts_concertimages   (   uname VARCHAR(50) NOT NULL,
                                                 cid INT NOT NULL,
                                                 /*concertpic_uri VARCHAR(200) NOT NULL,*/
