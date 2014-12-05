@@ -67,20 +67,25 @@ INSERT INTO `genre` (`gname`, `gparent`) VALUES
 INSERT INTO `concert` (`cid`, `cname`, `vid`, `ctime`, `postedtime`,`tkturl`, `cover`) VALUES
 (1, 'Jazz Fest', '3', '2014-11-27 10:30', '2014-11-20 10:30','www.rockwoodmusichall.com/', '30'),
 (2, 'Carnival of Rock', '2', '2014-11-20 19:45','2014-11-17 19:45', 'www.thegarden.com', '55'),
-(3, 'Metallica Concert', '4', '2014-12-12 18:00', '2014-12-11 19:45','www.terminal5nyc.com', '60'),
-(4, 'Dark side of the moon concert', '4', '2014-12-23 18:00', '2014-12-20 18:00','www.terminal5nyc.com', '60'),
-(5, 'Jazz Fest', '3', '2014-11-28 10:30',' 2014-11-25 10:30','www.rockwoodmusichall.com/', '30'),
-(6, 'Metallica Concert', '4', '2015-01-12 18:00', '2015-01-10 18:00','www.terminal5nyc.com', '60'),
-(7, 'The Rolling Stone Concert', '2', '2014-12-20 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
-(8, 'Jazz Concert', '3', '2014-12-28 10:30', '2014-12-25 10:30','www.rockwoodmusichall.com/', '30'),
+(3, 'Metallication', '4', '2014-12-12 18:00', '2014-12-11 19:45','www.terminal5nyc.com', '60'),
+(4, 'Hybrid Theorizings', '4', '2014-12-23 18:00', '2014-12-20 18:00','www.terminal5nyc.com', '60'),
+(5, 'Sing Them Songs', '3', '2014-11-28 10:30',' 2014-11-25 10:30','www.rockwoodmusichall.com/', '30'),
+(6, 'Metallica Live From Hell', '4', '2015-01-12 18:00', '2015-01-10 18:00','www.terminal5nyc.com', '60'),
+(7, 'Can I Get One Satisfaction', '2', '2014-12-20 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(8, 'Flute Concert', '3', '2014-12-28 10:30', '2014-12-25 10:30','www.rockwoodmusichall.com/', '30'),
 (9, 'Fear US', '2', '2014-12-22 15:45','2014-12-18 19:45', 'www.thegarden.com', '75'),
-(10, 'Adolescents Concert', '2', '2014-12-25 20:45','2014-12-18 19:45', 'www.thegarden.com', '43'),
-(11, 'New York Dolls Concert', '2', '2014-12-12 19:45','2014-12-18 19:45', 'www.thegarden.com', '23'),
-(12, 'Intro5pect Concert', '2', '2014-12-06 19:45','2014-12-18 19:45', 'www.thegarden.com', '66'),
-(13, 'Alkaline Trio Concert', '2', '2014-12-01 19:45','2014-12-18 19:45', 'www.thegarden.com', '56'),
-(14, 'Bankrupt Concert', '2', '2014-12-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '46'),
-(15, 'The Rolling Stone Concert', '2', '2014-12-03 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
-(16, 'The Rolling Stone Concert', '2', '2015-01-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '80');
+(10, 'Adolescents Never Grow Up', '2', '2014-12-25 20:45','2014-12-18 19:45', 'www.thegarden.com', '43'),
+(11, 'New York Dolls Live In New Jersey', '2', '2014-12-12 19:45','2014-12-18 19:45', 'www.thegarden.com', '23'),
+(12, 'Reintro5pection', '2', '2014-12-06 19:45','2014-12-18 19:45', 'www.thegarden.com', '66'),
+(13, 'Alkaline Trilogy', '2', '2014-12-01 19:45','2014-12-18 19:45', 'www.thegarden.com', '56'),
+(14, 'Bankrupt And Insolvent', '2', '2014-12-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '46'),
+(15, 'Gathering No Moss', '2', '2014-12-03 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(16, 'Take On Me Everywhere', '2', '2015-01-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(17, 'Got Me On My Peas Layla', '2', '2015-09-03 18:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(18, 'Megadedly', '2', '2014-12-25 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(19, 'Take On Me Everywhere', '2', '2015-01-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(20, 'Take On Me Everywhere', '2', '2015-01-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '80')
+;
 --
 -- Dumping data for table `recolist`
 --
@@ -95,13 +100,25 @@ INSERT INTO `recolist` (`lname`, `uname`, `gname`) VALUES
 --
 
 INSERT INTO `rel_band_performs_concert` (`bname`, `cid`) VALUES
-('Metallica', 3),
-('Linkin Park', 2),
 ('Kenny G', 1),
+('Linkin Park', 2),
+('Metallica', 3),
+('Linkin Park',4),
 ('Ray Charles', 5),
 ('Metallica', 6),
 ('The Rolling Stones', 7),
-('Linkin Park',4);
+('Jethro Tull', 8),
+('Fear', 9),
+('Adolescents', 10),
+('New York Dolls', 11),
+('Intro5pect', 12),
+('Alkaline Trio', 13),
+('Bankrupt', 14),
+('The Rolling Stones', 15),
+('A-ha!', 16),
+('Eric Clapton', 17),
+('Megadeth', 18)
+;
 
 
 --
