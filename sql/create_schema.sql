@@ -149,14 +149,40 @@ INSERT INTO `genre` (`gname`, `gparent`) VALUES
 ('Country', NULL),
 ('Hip Hop', NULL),
 ('Jazz', NULL),
+('Metal', NULL),
 ('Rock', NULL),
 ('Acid Jazz', 'Jazz'),
-('Bebob', 'Jazz'),
+('Bebop', 'Jazz'),
 ('Free Jazz', 'Jazz'),
-('Blues', 'Rock'),
+('Blues', 'Jazz'),
 ('Progressive Rock', 'Rock'),
 ('Punk rock', 'Rock'),
-('Thrash Metal', 'Rock');
+('Thrash Metal', 'Metal'),
+('Flutesnoot', 'Country'),
+('Life Metal', 'Metal');
+
+CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(50) NOT NULL,
+                                        gname VARCHAR(50) NOT NULL,
+                                        FOREIGN KEY (bname) REFERENCES band(bname),
+                                        FOREIGN KEY (gname) REFERENCES genre(gname)
+                                    );
+
+INSERT INTO `rel_band_plays_genre` (`bname`, `gname`) VALUES
+('Jethro Tull', 'Progressive Rock'),
+('Kenny G', 'Jazz'),
+('Megadeth', 'Thrash Metal'),
+('Metallica', 'Thrash Metal'),
+('Linkin Park', 'Rock'),
+('Ray Charles', 'Jazz'),
+('Fear','Punk rock'),
+('Adolescents','Progressive rock'),
+('Alkaline Trio', 'Punk rock'), 
+('Intro5pect', 'Punk rock'),
+('Eric Clapton', 'Blues'),
+( 'New York Dolls', 'Punk rock'),
+('Bankrupt', 'Punk rock'),
+('The Rolling Stones', 'Rock'),
+('A-ha!', 'Rock');
 
 CREATE TABLE band_links (   linkid INT AUTO_INCREMENT,
                             bname VARCHAR(50) NOT NULL,
@@ -218,24 +244,67 @@ CREATE TABLE user_posts (   uname VARCHAR(50) NOT NULL,
 CREATE TABLE rel_user_fan_band  (   uname VARCHAR(50) NOT NULL,
                                     bname VARCHAR(50) NOT NULL,
                                     fdate CHAR(10),
+                                    PRIMARY KEY (uname, bname),
+                                    UNIQUE (uname, bname, fdate),
                                     FOREIGN KEY (uname) REFERENCES user(uname),
                                     FOREIGN KEY (bname) REFERENCES band(bname)
                                 );
 INSERT INTO `rel_user_fan_band` (`uname`, `bname`, `fdate`) VALUES
 ('Alice', 'Linkin Park', '2014-11-15'),
 ('Alice', 'The Rolling Stones', '2014-11-15'),
+('Alice', 'A-ha!', '2014-11-15'),
+('Alice', 'Megadeth', '2014-11-15'),
+('Alice', 'New York Dolls', '2014-11-15'),
+('Alice', 'Intro5pect', '2014-11-15'),
+('Alice', 'Eric Clapton', '2014-11-15'),
+('Alice', 'Kenny G', '2014-11-15'),
+('Bob', 'Bankrupt', '2012-12-12'),
+('Bob', 'Kenny G', '2012-12-12'),
 ('Bob', 'Linkin Park', '2012-12-12'),
 ('Bob', 'Adolescents', '2012-12-12'),
+('Bob', 'The Rolling Stones', '2012-12-12'),
+('Bob', 'Intro5pect', '2012-12-12'),
+('Bob', 'Ray Charles', '2012-12-12'),
+('Bob', 'Eric Clapton', '2012-12-12'),
+('Bob', 'Fear', '2012-12-12'),
+('Bob', 'A-ha!', '2012-12-12'),
+('Charlie', 'Megadeth', '2013-02-18'),
+('Charlie', 'Metallica', '2013-02-18'),
+('Charlie', 'A-ha!', '2013-02-18'),
+('Charlie', 'Linkin Park', '2013-02-18'),
+('Charlie', 'Adolescents', '2013-02-18'),
 ('Charlie', 'Kenny G', '2013-01-05'),
 ('Charlie', 'Ray Charles', '2013-01-05'),
+('Charlie', 'Jethro Tull', '2013-01-05'),
 ('Dean', 'Metallica', '2013-01-01'),
-('Earl', 'Metallica', '2012-11-01');
+('Dean', 'Alkaline Trio', '2013-01-01'),
+('Dean', 'The Rolling Stones', '2013-01-01'),
+('Dean', 'A-ha!', '2013-01-01'),
+('Dean', 'Linkin Park', '2013-01-01'),
+('Dean', 'Megadeth', '2013-01-01'),
+('Dean', 'Eric Clapton', '2013-01-01'),
+('Earl', 'A-ha!', '2012-11-01'),
+('Earl', 'Eric Clapton', '2012-11-01'),
+('Earl', 'Metallica', '2012-11-01'),
+('Earl', 'Alkaline Trio', '2011-07-07'),
+('Earl', 'Bankrupt', '2012-11-01'),
+('Travis', 'Fear', '2011-07-07'),
+('Travis', 'Alkaline Trio', '2011-07-07'),
+('Travis', 'Jethro Tull', '2011-07-07'),
+('Travis', 'New York Dolls', '2011-07-07');
 
 CREATE TABLE rel_user_likes_genre   (   uname VARCHAR(50) NOT NULL,
                                         gname VARCHAR(50) NOT NULL,
                                         FOREIGN KEY (uname) REFERENCES user(uname),
                                         FOREIGN KEY (gname) REFERENCES genre(gname)
                                 );
+INSERT INTO `rel_user_likes_genre` (`uname`, `gname`) VALUES
+('Alice', 'Rock'),
+('Bob', 'Rock'),
+('Dean', 'Thrash Metal'),
+('Earl', 'Thrash Metal'),
+('Charlie', 'Jazz');
+
 CREATE TABLE rel_user_follows_user  (   follower VARCHAR(50) NOT NULL,
                                         followee VARCHAR(50) NOT NULL,
                                         PRIMARY KEY (follower, followee),
@@ -255,11 +324,6 @@ CREATE TABLE rel_user_posts_concertimages   (   uname VARCHAR(50) NOT NULL,
                                                 /*concertpic_uri VARCHAR(200) NOT NULL,*/
                                                 FOREIGN KEY (uname, cid) REFERENCES rel_user_attends_concert (uname, cid)
                                         );
-CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(50) NOT NULL,
-                                        gname VARCHAR(50) NOT NULL,
-                                        FOREIGN KEY (bname) REFERENCES band(bname),
-                                        FOREIGN KEY (gname) REFERENCES genre(gname)
-                                    );
 CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(50) NOT NULL,
                                             cid INT NOT NULL,
                                             FOREIGN KEY (bname) REFERENCES band(bname),
