@@ -581,5 +581,13 @@ CREATE TABLE user_input (   uname VARCHAR(50) NOT NULL,
                             FOREIGN KEY (uname) REFERENCES user(uname),
                             FOREIGN KEY (cid) REFERENCES  concert(cid)
                         );
+INSERT INTO `user_input` (`uname`, `cid`, `vid`, `ctime`, `tkturl`, `cover`, `postedtime`) VALUES
+('Alice', 4, NULL, '2014-12-29 18:45', NULL, NULL, NOW()),
+('Alice', 11, NULL, '2014-12-22 17:45', NULL, NULL, NOW()),
+('Alice', 18, NULL, '2015-09-25 19:45', NULL, NULL, NOW()),
+('Bob', 12, 5, NULL, NULL, NULL, NOW()),
+('Bob', 23, NULL, NULL, 'www.terminal5nyc.com', NULL, NOW()),
+('Bob', 24, NULL, NULL, NULL, 40, NOW()),
+('Bob', 30, 1, NULL, NULL, 75, NOW());
 
 /**/
