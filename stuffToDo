@@ -1,0 +1,36 @@
+concert_images
+rel_user_posts_concertimages
+
+Image directory structure: /images/<relation>/<primary key>/
+	-- user: profile pic (multiple images per uname)
+	-- band: profile pic (multiple images per bname)
+	-- genre: characteristic image (1 image for a genre) //compulsory
+	-- concert: images (multiple images per cid)
+	-- rel_user_attends_concert: images (multiple images per rel_user_attends_concert(uname, cid))
+
+Image samples:
+images/band/bname.jpg
+images/genre/gname.jpg
+images/user/uname.jpg
+images/rel_user_attends_concert/uname-cid-$RANDVAL.jpg
+images/concert/cid_$RANDVAL.jpg
+
+bands: get images of bands, 
+| A-ha!              |
+| Adolescents        |
+| Alkaline Trio      |
+| Bankrupt           |
+| Eric Clapton       |
+| Fear               |
+| Intro5pect         |
+| Jethro Tull        |
+| Kenny G            |
+| Linkin Park        |
+| Megadeth           |
+| Metallica          |
+| New York Dolls     |
+| Ray Charles        |
+| The Rolling Stones |
+
+
+/*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/
