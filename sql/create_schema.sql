@@ -68,10 +68,10 @@ INSERT INTO `band` (`bname`, `bio`) VALUES
 ('A-ha!', 'Who cares');
 
 CREATE TABLE venue  (   vid INT AUTO_INCREMENT,
-                        vname VARCHAR(50),
+                        vname VARCHAR(50) NOT NULL,
                         building VARCHAR(5) NOT NULL, street VARCHAR(50) NOT NULL,
                         city VARCHAR(50) NOT NULL, state char(2) NOT NULL, zip CHAR(5) NOT NULL,
-                        capacity int,
+                        capacity INT NOT NULL,
                         url varchar(64) NULL,
                         PRIMARY KEY (vid),
                         UNIQUE (vname, city),
@@ -112,30 +112,30 @@ INSERT INTO `concert` (`cid`, `cname`, `vid`, `ctime`, `postedtime`,`tkturl`, `c
 (8, 'Flute Concert', 1, '2014-12-28 10:30', '2014-12-25 10:30','www.rockwoodmusichall.com/', '30'),
 (9, 'Fear US', 10, '2014-12-22 15:45','2014-12-19 19:45', 'www.thegarden.com', '75'),
 (10, 'Adolescents Never Grow Up', 8, '2014-12-25 20:45','2014-12-18 19:45', 'www.thegarden.com', '43'),
-(11, 'New York Dolls Live In New Jersey', 9, '2014-12-22 19:45','2014-12-18 19:45', 'www.thegarden.com', '23'),
+(11, 'New York Dolls Live In New Jersey', 9, '2014-12-22 19:45','2014-12-18 19:45', 'www.thenewgank.com', '23'),
 (12, 'Reintro5pection', 5, '2014-12-06 19:45','2014-12-18 19:45', 'www.thegarden.com', '66'),
-(13, 'Alkaline Trilogy', 2, '2014-12-01 19:45','2014-12-18 19:45', 'www.thegarden.com', '56'),
-(14, 'Bankrupt And Insolvent', 7, '2014-12-22 19:45','2014-12-18 19:45', 'www.thegarden.com', '46'),
+(13, 'Alkaline Trilogy', 2, '2014-12-01 19:45','2014-12-18 19:45', 'www.ticketgenie.com', '56'),
+(14, 'Bankrupt And Insolvent', 7, '2014-12-22 19:45','2014-12-18 19:45', 'www.ticketgenie.com', '46'),
 (15, 'Gathering No Moss', 3, '2014-12-03 19:45','2014-10-18 19:45', 'www.thegarden.com', '80'),
 (16, 'Take On Me Everywhere', 7, '2015-01-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
-(17, 'Got Me On My Peas Layla', 2, '2015-09-03 18:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
+(17, 'Got Me On My Peas Layla', 2, '2015-09-03 18:45','2014-12-18 19:45', 'www.theticketmasters.com', '80'),
 (18, 'Megadedly', 10, '2015-12-25 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
-(19, 'Nanodeth', 8, '2014-10-30 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
-(20, 'Claptonite', 2, '2014-11-11 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
-(21, 'Fear Of The Park', 4, '2014-11-02 19:45','2014-12-18 19:45', 'www.thegarden.com', '80'),
-(22, 'Contra5pecting', 6, '2014-07-01 12:45','2014-02-18 19:45', 'www.thegarden.com', '80'),
-(23, 'Inter5pectination', 7, '2015-11-01 22:30','2014-08-07 19:45', 'www.thegarden.com', '80'),
-(24, 'Saxy Music', 8, '2015-01-01 19:45','2014-11-19 19:45', 'www.thegarden.com', '80'),
-(25, 'Sax Lord Kenny', 10, '2015-03-03 19:45','2014-12-12 19:45', 'www.thegarden.com', '80'),
-(26, 'New York Goo Goo', 1, '2015-04-21 15:00','2014-07-04 19:45', 'www.thegarden.com', '80'),
-(27, 'Ray Charles Live', 3, '2015-01-15 19:45','2014-06-18 19:45', 'www.thegarden.com', '80'),
-(28, 'Ray Charles Lively', 5, '2014-12-02 19:45','2014-10-21 19:45', 'www.thegarden.com', '80'),
-(29, 'Ahamatic Forever', 1, '2014-06-21 19:45','2014-12-25 19:45', 'www.thegarden.com', '80'),
+(19, 'Nanodeth', 8, '2014-10-30 19:45','2014-12-18 19:45', 'www.theoldguard.com', '80'),
+(20, 'Claptonite', 2, '2014-11-11 19:45','2014-12-18 19:45', 'www.gap.com', '80'),
+(21, 'Fear Of The Park', 4, '2014-11-02 19:45','2014-12-18 19:45', 'www.ticketgenie.com', '80'),
+(22, 'Contra5pecting', 6, '2014-07-01 12:45','2014-02-18 19:45', 'www.theoldguard.com', '80'),
+(23, 'Inter5pectination', 7, '2015-11-01 22:30','2014-08-07 19:45', 'www.gap.com', '80'),
+(24, 'Saxy Music', 8, '2015-01-01 19:45','2014-11-19 19:45', 'www.thenewgank.com', '80'),
+(25, 'Sax Lord Kenny', 10, '2015-03-03 19:45','2014-12-12 19:45', 'www.rockwoodmusichall.com', '80'),
+(26, 'New York Goo Goo', 1, '2015-04-21 15:00','2014-07-04 19:45', 'www.rockwoodmusichall.com', '80'),
+(27, 'Ray Charles Live', 3, '2015-01-15 19:45','2014-06-18 19:45', 'www.terminal5nyc.com', '80'),
+(28, 'Ray Charles Lively', 5, '2014-12-02 19:45','2014-10-21 19:45', 'www.terminal5nyc.com', '80'),
+(29, 'Ahamatic Forever', 1, '2014-06-21 19:45','2014-12-25 19:45', 'www.terminal5nyc.com', '80'),
 (30, 'Hunting High And Higher', 2, '2015-01-04 19:45','2014-09-25 19:45', 'www.thegarden.com', '80'),
 (31, 'Bank Problems', 3, '2014-12-28 19:45','2014-12-31 19:45', 'www.thegarden.com', '80'),
-(32, 'Goldman Sax', 4, '2015-01-11 19:45','2014-11-30 19:45', 'www.thegarden.com', '80'),
-(33, 'Reanimation Tour', 5, '2015-10-06 19:45','2015-01-01 19:45', 'www.thegarden.com', '80'),
-(34, 'Mustaine Forever', 6, '2015-01-14 19:45','2014-05-18 19:45', 'www.thegarden.com', '80'),
+(32, 'Goldman Sax', 4, '2015-01-11 19:45','2014-11-30 19:45', 'www.rockwoodmusichall.com', '80'),
+(33, 'Reanimation Tour', 5, '2015-10-06 19:45','2015-01-01 19:45', 'www.theticketmasters.com', '80'),
+(34, 'Mustaine Forever', 6, '2015-01-14 19:45','2014-05-18 19:45', 'www.ticketgenie.com', '80'),
 (35, 'Death Marginal', 10, '2015-08-15 19:45','2014-11-27 19:45', 'www.thegarden.com', '80')
 ;
 
@@ -162,6 +162,7 @@ INSERT INTO `genre` (`gname`, `gparent`) VALUES
 
 CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(50) NOT NULL,
                                         gname VARCHAR(50) NOT NULL,
+                                        PRIMARY KEY (bname, genre),
                                         FOREIGN KEY (bname) REFERENCES band(bname),
                                         FOREIGN KEY (gname) REFERENCES genre(gname)
                                     );
@@ -252,13 +253,13 @@ INSERT INTO `user_posts` (`uname`, `postid`, `bname`, `cid`, `postinfo`, `posted
 
 CREATE TABLE rel_user_fan_band  (   uname VARCHAR(50) NOT NULL,
                                     bname VARCHAR(50) NOT NULL,
-                                    fdate CHAR(10),
+                                    becamefandate CHAR(10),
                                     PRIMARY KEY (uname, bname),
-                                    UNIQUE (uname, bname, fdate),
+                                    /*UNIQUE (uname, bname, becamefandate),*/
                                     FOREIGN KEY (uname) REFERENCES user(uname),
                                     FOREIGN KEY (bname) REFERENCES band(bname)
                                 );
-INSERT INTO `rel_user_fan_band` (`uname`, `bname`, `fdate`) VALUES
+INSERT INTO `rel_user_fan_band` (`uname`, `bname`, `becamefandate`) VALUES
 ('Alice', 'Linkin Park', '2014-11-15'),
 ('Alice', 'The Rolling Stones', '2014-11-15'),
 ('Alice', 'A-ha!', '2014-11-15'),
@@ -534,6 +535,7 @@ INSERT INTO `rel_user_posts_concertimages` (`uname`, `cid`, `uri`) VALUES
 
 CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(50) NOT NULL,
                                             cid INT NOT NULL,
+                                            PRIMARY KEY (bname, cid),
                                             FOREIGN KEY (bname) REFERENCES band(bname),
                                             FOREIGN KEY (cid) REFERENCES concert(cid)
                                         );
@@ -590,6 +592,7 @@ INSERT INTO `recolist` (`lname`, `uname`, `gname`) VALUES
 
 CREATE TABLE rel_recolist_contains_concert  (   lname VARCHAR(50) NOT NULL,
                                                 cid INT NOT NULL,
+                                                PRIMARY KEY (lname, cid),
                                                 FOREIGN KEY (lname) REFERENCES recolist(lname),
                                                 FOREIGN KEY (cid) REFERENCES concert(cid)
                                             );
@@ -618,13 +621,15 @@ INSERT INTO `rel_recolist_contains_concert` (`lname`, `cid`) VALUES
 ('Thrash monsters', 35);
 
 CREATE TABLE user_input (   uname VARCHAR(50) NOT NULL,
+                            inputid INT AUTO_INCREMENT,
                             cid INT NOT NULL,
                             vid INT NULL,
                             ctime CHAR(16) NULL,
                             tkturl varchar(64) NULL,
                             cover DECIMAL NULL,
 							postedtime CHAR(16) NOT NULL,
-                            UNIQUE (vid, ctime),
+                            PRIMARY KEY (inputid),
+                            UNIQUE (vid, ctime), /*not a primary key because it can be null*/
                             FOREIGN KEY (vid) REFERENCES venue(vid),
                             FOREIGN KEY (uname) REFERENCES user(uname),
                             FOREIGN KEY (cid) REFERENCES  concert(cid)
@@ -638,4 +643,4 @@ INSERT INTO `user_input` (`uname`, `cid`, `vid`, `ctime`, `tkturl`, `cover`, `po
 ('Bob', 24, NULL, NULL, NULL, 40, NOW()),
 ('Bob', 30, 1, NULL, NULL, 75, NOW());
 
-/**/
+/*FIN*/
