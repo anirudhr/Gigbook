@@ -1,0 +1,15 @@
+Image directory structure: /images/<relation>/<primary key>/
+	-- user: profile pic (1 images per uname)
+	-- band: profile pic (1 images per bname)
+	-- genre: characteristic image (1 image for a genre) //compulsory
+	-- concert: images (multiple images per cid)
+	-- rel_user_attends_concert: images (multiple images per rel_user_attends_concert(uname, cid))
+
+Image nomenclature:
+images/band/bname.jpg
+images/genre/gname.jpg
+images/user/uname.jpg
+images/rel_user_posts_concertimages/uri.jpg
+images/concert/uri.jpg
+
+/*:indentSize=4:tabSize=4:noTabs=true:wrap=soft:*/

@@ -221,12 +221,7 @@ INSERT INTO `band_links` (`linkid`, `bname`, `linkurl`, `linkinfo`, `postedtime`
 (28,'New York Dolls', 'buildabear.com', 'Music? What music? Build teddy bears!', '2014-12-04 14:31'),
 (29,'Alkaline Trio', 'alkalinetrio.com', 'Neeeeeew website!', '2014-12-04 14:31'),
 (30,'Eric Clapton', 'facebook.com/slowhand/886992662881', 'New contest! Winners get tickets to my next gig!', '2014-12-04 14:31');
-                        
-CREATE TABLE concert_images (   cid INT NOT NULL,
-                                concertpic_uri VARCHAR(200) NOT NULL,
-                                PRIMARY KEY (concertpic_uri), /*each concert pic can only belong to 1 concert*/
-                                FOREIGN KEY (cid) REFERENCES concert(cid)
-                        );
+
 CREATE TABLE user_posts (   uname VARCHAR(50) NOT NULL,
                             postid INT AUTO_INCREMENT,
                             bname VARCHAR(50) NOT NULL,
@@ -477,12 +472,65 @@ INSERT INTO `rel_user_attends_concert` (`uname`, `cid`, `review`, `rating`) VALU
 ('Charlie', 35, NULL, NULL),
 ('Dean', 35, NULL, NULL),
 ('Earl', 35, NULL, NULL);
+CREATE TABLE concert_images (   cid INT NOT NULL,
+                                uri INT AUTO_INCREMENT,
+                                PRIMARY KEY (uri),
+                                FOREIGN KEY (cid) REFERENCES concert(cid)
+                        );
+INSERT INTO `concert_images` (`cid`, `uri`) VALUES
+(1,1),
+(2,2),
+(3,3),
+(4,4),
+(5,5),
+(6,6),
+(7,7),
+(8,8),
+(9,9),
+(10,10),
+(11,11),
+(12,12),
+(13,13),
+(14,14),
+(15,15),
+(16,16),
+(17,17),
+(18,18),
+(19,19),
+(20,20),
+(21,21),
+(22,22),
+(23,23),
+(24,24),
+(25,25),
+(26,26),
+(27,27),
+(28,28),
+(29,29),
+(30,30),
+(31,31),
+(32,32),
+(33,33),
+(34,34),
+(35,35);
 
 CREATE TABLE rel_user_posts_concertimages   (   uname VARCHAR(50) NOT NULL,
                                                 cid INT NOT NULL,
-                                                /*concertpic_uri VARCHAR(200) NOT NULL,*/
+                                                uri INT AUTO_INCREMENT,
+                                                PRIMARY KEY (uri),
                                                 FOREIGN KEY (uname, cid) REFERENCES rel_user_attends_concert (uname, cid)
                                         );
+INSERT INTO `rel_user_posts_concertimages` (`uname`, `cid`, `uri`) VALUES
+('Alice', 1, 1),
+('Alice', 2, 2),
+('Alice', 15, 3),
+('Bob', 5, 4),
+('Bob', 15, 5),
+('Bob', 20, 6),
+('Alice', 1, 7),
+('Charlie', 2, 8),
+('Charlie', 5, 9);
+
 CREATE TABLE rel_band_performs_concert  (   bname VARCHAR(50) NOT NULL,
                                             cid INT NOT NULL,
                                             FOREIGN KEY (bname) REFERENCES band(bname),
