@@ -158,7 +158,6 @@ INSERT INTO `genre` (`gname`, `gparent`) VALUES
 ('Progressive Rock', 'Rock'),
 ('Punk Rock', 'Rock'),
 ('Thrash Metal', 'Metal'),
-('Flutesnoot', 'Country'),
 ('Life Metal', 'Metal');
 
 CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(50) NOT NULL,
