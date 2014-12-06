@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS genre;
 DROP VIEW IF EXISTS user_reputation;
 DROP VIEW IF EXISTS band_popularity;
 CREATE TABLE user (     uname VARCHAR(50),
-                        bio TEXT NOT NULL,
+                        bio TEXT NULL,
                         lastname VARCHAR(50) NOT NULL,
                         firstname VARCHAR(50) NOT NULL,
                         password VARCHAR(64) NOT NULL,
@@ -304,6 +304,7 @@ INSERT INTO `rel_user_fan_band` (`uname`, `bname`, `fdate`) VALUES
 
 CREATE TABLE rel_user_likes_genre   (   uname VARCHAR(50) NOT NULL,
                                         gname VARCHAR(50) NOT NULL,
+                                        PRIMARY KEY (uname, gname),
                                         FOREIGN KEY (uname) REFERENCES user(uname),
                                         FOREIGN KEY (gname) REFERENCES genre(gname)
                                 );
