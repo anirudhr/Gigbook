@@ -158,7 +158,7 @@ INSERT INTO `genre` (`gname`, `gparent`) VALUES
 ('Progressive Rock', 'Rock'),
 ('Punk Rock', 'Rock'),
 ('Thrash Metal', 'Metal'),
-('Life Metal', 'Metal');
+('Death Metal', 'Metal');
 
 CREATE TABLE rel_band_plays_genre   (   bname VARCHAR(50) NOT NULL,
                                         gname VARCHAR(50) NOT NULL,
@@ -176,7 +176,7 @@ INSERT INTO `rel_band_plays_genre` (`bname`, `gname`) VALUES
 ('Jethro Tull', 'Rock'),
 ('Kenny G', 'Jazz'),
 ('Linkin Park', 'Rock'),
-('Megadeth', 'Life Metal'),
+('Megadeth', 'Death Metal'),
 ('Metallica', 'Thrash Metal'),
 ('New York Dolls', 'Free Jazz'),
 ('Ray Charles', 'Bebop'),
@@ -326,10 +326,10 @@ INSERT INTO `rel_user_likes_genre` (`uname`, `gname`) VALUES
 ('Bob', 'Thrash Metal'),
 ('Charlie', 'Country'),
 ('Charlie', 'Jazz'),
-('Charlie', 'Life Metal'),
+('Charlie', 'Death Metal'),
 ('Charlie', 'Rock'),
 ('Dean', 'Acid Jazz'),
-('Dean', 'Life Metal'),
+('Dean', 'Death Metal'),
 ('Dean', 'Punk Rock'),
 ('Dean', 'Rock'),
 ('Dean', 'Thrash Metal'),
