@@ -88,7 +88,7 @@ function get_n_bands_reco($mysqli, $uname) {//Function that returns up to $GETCO
     $row = $result->fetch_assoc();
     $bname = $row['bname'];
     if ($num_dup_check > 0) {
-      if (in_array($bname, $bnames)) {
+      if (in_array($bname, $bnames) || $bname == '') {
         $count--;
         $num_dup_check--;
       }

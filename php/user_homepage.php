@@ -42,45 +42,50 @@ try {
   $rand_n_bands_fan = get_n_bands_fan($mysqli, $uname);
   $rand_n_bands_reco = get_n_bands_reco($mysqli, $uname);
   list($post_unames, $postids, $post_bnames, $post_cnames, $postinfos) = get_n_user_posts($mysqli, $uname);
-  list($linkids, $bnames, $linkurls, $linkinfos) = get_n_band_links($mysqli, $uname);
+  list($linkids, $link_bnames, $linkurls, $linkinfos) = get_n_band_links($mysqli, $uname);
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
   exit();
 }
-print "Next n concerts:" . "<br/>";
+print "<b>Next n concerts:</b>" . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
   print "\tcid: " . $next_n_concerts_cids[$i] . "<br/>";
   print "\tcname: " . $next_n_concerts_cnames[$i] . "<br/>";
   print "bname: " . $next_n_concerts_bnames[$i] . "<br/>";
 }
+print "<br/>";
 
-print "Random n bands that you like: " . "<br/>";
+print "<b>Random n bands that you like:</b> " . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_fan); $i++) {
   print "$i: " . $rand_n_bands_fan[$i] . "<br/>";
 }
+print "<br/>";
 
-print "Random n bands that you may like: " . "<br/>";
+print "<b>Random n bands that you may like:</b> " . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_reco); $i++) {
   print "$i: " . $rand_n_bands_reco[$i] . "<br/>";
 }
+print "<br/>";
 
-print "Your followees' posts:" . "<br/>";
+print "<b>Your followees' posts:</b>" . "<br/>";
 for ($i = 0; $i < count($postids); $i++) {
   print "\tpostid: " . $postids[$i] . "<br/>";
   print "uname: " . $post_unames[$i] . "<br/>";
   print "bname: " . $post_bnames[$i] . "<br/>";
-  print "\tcname: " . $next_n_concerts_cnames[$i] . "<br/>";
+  print "\tcname: " . $post_cnames[$i] . "<br/>";
   print "\tpostinfo: " . $postinfos[$i] . "<br/>";
 }
+print "<br/>";
 
-print "Your bands' links:" . "<br/>";
+print "<b>Your bands' links:</b>" . "<br/>";
 for ($i = 0; $i < count($linkids); $i++) {
   print "\tlinkid: " . $linkids[$i] . "<br/>";
   print "bname: " . $link_bnames[$i] . "<br/>";
   print "\tlinkurl: " . $linkurls[$i] . "<br/>";
   print "\tlinkinfo: " . $linkinfos[$i] . "<br/>";
 }
+print "<br/>";
 
 ?>
 </body>
