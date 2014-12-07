@@ -10,7 +10,7 @@
 <?php
 require("connectdb.php");
 require("genre_page_functions.php");
-$gname = 'Rock';
+$gname = 'Thrash Metal';
 try {
   $popularities_by_band = get_bands_playing_genre($mysqli, $gname);
   foreach ($popularities_by_band as $bname => $popularity) {
