@@ -11,28 +11,26 @@ session_start();
 <body>
 <?php
 	include "connectdb.php";
-	$listname=$_POST['listname'];
-	$gname=$_POST['gname'];
+	$listname=$_POST['lname'];
+	$cid=$_POST['checkbox2'];
 	$uname=$_SESSION['name'];
 	
 
 	
 	/* Create table doesn't return a resultset */
-	if ($stmt1 = $mysqli->prepare("insert into recolist (lname,uname,gname) values(?,?,?)")) {
-	echo "st1 executed";
-	$stmt1->bind_param("sss", $listname,$uname,$gname);
-  $stmt1->execute();
-	}
+	
 
-	if($stmt2 = $mysqli->prepare("INSERT INTO rel_recolist_contains_concert (lname, cid)VALUES (:id,:loc)")) {
-	$stmt->bindValue(':id', $listname);
-$stmt->bindParam(':loc', $cid);
+	if($stmt = $mysqli->prepare("INSERT INTO rel_recolist_contains_concert (lname, cid)VALUES (?,?)")) {
+		$stmt->bind_param("ss",$listname,$cid);
 	
 	
-  foreach($_POST["checkbox2"] as $cid) {$stmt2->execute();
+	
+  foreach($_POST["checkbox2"] as $cid) {
+	  
+	  $stmt->execute();
   echo $cid;}
  
-
+echo "<script language='javascript'>window.location='userLists.php';</script>";
 	
 
 	}

@@ -58,27 +58,26 @@ $uname = $_SESSION['name'];
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
     	<form method="post" action="addToList.php"/>
-<label> List Name:</label>
-<input type="text" name="listname" id="listname" placeholder="Enter name of your list" size="30"/><br />
-<br />
 
-Choose a genre<br>
-<select name='gname'>
+
+Choose a list to add to<br>
+<select name='lname'>
 <?php include "connectdb.php";
 
-if ($stmt = $mysqli->prepare("select distinct gname from genre")) {
+if ($stmt = $mysqli->prepare("select distinct lname from recolist where uname=?")) {
+	$stmt->bind_param("s",$uname);
   $stmt->execute();
-  $stmt->bind_result($gname);
+  $stmt->bind_result($lname);
   while($stmt->fetch()) {
-	$topic = htmlspecialchars($gname);
-	echo "<option value='$topic'>$topic</option>\n";	
+	$lname = htmlspecialchars($lname);
+	echo "<option value='$lname'>$lname</option>\n";	
   }
   $stmt->close();
   $mysqli->close();
 }
 ?>
 <input type="button" value="SELECT CONCERTS" onclick="showConcerts()"/>
-<input type="submit" value="CREATE" />
+<input type="submit" value="ADD" />
 </div>
 <div id="innerhide" class="innerhide" style="height:auto; border:dotted #CC3300; visibility:hidden">
 
