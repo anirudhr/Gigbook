@@ -49,6 +49,30 @@ function get_n_concerts($mysqli, $bname, $flagstr) {//Function that returns an a
 	}
 }
 
+function get_band_genres($mysqli, $bname) {
+  $stmt = $mysqli->stmt_init();
+  $get_band_genres_query = "SELECT gname
+                            FROM rel_band_plays_genre
+                            WHERE bname = ?
+                            ORDER BY gname ASC";
+  if(!$stmt->prepare($get_band_genres_query)) {
+		throw new Exception("get_band_genres_query: failed to prepare");
+	}
+	else {
+		$stmt->bind_param('s', $bname);
+		if (!$stmt->execute()) {
+			throw new Exception("get_band_genres_query: failed to execute");
+		}
+		$gname = NULL;
+		$stmt->bind_result($gname);
+		$gnames = array();
+		while($stmt->fetch()) {
+			array_push($gnames, $gname);
+		}
+	}
+		return $gnames;
+}
+
 function get_n_band_links($mysqli, $bname) {//get links posted by the band sorted in order
   //global $GETCOUNTLARGE;
   //static $loadedposts = //string containing linkids loaded so far

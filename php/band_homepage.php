@@ -34,14 +34,20 @@ $profilepic = '/images/band/'.$bname.'.jpg';
 $next_n_concerts_cids = array(); $next_n_concerts_cnames = array(); $next_n_concerts_bnames = array();
 $old_concerts_cids = array(); $old_concerts_cnames = array(); $old_concerts_bnames = array();
 $linkids = array(); $linkurls = array(); $linkinfos = array();
+$gnames = array();
 try {
   list($next_n_concerts_cids, $next_n_concerts_cnames, $next_n_concerts_bnames) = get_n_concerts($mysqli, $bname, 'n');
   list($old_concerts_cids, $old_concerts_cnames, $old_concerts_bnames) = get_n_concerts($mysqli, $bname, 'old');
   list($linkids, $linkurls, $linkinfos) = get_n_band_links($mysqli, $bname);
+  $gnames = get_band_genres($mysqli, $bname);
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
   exit();
+}
+print "Genres: " . "<br/>";
+for ($i = 0; $i < count($gnames); $i++) {
+  print $gnames[$i] . "<br/>";
 }
 print "Next n concerts:" . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
