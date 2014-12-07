@@ -104,9 +104,10 @@ function get_n_user_posts($mysqli, $uname) { //get posts by users that this user
   //global $GETCOUNTLARGE;
   //static $loadedposts = //string containing postids loaded so far
   $stmt = $mysqli->stmt_init();
-  $get_n_user_posts_query = " SELECT user_posts.uname, user_posts.postid, user_posts.bname, user_posts.cid, user_posts.postinfo
+  $get_n_user_posts_query = " SELECT user_posts.uname, user_posts.postid, user_posts.bname, concert.cname, user_posts.postinfo
                               FROM user_posts
                               JOIN rel_user_follows_user ON rel_user_follows_user.followee = user_posts.uname
+                              JOIN concert ON concert.cid = user_posts.cid
                               WHERE rel_user_follows_user.follower = ?
                               ORDER BY user_posts.postedtime ASC"; //no limit
   if(!$stmt->prepare($get_n_user_posts_query)) {
@@ -135,7 +136,7 @@ function get_n_user_posts($mysqli, $uname) { //get posts by users that this user
       array_push($cids, $cid);
       array_push($postinfos, $postinfo);
 		}
-		return array($postids, $bnames, $cids, $postinfos);
+		return array($unames, $postids, $bnames, $cids, $postinfos);
 	}
 }
 
@@ -143,7 +144,7 @@ function get_n_band_links($mysqli, $uname) {//get links posted by bands the user
   //global $GETCOUNTLARGE;
   //static $loadedposts = //string containing linkids loaded so far
   $stmt = $mysqli->stmt_init();
-  $get_n_band_links_query = " SELECT linkid, bname, linkurl, linkinfo
+  $get_n_band_links_query = " SELECT band_links.linkid, rel_user_fan_band.bname, band_links.linkurl, band_links.linkinfo
                               FROM band_links
                               JOIN rel_user_fan_band ON rel_user_fan_band.bname = band_links.bname
                               WHERE uname = ?
@@ -160,7 +161,7 @@ function get_n_band_links($mysqli, $uname) {//get links posted by bands the user
 		$bname = NULL;
 		$linkurl = NULL;
 		$linkinfo = NULL;
-		$stmt->bind_result($linkid, $linkurl, $linkinfo);
+		$stmt->bind_result($linkid, $bname, $linkurl, $linkinfo);
 		$linkids = array();
 		$bnames = array();
 		$linkurls = array();
