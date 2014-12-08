@@ -78,10 +78,8 @@ catch (Exception $e) {
  
   <div id="inner-2" style="float:right; width:68%; border:dotted #CC3300;"> 
     	<div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Upcoming concerts
+        	Upcoming concerts:<br/>
             <?php
-			
-print "Next n concerts:" . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
   print "\tcid: " . $next_n_concerts_cids[$i] . "<br/>";
   print "\tcname: " . $next_n_concerts_cnames[$i] . "<br/>";
@@ -90,17 +88,16 @@ for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
 			?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Genre
+        	Genre:<br/>
             <?php
-           print "Genres: " . "<br/>";
 for ($i = 0; $i < count($gnames); $i++) {
   print $gnames[$i] . "<br/>";
 }
 ?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Links
-           <?php print "Links: " . "<br/>";
+        	Links:<br/>
+           <?php
 for ($i = 0; $i < count($linkids); $i++) {
   print "\tlinkid: " . $linkids[$i] . "<br/>";
   print "\tlinkurl: " . $linkurls[$i] . "<br/>";
@@ -110,8 +107,8 @@ for ($i = 0; $i < count($linkids); $i++) {
 ?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Old concerts
-           <?php print "Old concerts:" . "<br/>";
+        	Old concerts:<br/>
+           <?php
 for ($i = 0; $i < count($old_concerts_cids); $i++) {
   print "\tcid: " . $old_concerts_cids[$i] . "<br/>";
   print "\tcname: " . $old_concerts_cnames[$i] . "<br/>";
@@ -120,7 +117,7 @@ for ($i = 0; $i < count($old_concerts_cids); $i++) {
 ?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        User Recolist
+        User Recolist:<br/>
         </div>
   </div>
 </div>

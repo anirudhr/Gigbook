@@ -53,7 +53,7 @@ $uname = $_SESSION['name'];
  
   <div id="inner-2" style="float:right; width:68%; border:dotted #CC3300;"> 
  	 <div id="inner-2" style="height:19%; border:dotted #CC3300; text-align:center;">
-        	Recommended List Creation
+        	Recommendation List
             
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
@@ -68,10 +68,13 @@ if ($stmt = $mysqli->prepare("select distinct lname from recolist where uname=?"
 	$stmt->bind_param("s",$uname);
   $stmt->execute();
   $stmt->bind_result($lname);
+  echo "<input list='lname' name='lname'>
+  <datalist id='lname'>";
   while($stmt->fetch()) {
 	$lname = htmlspecialchars($lname);
 	echo "<option value='$lname'>$lname</option>\n";	
   }
+  echo "</datalist>";
   $stmt->close();
   $mysqli->close();
 }

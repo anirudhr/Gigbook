@@ -56,7 +56,7 @@ $uname = $_SESSION['name'];
     	
 
 <table border="0" width="100%" >
-<tr><td colspan="2"  ><input type="button" value="CREATE NEW LIST" onclick="window.location='listCreation.php'"/></td><td>
+<tr><td colspan="2"  ><input type="button" value="Edit lists" onclick="window.location='listCreation.php'"/></td><td>
 
 </td>
 </tr>

@@ -6,7 +6,7 @@ session_start();
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Gigbook: home</title>
 
 
 
@@ -68,7 +68,7 @@ catch (Exception $e) {
             
 
 <form action="postsOnPage.php" method="post">
-Choose a band you wanna write about:
+Choose a band you want to write about:
 <select name='bname'>
 <?php include "connectdb.php";
 
@@ -88,7 +88,7 @@ if ($stmt = $mysqli->prepare("select distinct bname from band ")) {
 </select>
 <br /><br />
 
-Choose a concert you wanna write about:
+Choose a concert you want to write about:
 <select name='cid'>
 <?php include "connectdb.php";
 
@@ -115,10 +115,8 @@ if ($stmt = $mysqli->prepare("select cname, cid from concert ")) {
            </form>
         </div>
     	<div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Next 3 upcoming concerts
+        	Next 3 upcoming concerts: <br/>
       <?php
-			
-print "Next n concerts:" . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
   print "\tcid: " . $next_n_concerts_cids[$i] . "<br/>";
   print "\tcname: " . $next_n_concerts_cnames[$i] . "<br/>";
@@ -127,18 +125,16 @@ for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
 			?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Bands you liked
+        	Bands you like: <br/>
             <?php
-            print "Random n bands that you like: " . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_fan); $i++) {
   print "$i: " . $rand_n_bands_fan[$i] . "<br/>";
 }
 ?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Posts of people that you follow:
+        	Posts of people that you follow: <br/>
             <?php
-			print "<b>Your followees' posts:</b>" . "<br/>";
 for ($i = 0; $i < count($postids); $i++) {
   print "\tpostid: " . $postids[$i] . "<br/>";
   print "uname: " . $post_unames[$i] . "<br/>";
@@ -163,9 +159,8 @@ for ($i = 0; $i < count($linkids); $i++) {
 ?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Check out these bands
+        	Check out these bands: <br/>
             <?php
-			print "<b>Random n bands that you may like:</b> " . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_reco); $i++) {
   print "$i: " . $rand_n_bands_reco[$i] . "<br/>";
 }
