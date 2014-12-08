@@ -10,10 +10,12 @@ function get_user_liked_bands($mysqli, $uname) {
                                   ORDER BY concert.ctime ASC";
   if(!$stmt->prepare($get_user_liked_bands_query)) {
     throw new Exception("get_bands_playing_genre: failed to prepare");
+		
   }
   $stmt->bind_param('s', $uname);
   if (!$stmt->execute()) {
     throw new Exception("get_user_liked_bands: failed to execute");
+		
   }
   $bname = NULL;
   $cid = NULL;

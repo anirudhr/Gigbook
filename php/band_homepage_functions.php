@@ -27,26 +27,26 @@ function get_n_concerts($mysqli, $bname, $flagstr) {//Function that returns an a
 	
 	if(!$stmt->prepare($get_n_concerts_query)) {
 		throw new Exception("get_n_concerts: failed to prepare statement");
+		
 	}
-	else {
-		$stmt->bind_param('s', $bname);
-		if (!$stmt->execute()) {
-			throw new Exception("get_n_concerts: failed to execute");
-		}
-		$cid = NULL;
-		$cname = NULL;
-		$bname = NULL;
-		$stmt->bind_result($cid, $cname, $bname);
-    $cids = array();
-    $cnames = array();
-    $bnames = array();
-		while($stmt->fetch()) {
-			array_push($cids, $cid);
-			array_push($cnames, $cname);
-			array_push($bnames, $bname);
-		}
-		return array($cids, $cnames, $bnames);
-	}
+  $stmt->bind_param('s', $bname);
+  if (!$stmt->execute()) {
+    throw new Exception("get_n_concerts: failed to execute");
+		
+  }
+  $cid = NULL;
+  $cname = NULL;
+  $bname = NULL;
+  $stmt->bind_result($cid, $cname, $bname);
+  $cids = array();
+  $cnames = array();
+  $bnames = array();
+  while($stmt->fetch()) {
+    array_push($cids, $cid);
+    array_push($cnames, $cname);
+    array_push($bnames, $bname);
+  }
+  return array($cids, $cnames, $bnames);
 }
 
 function get_band_genres($mysqli, $bname) {
@@ -57,19 +57,19 @@ function get_band_genres($mysqli, $bname) {
                             ORDER BY gname ASC";
   if(!$stmt->prepare($get_band_genres_query)) {
 		throw new Exception("get_band_genres_query: failed to prepare");
+		
 	}
-	else {
-		$stmt->bind_param('s', $bname);
-		if (!$stmt->execute()) {
-			throw new Exception("get_band_genres_query: failed to execute");
-		}
-		$gname = NULL;
-		$stmt->bind_result($gname);
-		$gnames = array();
-		while($stmt->fetch()) {
-			array_push($gnames, $gname);
-		}
-	}
+  $stmt->bind_param('s', $bname);
+  if (!$stmt->execute()) {
+    throw new Exception("get_band_genres_query: failed to execute");
+		
+  }
+  $gname = NULL;
+  $stmt->bind_result($gname);
+  $gnames = array();
+  while($stmt->fetch()) {
+    array_push($gnames, $gname);
+  }
 		return $gnames;
 }
 
@@ -83,26 +83,26 @@ function get_n_band_links($mysqli, $bname) {//get links posted by the band sorte
                               ORDER BY band_links.postedtime ASC";//no limits
   if(!$stmt->prepare($get_n_band_links_query)) {
 		throw new Exception("get_n_band_links_query: failed to prepare");
+		
 	}
-	else {
-		$stmt->bind_param('s', $bname);
-		if (!$stmt->execute()) {
-			throw new Exception("get_n_band_links_query: failed to execute");
-		}
-		$linkid = NULL;
-		$linkurl = NULL;
-		$linkinfo = NULL;
-		$stmt->bind_result($linkid, $linkurl, $linkinfo);
-		$linkids = array();
-		$linkurls = array();
-		$linkinfos = array();
-		while($stmt->fetch()) {
-			array_push($linkids, $linkid);
-			array_push($linkurls, $linkurl);
-			array_push($linkinfos, $linkinfo);
-		}
-		return array($linkids, $linkurls, $linkinfos);
-	}
+  $stmt->bind_param('s', $bname);
+  if (!$stmt->execute()) {
+    throw new Exception("get_n_band_links_query: failed to execute");
+		
+  }
+  $linkid = NULL;
+  $linkurl = NULL;
+  $linkinfo = NULL;
+  $stmt->bind_result($linkid, $linkurl, $linkinfo);
+  $linkids = array();
+  $linkurls = array();
+  $linkinfos = array();
+  while($stmt->fetch()) {
+    array_push($linkids, $linkid);
+    array_push($linkurls, $linkurl);
+    array_push($linkinfos, $linkinfo);
+  }
+  return array($linkids, $linkurls, $linkinfos);
 }
 ?>
 <!--/*:indentSize=2:tabSize=2:noTabs=true:wrap=soft:*/-->
