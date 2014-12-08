@@ -29,7 +29,6 @@ try {
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
-  exit();
 }
  ?>
 <div id="wrapper" style="margin-left:auto; margin-right:auto; border:solid #669933; overflow:auto;"> 
@@ -149,7 +148,6 @@ for ($i = 0; $i < count($postids); $i++) {
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
         	Links posted by bands you are a fan of:
              <?php
-			print "<b>Your bands' links:</b>" . "<br/>";
 for ($i = 0; $i < count($linkids); $i++) {
   print "\tlinkid: " . $linkids[$i] . "<br/>";
   print "bname: " . $link_bnames[$i] . "<br/>";

@@ -61,7 +61,6 @@ $uname = $_SESSION['name'];
 
 
 Choose a list to add to<br>
-<select name='lname'>
 <?php include "connectdb.php";
 
 if ($stmt = $mysqli->prepare("select distinct lname from recolist where uname=?")) {
