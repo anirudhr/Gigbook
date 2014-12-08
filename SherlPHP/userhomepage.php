@@ -19,13 +19,19 @@ session_start();
 require("connectdb.php");
 require("user_homepage_functions.php");
 $uname = $_SESSION['name'];
+
 $next_n_concerts_cids = array(); $next_n_concerts_cnames = array(); $next_n_concerts_bnames = array();
 $rand_n_bands_fan = array();
 $rand_n_bands_reco = array();
+$post_unames = array(); $postids = array(); $post_bnames = array(); $post_cnames = array(); $postinfos = array();
+$linkids = array(); $link_bnames = array(); $linkurls = array(); $linkinfos = array();
+
 try {
   list($next_n_concerts_cids, $next_n_concerts_cnames, $next_n_concerts_bnames) = get_n_concerts($mysqli, $uname);
   $rand_n_bands_fan = get_n_bands_fan($mysqli, $uname);
   $rand_n_bands_reco = get_n_bands_reco($mysqli, $uname);
+  list($post_unames, $postids, $post_bnames, $post_cnames, $postinfos) = get_n_user_posts($mysqli, $uname);
+  list($linkids, $link_bnames, $linkurls, $linkinfos) = get_n_band_links($mysqli, $uname);
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
@@ -133,26 +139,32 @@ for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_fan); $i++) {
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
         	Posts of people that you follow: <br/>
-            <?php
-for ($i = 0; $i < count($postids); $i++) {
-  print "\tpostid: " . $postids[$i] . "<br/>";
-  print "uname: " . $post_unames[$i] . "<br/>";
-  print "bname: " . $post_bnames[$i] . "<br/>";
-  print "\tcname: " . $post_cnames[$i] . "<br/>";
-  print "\tpostinfo: " . $postinfos[$i] . "<br/>";
-}
-?>
+        	<div id="user_posts">
+		<?php
+		for ($i = 0; $i < count($postids); $i++) {
+		  //print "\tpostid: " . $postids[$i] . "<br/>";
+		  print "<div id='user_post_" . $postids[$i] . "'>";
+		  print $post_unames[$i] . " posted about ";
+		  print $post_bnames[$i] . " playing at ";
+		  print $post_cnames[$i] . ": ";
+		  print $postinfos[$i] . "<br/>";
+		  print "</div>";
+		}
+		?>
+		</div>
         </div>
         
         
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Links posted by bands you are a fan of:
+        	Links posted by bands you are a fan of:<br/>
              <?php
 for ($i = 0; $i < count($linkids); $i++) {
-  print "\tlinkid: " . $linkids[$i] . "<br/>";
-  print "bname: " . $link_bnames[$i] . "<br/>";
-  print "\tlinkurl: " . $linkurls[$i] . "<br/>";
-  print "\tlinkinfo: " . $linkinfos[$i] . "<br/>";
+  //print "\tlinkid: " .  . "<br/>";
+  print "<div id='band_link_" . $linkids[$i] . "'>";
+  print $link_bnames[$i] . " : ";
+  print $linkinfos[$i] . " : ";
+  print "<a href='" . $linkurls[$i] . "'>Link</a><br/>";
+  print "</div>";
 }
 ?>
         </div>

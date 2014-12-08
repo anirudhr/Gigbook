@@ -247,7 +247,7 @@ INSERT INTO `user_posts` (`uname`, `postid`, `bname`, `cid`, `postinfo`, `posted
 ('Charlie',5,'Jethro Tull', 8,'The flute guy hurt his finger, watch for lip-sync!','2014-12-26 14:30'),
 ('Bob',6,'Adolescents',10,'Iron Maiden may open for Adolescent as a surprise, oooh!','2014-12-18 19:55'),
 ('Dean',7,'Alkaline Trio',13,'You can get into VIP for free with this one simple trick!','2014-12-18 17:20'),
-('Bob',8,'Bankrupt',14,'2014-12-22 10:30','The concert venue is under investigation for human remains being served up in the burgers, do not order food here.'),
+('Bob',8,'Bankrupt',14,'The concert venue is under investigation for human remains being served up in the burgers, do not order food here.', '2014-12-22 10:30'),
 ('Bob',9,'The Rolling Stones',15,'Mick Jagger is sending a robot replacement and is performing through telepresence','2014-10-21 19:45'),
 ('Alice',10,'Megadeth',18,'Mustaine is growing a mustache specially for this gig.','2014-12-19 16:06'),
 ('Alice',11,'Intro5pect',22,'Trigonometry may play an important role in getting into this venue','2014-06-18 19:45'),
