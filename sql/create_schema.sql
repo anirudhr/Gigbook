@@ -74,21 +74,24 @@ CREATE TABLE venue  (   vid INT AUTO_INCREMENT,
                         city VARCHAR(50) NOT NULL, state char(2) NOT NULL, zip CHAR(5) NOT NULL,
                         capacity INT NOT NULL,
                         url varchar(64) NULL,
+                        lat FLOAT( 10, 6 ) NOT NULL,
+                        lng FLOAT( 10, 6 ) NOT NULL,
                         PRIMARY KEY (vid),
                         UNIQUE (vname, city),
+                        UNIQUE (lat, lng),
                         UNIQUE (building, street, city, state, zip)
                     );
-INSERT INTO `venue` (`vid`, `vname`, `building`, `street`, `city`, `state`, `zip`, `capacity`, `url`) VALUES
-(1, 'Lincoln Hall', '2424', 'N Lincoln Avenue', 'Chicago', 'IL', '60614', 8000, 'www.lincolnhallchicago.com'),
-(2, 'Madison Square', '4', 'Pennsylvania Plaza', 'New York', 'NY', '10001', 18200, 'www.thegarden.com/'),
-(3, 'Rockwood music hall', '196', 'Allen Street', 'New York', 'NY', '10002', 5500, 'www.rockwoodmusichall.com/'),
-(4, 'Terminal 5', '610', 'W 56th Street', 'New York', 'NY', '10019', 7000, 'www.terminal5nyc.com'),
-(5, 'Yellow Serenity', 45, 'Rap Street', 'Jersey City', 'NJ', '01005', 5000, 'www.beatleslove.com'),
-(6, 'Rassmussen', 23, 'Elm Street', 'Brooklyn', 'NY', '11201', 10000, 'raspberry.me'),
-(7, 'Venue Zero', 22, 'Acacia Ave', 'LIC', 'NY', '11356', 200, 'www.zero.num'),
-(8, 'Carrotnegie Hall', 10, 'Downing Street', 'London', 'MD', '23996', 25, 'www.carrots.org'),
-(9, 'Dale Valley Music Paradise', 2, 'Paradise Street', 'Sacramento', 'CA', '92004', 50000, 'dalevalley.com'),
-(10, 'Rivendell', 45, 'Last Ave', 'Middle Earth', 'Tolkienstate', '65432', 9999, 'goggle.com')
+INSERT INTO `venue` (`vid`, `vname`, `building`, `street`, `city`, `state`, `zip`, `capacity`, `url`, `lat`, `lng`) VALUES
+(1, 'Lincoln Hall', '2424', 'N Lincoln Avenue', 'Chicago', 'IL', '60614', 8000, 'www.lincolnhallchicago.com', 41.925919, -87.649818),
+(2, 'Madison Square', '4', 'Pennsylvania Plaza', 'New York', 'NY', '10001', 18200, 'www.thegarden.com/', 40.750479, -73.993448),
+(3, 'Rockwood music hall', '196', 'Allen Street', 'New York', 'NY', '10002', 5500, 'www.rockwoodmusichall.com/', 40.722293, -73.988574),
+(4, 'Terminal 5', '610', 'W 56th Street', 'New York', 'NY', '10019', 7000, 'www.terminal5nyc.com', 40.769656, -73.992804),
+(5, 'Peculier Pub', 145, 'Bleecker St', 'New York', 'NY', '10012', 50, 'www.peculier.pub', 40.728290, -73.999167),
+(6, 'Bar Great Harry', 280, 'Smith Street', 'Brooklyn', 'NY', '11231', 75, 'bgh.nyc', 40.682404, -73.993583),
+(7, 'Alewife', 514, '51st Ave', 'LIC', 'NY', '11101', 200, 'www.alewife.com', 40.742203, -73.956106),
+(8, 'Carnegie Hall', 881, '7th Ave', 'New York', 'NY', '10019', 2500, 'www.carrots.org', 40.765116, -73.979947),
+(9, 'BAM Howard Gilman Opera House', 30, 'Lafayette Ave', 'Brooklyn', 'NY', '11217', 50000, 'bam.org', 40.686493, -73.977872),
+(10, 'Entwine', 765, 'Washington St', 'New York', 'NY', '10014', 15, 'entwine.nyc', 40.737386, -74.008035)
 ;
 
 CREATE TABLE concert    (   cid INT AUTO_INCREMENT,
@@ -580,7 +583,7 @@ INSERT INTO `rel_band_performs_concert` (`bname`, `cid`) VALUES
 
 CREATE TABLE recolist   (   lname VARCHAR(50) NOT NULL,
                             uname VARCHAR(50) NOT NULL,
-                            gname VARCHAR(50) NOT NULL,
+                            gname VARCHAR(50) NULL,
                             PRIMARY KEY (lname),
                             FOREIGN KEY (uname) REFERENCES user(uname),
                             FOREIGN KEY (gname) REFERENCES genre(gname)
