@@ -1,4 +1,7 @@
-
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,9 +12,15 @@
 
 <body>
 <?php
-include "connectdb.php";
-
-if ($stmt = $mysqli->prepare("select distinct gname from genre")) {
+require("connectdb.php");
+$uname = $_SESSION['name'];
+if ($stmt = $mysqli->prepare("SELECT genre.gname
+FROM genre
+WHERE genre.gname NOT IN (  SELECT rel_user_likes_genre.gname
+                            FROM rel_user_likes_genre
+                            WHERE rel_user_likes_genre.uname = ?
+                         )")) {
+	$stmt->bind_param('s', $uname);
   $stmt->execute();
   $stmt->bind_result($gname);
   echo $gname;
@@ -30,7 +39,7 @@ if ($stmt = $mysqli->prepare("select distinct gname from genre")) {
     <td background="genrepic.jpg" WIDTH="300" HEIGHT="300" VALIGN="bottom" align="center"style="opacity:0.85" >
     <FONT SIZE="+1" COLOR="#FFFFFF"><?=$gname;?></FONT>
     <input type="hidden" name='gname' value='<?=$gname;?>'/>
-    <a href="DisplayBandAccToGenre.php?gname=<?=$gname;?>" style="color:#CCC; padding-left:20px; padding-right:0"  >Bands</a>
+    <a href="DisplayBandAcctoGenre.php?gname=<?=$gname;?>" style="color:#CCC; padding-left:20px; padding-right:0"  >Bands</a>
 	<input type="submit" class="myButton" value="LIKE" style="float:right"/>
   </td>
   </form>

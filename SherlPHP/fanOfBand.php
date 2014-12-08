@@ -33,7 +33,7 @@ echo $bandname;
 	$stmt2->bind_param('ss',$uname, $bandname);
 	
   $stmt2->execute();
-  echo "<script language='javascript'>window.location='userLikesBands.php';</script>";
+  echo "<script language='javascript'>javascript:history.go(-1)</script>";
  
 
 	}

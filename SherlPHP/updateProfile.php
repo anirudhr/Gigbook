@@ -67,28 +67,28 @@ if($stmt = $mysqli->prepare("update user
 <form >
 <table border="0">
 <tr>
-<td><label>Firstname</label></td>
-<td><input type="text" value="<?=$firstname;?>" name="fname" id="fname"  size="25" maxlength="25"  onclick="this.blur();"/></td>
+<td><label>Firstname:</label></td>
+<td><label><?=$firstname;?></label></td>
 </tr>
 <tr>
 <td><label>Lastname</label></td>
-<td><input type="text" value="<?=$lastname;?>" name="lname" id="lname"  size="25" maxlength="25"  onclick="this.blur();"/></td>
+<td><label><?=$lastname;?></label></td>
 </tr>
 <tr>
 <td><label>Birthdate</label></td>
-<td><input type="text" value="<?=$dob;?>" name="DOB" id="DOB"  size="25" maxlength="25"  onclick="this.blur();"/></td>
+<td><label><?=$dob;?></label></td>
 </tr>
 <tr>
 <td><label>City</label></td>
-<td><input type="text" value="<?=$city;?>" name="city" id="city"  size="25" maxlength="25"  onclick="this.blur();"/></td>
+<td><label><?=$city;?></label></td>
 </tr>
 <tr>
 <td><label>Email</label></td>
-<td><input type="text" value="<?=$email;?>" name="uemail" id="uemail"  size="25" maxlength="25"  onclick="this.blur();"/></td>
+<td><label><?=$email;?></label></td>
 </tr>
 <tr>
 <td><label>Password</label></td>
-<td><input type="password" value="<?=$pwd;?>" name="pass" id="pass" size="25" maxlength="25"  onclick="this.blur();"/></td>
+<td><label><?=$pwd;?></label></td>
 </tr>
 
 

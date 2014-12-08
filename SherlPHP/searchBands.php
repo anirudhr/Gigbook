@@ -7,13 +7,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
-<script type="text/javascript">
-function handleClick(cb) {
-	  alert("Clicked, new value = " + cb.value);
-	 
 
-}
-</script>
 </head>
 
 <body>
@@ -32,7 +26,7 @@ if ($stmt = $mysqli->prepare("select b.bname,b.bio from band b where b.bname lik
  if($row_cnt==0){
 	 echo "<script language='javascript'>alert('No genre matched your search!');</script>";
 	 
-	 echo "<script language='javascript'>window.location='userLikesGenre.php';</script>";
+	 echo "<script language='javascript'>javascript:history.go(-1)</script>";
  }
  else{
   
@@ -45,17 +39,18 @@ if ($stmt = $mysqli->prepare("select b.bname,b.bio from band b where b.bname lik
    
    <?php
      while ($myrow = $result->fetch_assoc()) {
+		 $myrow['bname']=htmlspecialchars($myrow['bname']);
 		?>
         
         <tr >
-        <td width="100"><?php echo "<img src=images/band/$myrow[bname].jpg style='width:100px; height:100px;'/>";?></td>
+        <td width="100"><?php echo "<img src='images/band/$myrow[bname].jpg' style='width:100px; height:100px;'/>";?></td>
        
-        <td>BAND NAME:<a href="hello.php"><?=$myrow['bname'];?></a><br /><br />
+        <td>BAND NAME:<a href="visitBandPage.php?band=<?=$myrow['bname'];?>"><?=$myrow['bname'];?></a><br /><br />
 
 BIO:<?= $myrow['bio']; ?><br /><br />
 
-        <form action="fanOfBand.php" method="post"><input type="hidden" name="bname" value=<?= $myrow['bname']; ?>/><input type="submit" value="BECOME A FAN"/></form><br /><br />
-<input type="button" value="CHECK THEIR PAGE"/></td>
+        <form action="fanOfBand.php" method="post"><input type="hidden" name="bname" value='<?= $myrow['bname']; ?>'/><input type="submit" value="BECOME A FAN"/></form><br /><br />
+</td>
         </tr>
        
         

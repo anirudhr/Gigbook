@@ -12,7 +12,7 @@ session_start();
 
 <body >
 <?php
-require("connectdb.php");
+include("connectdb.php");
 $uname = $_SESSION['name'];
  ?>
  <body>
@@ -53,7 +53,10 @@ $uname = $_SESSION['name'];
             
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-    	
+    	<form action="searchUsers.php" method="post">
+<input type="text" value="" placeholder="Enter user name" name="followee" id="followee"/>
+<input type="submit" value="SEARCH"/>
+</form>
 <form action="updateProfile.php" method="post">
 <table border="0" width="100%" cellspacing="20">
 
@@ -68,7 +71,7 @@ if ($stmt = $mysqli->prepare("select followee from rel_user_follows_user where f
 	  if ($count==2) 
 	{echo "<tr>"; $count=0;}
 	  ?>
-<td width="100"><?php echo "<img src=images/user/$followee.jpg style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><?= $followee; ?></td>
+<td width="100"><?php echo "<img src=images/user/$followee.jpg style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitUserPage.php?user=<?= $followee; ?>"><?= $followee; ?></a></td>
 <?php
 $count=$count+1;
   }?>

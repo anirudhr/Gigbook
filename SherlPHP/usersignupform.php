@@ -46,8 +46,10 @@
 		<input type="text" name="fname" placeholder="First Name" />
 		<input type="text" name="lname" placeholder="Last Name" />
         <input type="email" name="uemail" placeholder="Email" />
-        <input type="text" name="DOB" placeholder="Birthdate (YYYY-MM-DD) " />
+       
 		<input type="text" name="city" placeholder="City" />
+         <label style="color:#FFF;text-align:left">Birthdate</label>
+        <input type="date" name="DOB" placeholder="Birthdate (YYYY-MM-DD) " />
 		
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 			<input type="button" name="next" class="next action-button" value="Next" />

@@ -28,7 +28,7 @@ include "connectdb.php";
 		$_SESSION['name']=$usrname;
 		setcookie('usrcookie',$usrname,time()+3600);
 		
-		echo "<script language='javascript'>window.location='userhomepage.php';</script>";
+		echo "<script language='javascript'>window.location='profile.php';</script>";
 	}
 	}
 	echo "<script language='javascript'>alert('login failed');</script>";

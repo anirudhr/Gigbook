@@ -23,14 +23,14 @@ if($stmt = $mysqli->prepare("select distinct bname from rel_band_plays_genre whe
    <table border ="0" cellspacing="20" >
  <tr >
  <td width="100%" colspan="4" >
-    <?php echo "<center><img src=images/genre/$gname.jpg width='300px' height='300px'/></center>";?>
+    <?php echo "<center><img src='images/genre/$gname.jpg' width='300px' height='300px'/></center>";?>
     </td>
     </tr>
    <tr><td><a href="genre_page_by_popularity.php?gname=<?=$gname;?>" style="color:#CCC;"  ><input type="button" value="Sort by popularity"/></a></td></tr>
    <tr>
    <?php
     while ($stmt->fetch()) {?>
-	<td width="100"><?php echo "<img src=images/band/$bname.jpg style='width:100px; height:100px;'/>";?></td><td><a href style='text-decoration:none; color:#FFF; font-size:24px; '><?=$bname;?></a></td>
+	<td width="100"><?php echo "<img src='images/band/$bname.jpg' style='width:100px; height:100px;'/>";?></td><td><a href style='text-decoration:none; color:#FFF; font-size:24px; '><?=$bname;?></a></td>
     <td><input type="submit" value="BECOME A FAN" /></td>
     <td><input type="button" value="CHECK THEIR PAGE"/></td>
    	

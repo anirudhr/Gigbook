@@ -8,29 +8,29 @@
 
 <body bgcolor="#000000">
 
-<?php
-require("connectdb.php");
-require("genre_page_functions.php");
-$gname=$_GET['gname'];
 
-
-?>
 <center>
    <table border ="0"  >
  <tr >
  <td width="100%"  >
-    <?php echo "<img src=$gname.jpg width='100%'/>";?>
+    <?php 
+	$gname=$_GET['gname'];
+	echo "<img src='images/genre/$gname.jpg' width='300px' height='300px'/></center>";
+	?>
     </td>
     </tr>
-   <tr><td><a href="genre_page_by_popularity.php?gname=<?=$gname;?>" style="color:#CCC; padding-left:20px; padding-right:0"  ><input type="button" value="Sort by popularity"/></a></td></tr>
+  
    
    <?php
+   require("connectdb.php");
+require("genre_page_functions.php");
+$gname=$_GET['gname'];
    
    try {
   $popularities_by_band = get_bands_playing_genre($mysqli, $gname);
   foreach ($popularities_by_band as $bname => $popularity) {
-	
-   	echo "<tr><td>$popularity . ' : ' . $bname </td></tr>";
+	 echo "<img src='images/band/$bname.jpg' style='width:100px; height:100px;'";
+   	echo "$popularity . ' : ' . $bname ";
   		}
    }
 	catch (Exception $e) {
@@ -39,11 +39,7 @@ $gname=$_GET['gname'];
 	?>
     </table>
     </center>
-	<?php
- $stmt->close();
-	$mysqli->close();
-    
-?>
+	
 </body>
 </html>
 <!--/*:indentSize=2:tabSize=2:noTabs=true:wrap=soft:*/-->

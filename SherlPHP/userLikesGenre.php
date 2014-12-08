@@ -74,7 +74,7 @@ if ($stmt = $mysqli->prepare("select gname from rel_user_likes_genre where uname
 	  if ($count==2) 
 	{echo "<tr>"; $count=0;}
 	  ?>
-<td width="100"><?php echo "<img src=images/genre/$gname.jpg style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><?= $gname; ?></td>
+<td width="100"><?php echo "<img src='images/genre/$gname.jpg' style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><?= $gname; ?></td>
 <?php
 $count=$count+1;
   }?>

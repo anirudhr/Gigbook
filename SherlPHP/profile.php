@@ -24,16 +24,15 @@ $uname = $_SESSION['name'];
  
   <div id="inner-2" style="float:right; width:30%; border:dotted #CC3300;"> 
     <form style="float:right;">
-  
-    <input type="button" value=" Logout"/>
+   
+    <input type="button" value=" Logout" onclick="window.location='logout.php';";/>
     </form>
   </div>
 </div>
 <div id="homebody" style="margin-left:auto; margin-right:auto; border:solid #669933; overflow:auto; ">
 	<div id="sidebar" style="float:left; width:29%;border:dotted #CC3300; ">
     	<div id="profile" style=" height:39%;border:dotted #CC3300; ">
-        	<div class="circular"><?php echo "<img src=images/user/$uname.jpg style='width:200px; height:200px;'/>";?></div>
-   			 
+   			 <?php echo "<img src='images/user/$uname.jpg' style='width:200px; height:200px;'/>";?>
     	</div>
          <div id="linklist" style=" height:59%;border:dotted #CC3300; ">
         	 <a href="profile.php" style="text-decoration:none;">Profile</a><br />
@@ -44,7 +43,6 @@ $uname = $_SESSION['name'];
              
 			 
     	</div>
-    
   </div>
  
   <div id="inner-2" style="float:right; width:68%; border:dotted #CC3300;"> 
@@ -74,7 +72,7 @@ while($row=$result->fetch_assoc())
 	$lastname = $row["lastname"];
 	$city=$row["city"];
 	
-	$birthdate=$row["birthdate"];
+	$dob=$row["birthdate"];
 	}
      
 	
@@ -83,37 +81,34 @@ while($row=$result->fetch_assoc())
 
 
 ?>
-<form action="updateProfile.php" method="post">
-<table border="0" width="100%">
+<form action="editProfile.php" method="post" >
+<table border="0">
 <tr>
-<td><label>Firstname</label></td>
-<td><input type="text" value="<?= $firstname; ?>" name="fname" id="fname"/></td>
+<td><label>Firstname:</label></td>
+<td><label><?=$firstname;?></label></td>
 </tr>
 <tr>
 <td><label>Lastname</label></td>
-<td><input type="text" value="<?= $lastname; ?>" name="lname" id="lname"  size="25" maxlength="25"/></td>
+<td><label><?=$lastname;?></label></td>
 </tr>
 <tr>
 <td><label>Birthdate</label></td>
-<td><input type="text" value="<?= $birthdate; ?>" name="DOB" id="DOB"  size="25" maxlength="25"/></td>
+<td><label><?=$dob;?></label></td>
 </tr>
 <tr>
 <td><label>City</label></td>
-<td><input type="text" value="<?= $city; ?>" name="city" id="city"  size="25" maxlength="25"/></td>
+<td><label><?=$city;?></label></td>
 </tr>
 <tr>
 <td><label>Email</label></td>
-<td><input type="text" value="<?= $email; ?>" name="uemail" id="uemail"  size="25" maxlength="25"/></td>
+<td><label><?=$email;?></label></td>
 </tr>
 <tr>
 <td><label>Password</label></td>
-<td><input type="password" value="<?= $pwd; ?>" name="pass" id="pass"  size="25" maxlength="25"/></td>
+<td><label><?=$pwd;?></label></td>
 </tr>
-<tr>
-<td><label>Confirm Password</label></td>
-<td><input type="password" value="<?= $pwd; ?>" name="cpass" id="cpass"  size="25" maxlength="25"/></td>
-</tr>
-<tr><td><input type="submit" value="update"/></td></tr>
+<tr><td><input type="submit" value="edit"/></td></tr>
+
 </table>
 </form>
   
