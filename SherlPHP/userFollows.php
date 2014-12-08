@@ -32,7 +32,7 @@ $uname = $_SESSION['name'];
 <div id="homebody" style="margin-left:auto; margin-right:auto; border:solid #669933; overflow:auto; ">
 	<div id="sidebar" style="float:left; width:29%;border:dotted #CC3300; ">
     	<div id="profile" style=" height:39%;border:dotted #CC3300; ">
-        	<div class="circular"><?php echo "<img src=images/user/$uname.jpg style='width:200px; height:200px;'/>";?></div>
+        	<div class="circular"><?php echo "<img src='images/user/$uname.jpg' style='width:200px; height:200px;'/>";?></div>
    			 
     	</div>
         <div id="linklist" style=" height:59%;border:dotted #CC3300; ">
@@ -71,7 +71,7 @@ if ($stmt = $mysqli->prepare("select followee from rel_user_follows_user where f
 	  if ($count==2) 
 	{echo "<tr>"; $count=0;}
 	  ?>
-<td width="100"><?php echo "<img src=images/user/$followee.jpg style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitUserPage.php?user=<?= $followee; ?>"><?= $followee; ?></a></td>
+<td width="100"><?php echo "<img src='images/user/$followee.jpg' style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitUserPage.php?user=<?= $followee; ?>"><?= $followee; ?></a></td>
 <?php
 $count=$count+1;
   }?>

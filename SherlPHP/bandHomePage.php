@@ -6,7 +6,7 @@ session_start();
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Gigbook: Home</title>
 
 </head>
 
@@ -62,7 +62,7 @@ catch (Exception $e) {
 <div id="homebody" style="margin-left:auto; margin-right:auto; border:solid #669933; overflow:auto; ">
 	<div id="sidebar" style="float:left; width:29%;border:dotted #CC3300; ">
     	<div id="circular" style=" height:39%;border:dotted #CC3300; ">
-   			 <?php echo "<img src=images/band/$bname.jpg style='width:200px; height:200px;'/>";?>
+   			 <?php echo "<img src='images/band/$bname.jpg' style='width:200px; height:200px;'/>";?>
     	</div>
          <div id="linklist" style=" height:59%;border:dotted #CC3300; ">
         	 <a href="bandProfile.php" style="text-decoration:none;">Profile</a><br />

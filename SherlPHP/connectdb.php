@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "", "gigbook_schema");
+$mysqli = new mysqli("localhost", "root", "toor", "gigbook_schema");
 
 /* check connection */
 if (mysqli_connect_errno()) {

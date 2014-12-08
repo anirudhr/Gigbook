@@ -38,7 +38,7 @@ $pwd=$_POST["pass"];
 <div id="homebody" style="margin-left:auto; margin-right:auto; border:solid #669933; overflow:auto; ">
 	<div id="sidebar" style="float:left; width:29%;border:dotted #CC3300; ">
     	<div id="profile" style=" height:39%;border:dotted #CC3300; ">
-   			 <?php echo "<img src=images/user/$uname.jpg style='width:200px; height:200px;'/>";?>
+   			 <?php echo "<img src='images/user/$uname.jpg' style='width:200px; height:200px;'/>";?>
     	</div>
          <div id="linklist" style=" height:59%;border:dotted #CC3300; ">
         	 <a href="profile.php" style="text-decoration:none;">Profile</a><br />
