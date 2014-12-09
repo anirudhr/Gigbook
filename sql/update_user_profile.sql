@@ -4,7 +4,7 @@ USE gigbook_schema;
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS sp_update_user_profile;
-CREATE PROCEDURE sp_update_user_profile(IN inp_uname VARCHAR(50), inp_lastname VARCHAR(50), IN inp_firstname VARCHAR(50),IN inp_password VARCHAR(64),IN inp_city VARCHAR(50),IN inp_birthdate DATE, IN inp_email VARCHAR(50))
+CREATE PROCEDURE sp_update_user_profile( IN inp_uname VARCHAR(50), inp_lastname VARCHAR(50), IN inp_firstname VARCHAR(50),IN inp_password VARCHAR(64),IN inp_city VARCHAR(50),IN inp_birthdate DATE, IN inp_email VARCHAR(50))
 BEGIN
    IF inp_lastname IS NOT NULL THEN
    	UPDATE user

@@ -10,7 +10,7 @@ session_start();
 
 <body>
 <?php
-	include "connectdb.php";
+	require("connectdb.php");
 	$band="%{$_POST['bname']}%";
 
 	$uname=$_SESSION['name'];

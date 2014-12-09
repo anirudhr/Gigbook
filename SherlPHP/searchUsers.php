@@ -87,7 +87,7 @@ $uname = $_SESSION['name'];
             <h1>SEARCH RESULTS</h2>
 				<?php
 
-include "connectdb.php";
+require("connectdb.php");
 
 	$followee="%{$_POST['followee']}%";
 	

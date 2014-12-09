@@ -10,7 +10,7 @@ session_start();
 
 <body>
 <?php
-	include "connectdb.php";
+	require("connectdb.php");
 	$followee="%{$_POST['followee']}%";
 
 	$uname=$_SESSION['name'];

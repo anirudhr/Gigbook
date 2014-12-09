@@ -10,10 +10,11 @@ session_start();
 
 <body>
 <?php
-	include "connectdb.php";
+	require("connectdb.php");
 	$listname=$_POST['lname'];
 	$cid=$_POST['checkbox2'];
 	$uname=$_SESSION['name'];
+<<<<<<< HEAD
 	
 
 	
@@ -33,6 +34,23 @@ session_start();
 echo "<script language='javascript'>window.location='userLists.php';</script>";
 	
 
+=======
+	if($prestmt = $mysqli->prepare("INSERT IGNORE INTO recolist (lname, uname) VALUES (?,?)")) {
+		$prestmt->bind_param("ss", $listname, $uname);
+		$prestmt->execute();
+		if($stmt = $mysqli->prepare("INSERT INTO rel_recolist_contains_concert (lname, cid)VALUES (?,?)")) {
+			$stmt->bind_param("ss",$listname,$cid);
+			foreach($_POST["checkbox2"] as $cid) {
+				$stmt->execute();
+				echo $cid;
+			}
+			 
+			echo "<script language='javascript'>window.location='userLists.php';</script>";
+		}
+	}
+	else {
+		echo "Unsuccesful";
+>>>>>>> 193c1cad8c6793f31e13f3ffe799be30954d3ae8
 	}
 else
 echo "Unsuccesful";
