@@ -7,7 +7,7 @@
 
 <body>
 <?php
-	include "connectdb.php";
+	require("connectdb.php");
 	$uname=$_POST["uname"];
 	$pwd=$_POST["pass"];
 	

@@ -9,7 +9,7 @@
 <body bgcolor="#000000">
 
 <?php
-include "connectdb.php";
+require("connectdb.php");
 $gname=$_GET['gname'];
 echo $gname;
 if($stmt = $mysqli->prepare("select distinct bname from rel_band_plays_genre where gname = ? ")) {

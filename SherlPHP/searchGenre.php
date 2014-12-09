@@ -19,7 +19,7 @@ function handleClick(cb) {
 <body>
 <?php
 
-include "connectdb.php";
+require("connectdb.php");
 
 	$genre="%{$_POST['genre']}%";
 	

@@ -10,7 +10,7 @@ session_start();
 
 <body>
 <?php
-	include "connectdb.php";
+	require("connectdb.php");
 	$bname=$_POST["bname"];
 	$cid=$_POST["cid"];
 	$uname = $_SESSION["name"];

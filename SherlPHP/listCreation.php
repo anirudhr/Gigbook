@@ -86,7 +86,7 @@ if ($stmt = $mysqli->prepare("select distinct lname from recolist where uname=?"
 <table border="1">
 
 <?php
-include "connectdb.php";
+require("connectdb.php");
 if ($stmt = $mysqli->prepare("select cname,cid from concert")) {
   $stmt->execute();
   $stmt->bind_result($cname,$cid);

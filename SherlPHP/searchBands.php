@@ -13,7 +13,7 @@ session_start();
 <body>
 <?php
 
-include "connectdb.php";
+require("connectdb.php");
 
 	$band="%{$_POST['band']}%";
 	
