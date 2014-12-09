@@ -8,21 +8,24 @@ function get_n_concerts($mysqli, $bname, $flagstr) {//Function that returns an a
 	$stmt = $mysqli->stmt_init();
 	
 	if ($flagstr == 'n') {
-    $get_n_concerts_query = "	SELECT concert.cid, concert.cname, rel_band_performs_concert.bname
-          FROM rel_band_performs_concert
-          JOIN concert ON rel_band_performs_concert.cid = concert.cid
-          WHERE rel_band_performs_concert.bname = ?
-          AND concert.ctime > NOW()
-          ORDER BY concert.ctime ASC
-          LIMIT " . $GETCOUNTSMALL;
+    $get_n_concerts_query = "	SELECT concert.cid, concert.cname, rel_band_performs_concert.bname, venue.vname, venue.building, venue.street, venue.city, venue.state, venue.zip, venue.capacity, venue.url, venue.lat, venue.lng
+                              FROM rel_band_performs_concert
+                              JOIN concert ON rel_band_performs_concert.cid = concert.cid
+                              JOIN venue ON venue.vid = concert.vid
+                              WHERE rel_band_performs_concert.bname = ?
+                              AND concert.ctime > NOW()
+                              ORDER BY concert.ctime ASC
+                              LIMIT " . $GETCOUNTSMALL;
   }
   else if ($flagstr == 'old') {
-    $get_n_concerts_query = "	SELECT concert.cid, concert.cname, rel_band_performs_concert.bname
-          FROM rel_band_performs_concert
-          JOIN concert ON rel_band_performs_concert.cid = concert.cid
-          WHERE rel_band_performs_concert.bname = ?
-          AND concert.ctime < NOW()
-          ORDER BY concert.ctime ASC";
+    $get_n_concerts_query = "	SELECT concert.cid, concert.cname, rel_band_performs_concert.bname, venue.vname, venue.building, venue.street, venue.city, venue.state, venue.zip, venue.capacity, venue.url, venue.lat, venue.lng
+                              FROM rel_band_performs_concert
+                              JOIN concert ON rel_band_performs_concert.cid = concert.cid
+                              JOIN venue ON venue.vid = concert.vid
+                              WHERE rel_band_performs_concert.bname = ?
+                              AND concert.ctime > NOW()
+                              ORDER BY concert.ctime ASC
+                              LIMIT " . $GETCOUNTSMALL;
   }
 	
 	if(!$stmt->prepare($get_n_concerts_query)) {
@@ -37,16 +40,46 @@ function get_n_concerts($mysqli, $bname, $flagstr) {//Function that returns an a
   $cid = NULL;
   $cname = NULL;
   $bname = NULL;
-  $stmt->bind_result($cid, $cname, $bname);
+  $vname = NULL;
+  $building = NULL;
+  $street = NULL;
+  $city = NULL;
+  $state = NULL;
+  $zip = NULL;
+  $capacity = NULL;
+  $url = NULL;
+  $lat = NULL;
+  $lng = NULL;
+  $stmt->bind_result($cid, $cname, $bname, $vname, $building, $street, $city, $state, $zip, $capacity, $url, $lat, $lng);
   $cids = array();
   $cnames = array();
   $bnames = array();
+  $vnames = array();
+  $buildings = array();
+  $streets = array();
+  $citys = array();
+  $states = array();
+  $zips = array();
+  $capacitys = array();
+  $urls = array();
+  $lats = array();
+  $lngs = array();
   while($stmt->fetch()) {
     array_push($cids, $cid);
     array_push($cnames, $cname);
     array_push($bnames, $bname);
+    array_push($vnames, $vname);
+    array_push($buildings, $building);
+    array_push($streets, $street);
+    array_push($citys, $city);
+    array_push($states, $state);
+    array_push($zips, $zip);
+    array_push($capacitys, $capacity);
+    array_push($urls, $url);
+    array_push($lats, $lat);
+    array_push($lngs, $lng);
   }
-  return array($cids, $cnames, $bnames);
+  return array($cids, $cnames, $bnames, $vnames, $buildings, $streets, $citys, $states, $zips, $capacitys, $urls, $lats, $lngs);
 }
 
 function get_band_genres($mysqli, $bname) {
