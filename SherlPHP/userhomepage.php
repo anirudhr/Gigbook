@@ -6,7 +6,7 @@ session_start();
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Gigbook: home</title>
+<title>Untitled Document</title>
 
 
 
@@ -19,22 +19,17 @@ session_start();
 require("connectdb.php");
 require("user_homepage_functions.php");
 $uname = $_SESSION['name'];
-
 $next_n_concerts_cids = array(); $next_n_concerts_cnames = array(); $next_n_concerts_bnames = array();
 $rand_n_bands_fan = array();
 $rand_n_bands_reco = array();
-$post_unames = array(); $postids = array(); $post_bnames = array(); $post_cnames = array(); $postinfos = array();
-$linkids = array(); $link_bnames = array(); $linkurls = array(); $linkinfos = array();
-
 try {
   list($next_n_concerts_cids, $next_n_concerts_cnames, $next_n_concerts_bnames) = get_n_concerts($mysqli, $uname);
   $rand_n_bands_fan = get_n_bands_fan($mysqli, $uname);
   $rand_n_bands_reco = get_n_bands_reco($mysqli, $uname);
-  list($post_unames, $postids, $post_bnames, $post_cnames, $postinfos) = get_n_user_posts($mysqli, $uname);
-  list($linkids, $link_bnames, $linkurls, $linkinfos) = get_n_band_links($mysqli, $uname);
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
+  exit();
 }
  ?>
 <div id="wrapper" style="margin-left:auto; margin-right:auto; border:solid #669933; overflow:auto;"> 
@@ -73,7 +68,7 @@ catch (Exception $e) {
             
 
 <form action="postsOnPage.php" method="post">
-Choose a band you want to write about:
+Choose a band you wanna write about:
 <select name='bname'>
 <?php include "connectdb.php";
 
@@ -93,7 +88,7 @@ if ($stmt = $mysqli->prepare("select distinct bname from band ")) {
 </select>
 <br /><br />
 
-Choose a concert you want to write about:
+Choose a concert you wanna write about:
 <select name='cid'>
 <?php include "connectdb.php";
 
@@ -120,8 +115,10 @@ if ($stmt = $mysqli->prepare("select cname, cid from concert ")) {
            </form>
         </div>
     	<div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Next 3 upcoming concerts: <br/>
+        	Next 3 upcoming concerts
       <?php
+			
+print "Next n concerts:" . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
   print "\tcid: " . $next_n_concerts_cids[$i] . "<br/>";
   print "\tcname: " . $next_n_concerts_cnames[$i] . "<br/>";
@@ -130,47 +127,46 @@ for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
 			?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Bands you like: <br/>
+        	Bands you liked
             <?php
+            print "Random n bands that you like: " . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_fan); $i++) {
   print "$i: " . $rand_n_bands_fan[$i] . "<br/>";
 }
 ?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Posts of people that you follow: <br/>
-        	<div id="user_posts">
-		<?php
-		for ($i = 0; $i < count($postids); $i++) {
-		  //print "\tpostid: " . $postids[$i] . "<br/>";
-		  print "<div id='user_post_" . $postids[$i] . "'>";
-		  print $post_unames[$i] . " posted about ";
-		  print $post_bnames[$i] . " playing at ";
-		  print $post_cnames[$i] . ": ";
-		  print $postinfos[$i] . "<br/>";
-		  print "</div>";
-		}
-		?>
-		</div>
+        	Posts of people that you follow:
+            <?php
+			$postids = get_n_user_posts($mysqli, $uname);
+			print "<b>Your followees' posts:</b>" . "<br/>";
+for ($i = 0; $i < count($postids); $i++) {
+  print "\tpostid: " . $postids[$i] . "<br/>";
+  print "uname: " . $post_unames[$i] . "<br/>";
+  print "bname: " . $post_bnames[$i] . "<br/>";
+  print "\tcname: " . $post_cnames[$i] . "<br/>";
+  print "\tpostinfo: " . $postinfos[$i] . "<br/>";
+}
+?>
         </div>
         
         
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Links posted by bands you are a fan of:<br/>
+        	Links posted by bands you are a fan of:
              <?php
+			print "<b>Your bands' links:</b>" . "<br/>";
 for ($i = 0; $i < count($linkids); $i++) {
-  //print "\tlinkid: " .  . "<br/>";
-  print "<div id='band_link_" . $linkids[$i] . "'>";
-  print $link_bnames[$i] . " : ";
-  print $linkinfos[$i] . " : ";
-  print "<a href='" . $linkurls[$i] . "'>Link</a><br/>";
-  print "</div>";
+  print "\tlinkid: " . $linkids[$i] . "<br/>";
+  print "bname: " . $link_bnames[$i] . "<br/>";
+  print "\tlinkurl: " . $linkurls[$i] . "<br/>";
+  print "\tlinkinfo: " . $linkinfos[$i] . "<br/>";
 }
 ?>
         </div>
         <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Check out these bands: <br/>
+        	Check out these bands
             <?php
+			print "<b>Random n bands that you may like:</b> " . "<br/>";
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_reco); $i++) {
   print "$i: " . $rand_n_bands_reco[$i] . "<br/>";
 }

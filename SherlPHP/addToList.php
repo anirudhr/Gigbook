@@ -14,24 +14,31 @@ session_start();
 	$listname=$_POST['lname'];
 	$cid=$_POST['checkbox2'];
 	$uname=$_SESSION['name'];
+	
+
+	
 	/* Create table doesn't return a resultset */
 	
-	if($prestmt = $mysqli->prepare("INSERT IGNORE INTO recolist (lname, uname) VALUES (?,?)")) {
-		$prestmt->bind_param("ss", $listname, $uname);
-		$prestmt->execute();
-		if($stmt = $mysqli->prepare("INSERT INTO rel_recolist_contains_concert (lname, cid)VALUES (?,?)")) {
-			$stmt->bind_param("ss",$listname,$cid);
-			foreach($_POST["checkbox2"] as $cid) {
-				$stmt->execute();
-				echo $cid;
-			}
-			 
-			echo "<script language='javascript'>window.location='userLists.php';</script>";
-		}
+
+	if($stmt = $mysqli->prepare("INSERT INTO rel_recolist_contains_concert (lname, cid)VALUES (?,?)")) {
+		$stmt->bind_param("ss",$listname,$cid);
+	
+	
+	
+  foreach($_POST["checkbox2"] as $cid) {
+	  
+	  $stmt->execute();
+  echo $cid;}
+ 
+echo "<script language='javascript'>window.location='userLists.php';</script>";
+	
+
 	}
-	else {
-		echo "Unsuccesful";
-	}
+else
+echo "Unsuccesful";
+	
+
+ 
 ?>
 </body>
 </html>

@@ -36,6 +36,8 @@ session_start();
  
 
 	}
+	 $stmt2->close();
+	$mysqli->close();
 	}
 
 	
