@@ -60,8 +60,8 @@ $uname = $_SESSION['name'];
     	<form method="post" action="addToList.php"/>
 
 
-Choose a list to add to<br>
-<?php include "connectdb.php";
+Choose a list to add to<br/>
+<?php require("connectdb.php");
 
 if ($stmt = $mysqli->prepare("select distinct lname from recolist where uname=?")) {
 	$stmt->bind_param("s",$uname);

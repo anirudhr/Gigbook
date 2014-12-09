@@ -10,12 +10,10 @@ session_start();
 
 <body>
 <?php
-	include "connectdb.php";
+	require("connectdb.php");
 	$listname=$_POST['lname'];
 	$cid=$_POST['checkbox2'];
 	$uname=$_SESSION['name'];
-	/* Create table doesn't return a resultset */
-	
 	if($prestmt = $mysqli->prepare("INSERT IGNORE INTO recolist (lname, uname) VALUES (?,?)")) {
 		$prestmt->bind_param("ss", $listname, $uname);
 		$prestmt->execute();
