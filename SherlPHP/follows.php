@@ -10,8 +10,8 @@ session_start();
 
 <body>
 <?php
-	require("connectdb.php");
-	$followee="%{$_POST['followee']}%";
+	include "connectdb.php";
+	$followee="%{$_GET['follow']}%";
 
 	$uname=$_SESSION['name'];
 	
@@ -27,11 +27,12 @@ session_start();
    }
  
 	if($stmt2 = $mysqli->prepare("INSERT INTO rel_user_follows_user (follower,followee)VALUES (?,?)")) {
-	echo "statement 2 executed";
+	
 
 	$stmt2->bind_param('ss',$uname,$followeename);
 	
   $stmt2->execute();
+  echo "<script language='javascript'>alert('abc');</script>";
   echo "<script language='javascript'>javascript:history.go(-1)</script>";
  
 

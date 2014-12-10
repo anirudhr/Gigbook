@@ -10,7 +10,7 @@ session_start();
 
 <body>
 <?php
-	require("connectdb.php");
+	include "connectdb.php";
 	$gname=$_POST["gname"];
 	$uname=$_SESSION['name'];
 	/* Create table doesn't return a resultset */

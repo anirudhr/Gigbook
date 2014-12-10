@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 session_start();
 ?>
 <!DOCTYPE HTML>
-<html>
+<html >
 	<head>
 		<title>cyan Flat ui kit Website Template | Home :: w3layouts</title>
 		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -28,16 +28,18 @@ session_start();
 	<body>
     <?php
 require("connectdb.php");
-require("user_homepage_functions.php");
+include("user_homepage_functions.php");
 $uname = $_SESSION['name'];
 $next_n_concerts_cids = array(); $next_n_concerts_cnames = array(); $next_n_concerts_bnames = array();
 $rand_n_bands_fan = array();
 $rand_n_bands_reco = array();
+$linkids = array();
 
 try {
   list($next_n_concerts_cids, $next_n_concerts_cnames, $next_n_concerts_bnames) = get_n_concerts($mysqli, $uname);
   $rand_n_bands_fan = get_n_bands_fan($mysqli, $uname);
   //$rand_n_bands_reco = get_n_bands_reco($mysqli, $uname);
+  list($linkids, $link_bnames, $linkurls, $linkinfos)=get_n_band_links($mysqli, $uname);
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
@@ -76,30 +78,19 @@ catch (Exception $e) {
 					<span>Dashboard </span>
 				</div>
 				<!---usernotifications---->
-				<div >
-					<ul class="user-profile list-unstyled">
-						<li><a href="#"> <?php echo "<img src='images/user/$uname.jpg' style='width:32px; height:32px;'title='admin' />"
- ?></a>
-							
-						</li>
-					</ul>
-					
-					<ul class="logout list-unstyled"	>				
-                    	<li><input type="button" value="logout" onClick="window.location='logout.php'"</li>
-
-					</ul>
-				</div>
+				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='images/user/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
+ ?></a> <a href="logout.php"><img src="images/logout.png"/></a> </div>
 				<div class="clearfix"> </div>
 				<!--//usernotifications---->
 			</div>
 			<div class="clearfix"> </div>
 			<!------ content ----->
-			<div class="content">
-				<div class="3-cols">
-					<div class="col-1 col-md-3">
+			<div class="content" style="margin-left:auto; margin-right:auto;   overflow:auto; ">
+				<div class="3-cols" style="float:left; width:29%;  ">
+					
 						<!---- user-profile ---->
 							<div class="user-profile1 text-center">
-                             <?php echo "<img src='images/user/$uname.jpg' style='width:110px; height:110px;' title='name'/>";
+                             <?php echo "<img src='images/user/$uname.jpg' style='width:90%' title='name'/>";
 							 
 
 include "connectdb.php";
@@ -124,169 +115,151 @@ if ($stmt = $mysqli->prepare("select firstname,lastname,bio from user  where una
 							</div>
 						<!-- //user-profile ---->
 						<!---- sign-in-box ---->
-						<div class="sign-in-box">
-							<h2>Sign in to your account</h2>
-							<form>
-								<div class="text-boxs">
-									<span class="text-box">
-										<label class="s-user"> </label>
-										<input type="text" placeholder="Username" required /> 
-										<div class="clearfix"> </div>
-									</span>
-									<span class="text-box">
-										<label class="s-lock"> </label>
-										<input type="text" placeholder="password" required /> 
-										<div class="clearfix"> </div>
-									</span>
-								</div>
-								<input type="submit" value="sign in" />
-							</form>
-							<p class="not-member">
-								<a class="member-sign" href="#"> Not a member?</a> <a class="member-signup" href="#">sign Up Now <span> </span></a>
-							</p>
-						</div>
+						
 						<!----//sign-in-box ---->
 						<!----up-load-stats---->
-						<div class="up-load-stats">
-						<div class="chart">
-							<!-----upload-js-files---->
-								<script type="text/javascript" src="js/Chart.js"></script>
-							<!---//upload-js-files---->
-					               <h3>Upload Stats</h3>
-					                <div class="diagram">
-					                  <canvas id="canvas" height="200" width="200"> </canvas>
-					                  <h4>2014</h4>   
-					                 </div>
-									<div class="chart_list">
-						           	  <ul class="list-unstyled">
-						           	  	<li><a href="#" class="blue">. docx<p class="percentage">32<em>%</em></p></a></li>
-						           	  	<li><a href="#" class="purple">. pdf<p class="percentage">4<em>%</em></p></a></li>
-						           	  	<li><a href="#" class="red">. mp3<p class="percentage">17<em>%</em></p></a></li>
-						           	  	<li><a href="#" class="green">. psd<p class="percentage">47<em>%</em></p></a></li>
-						           	  	<div class="clearfix"> </div>	
-						           	  </ul>
-						           </div>
-						           <script>
-									var doughnutData = [
-											{
-												value: 32,
-												color:"#4FC4F6"
-											},
-											{
-												value : 4,
-												color : "#A33CF2"
-											},							
-											{
-												value : 17,
-												color : "#E64C65"
-											},	
-											{
-												value : 47,
-												color : "#21B8C6"
-											},							
-										
-										];				
-										var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);					
-								</script>
-					          </div>
-						</div>
+						
 						<!--//up-load-stats---->
 						<!----social-tags---->
 							<div class="social-tags">
 								<h4>Lets get Social</h4>
 								<ul class="list-unstyled list-inline">
-									<li><a href="#"><span><i class="fa fa-facebook"> </i></span></a></li>
+									<li class="active"><a href="#"><span><i class="fa fa-facebook"> </i></span></a></li>
 									<li><a href="#"><span><i class="fa fa-twitter"> </i></span></a></li>
-									<li class="active"><a href="#"><span><i class="fa fa-linkedin"> </i></span></a></li>
-									<li><a href="#"><span><i class="fa fa-skype"> </i></span></a></li>
+									<li ><a href="#"><span><i class="fa fa-linkedin"> </i></span></a></li>
+									
 								</ul>
 							</div>
 						<!--//social-tags---->
 					</div><!----//End-col-1 ----->
 					<!---- col-2 ----->
-					<div class="col-2 col-md-3">
+					<div class="col-2 col-md-3" style="float:right; width:70%;  ">
+                    <div class="col-2 col-md-3" style="width:55%;  ">
 						<!----chat-box---->
 						<div class="chat-box">
 							<div class="people-on-chat">
 								<div class="chat-msg">
-									<div class="col-xs-2 chat-people">
-										<a href="#"><img src="images/user-pic.jpg" title="name" /></a>
-									</div>
-									<div class="col-xs-9 chat-msg-on">
-										<p>Lorem ipsum dolor sit amet, consectetur elit. ?</p>
-										<span> </span>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<!---->
-								<div class="chat-msg">
-									<div class="col-xs-9 chat-msg-on chat-msg-replay">
-										<p>Nunc pharetra dui fermentum aliquam. ?</p>
-										<span> </span>
-									</div>
-									<div class="col-xs-2 chat-people">
-										<a href="#"><img src="images/user-pic.jpg" title="name" /></a>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<!---->
-								<div class="chat-msg">
-									<div class="col-xs-2 chat-people">
-										<a href="#"><img src="images/user-pic.jpg" title="name" /></a>
-									</div>
-									<div class="col-xs-9 chat-msg-on">
-										<p> eu pretium risus. In sit amet est cursus. ?</p>
-										<span> </span>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<!---->
-							</div>
+                                <div class="msg-type-box">
+									<?PHP
+									if ($stmt = $mysqli->prepare("select u.postinfo, u.bname, c.cname,u.postedtime from user_posts u natural join concert c where u.uname = ?")) {
+	
+	$stmt->bind_param("s", $uname);
+  $stmt->execute();
+  $stmt->bind_result($postinfo,$bname,$cname,$ptime);
+
+	while($stmt->fetch()){
+		
+		
+								echo "$postinfo";
+							
+							if($bname)
+							echo"  About band:$bname</br>";
+							
+							if($cname)
+							echo"   About concert:$cname</br></br>";
+							echo "<span>$ptime</span>";
+							}}
+							else echo "US";
+							?>
+								</div>	 
+									
+									
 							<!----msg-type-box---->
 							<div class="msg-type-box">
-								<form>
-									<input type="text" value="Type your message..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type your message...';}">
-									<input type="submit" value="Send" />
-								</form>
+								<form action="postsOnPage.php" method="post">
+Choose a band you wanna write about:
+<select name='bname'>
+<?php include "connectdb.php";
+
+if ($stmt = $mysqli->prepare("select distinct bname from band ")) {
+	
+  $stmt->execute();
+  $stmt->bind_result($bname);
+  echo "<option value=' '></option>\n";
+  while($stmt->fetch()) {
+	$bname = htmlspecialchars($bname);
+	echo "<option value='$bname'>$bname</option>\n";	
+  }
+  $stmt->close();
+  $mysqli->close();
+}
+?>
+</select>
+<br /><br />
+
+Choose a concert you wanna write about:
+<select name='cid'>
+<?php include "connectdb.php";
+
+if ($stmt = $mysqli->prepare("select cname, cid from concert ")) {
+	
+  $stmt->execute();
+  $stmt->bind_result($cname,$cid);
+  echo "<option value=' '></option>\n";
+  while($stmt->fetch()) {
+	$cname = htmlspecialchars($cname);
+	$cid = htmlspecialchars($cid);
+	echo "<option value='$cid'>$cname</option>\n";	
+  }
+  $stmt->close();
+  $mysqli->close();
+}
+?>
+</select>
+<br /><br />
+
+            <textarea rows="4"  placeholder="write something to post" name="postsByUser" style="width:90%;">
+           </textarea>
+            <input type="submit" value="POST"/>
+           </form>
 							</div>
 							<!--//msg-type-box---->
 						</div>
+                        </div>
+                        </div>
 						<div class="clearfix"> </div>
+                      
 						<!--//chat-box---->
+                       
+                        
 						<!----get-in-touch--->
 						<div class="get-in-touch">
-							<h3>Get in touch</h3>
+							<a class="p-btn" style="width:100%;text-align:center">Upcoming Concerts</a>
+                            <br/><br/>
+
 							<!---->
-							<form>
-								<div class="get-in-touch-text-boxs">
-									<div class="get-in-touch-text-box">
-										<span>Name <label>*</label></span>
-										<input type="text" value="Lorem ipsum" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Lorem ipsum';}">
-									</div>
-									<div class="get-in-touch-text-box">
-										<span>Email <label>*</label></span>
-										<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-									</div>
-									<div class="get-in-touch-text-box">
-										<span>Phone <label>*</label></span>
-										<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-									</div>
-									<div class="get-in-touch-text-box">
-										<span>Message <label>*</label></span>
-										<textarea> </textarea>
-									</div>
-									<div class="clearfix"> </div>
-									<input type="submit" value="Send Message" />
-								</div>
-								
-							</form>
+							 <?php
+			
+
+for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
+ 
+  print "Concert: " . $next_n_concerts_cnames[$i] . "<br/>";
+  print "Band: " . $next_n_concerts_bnames[$i] . "<br/><br/>";
+}?>
 						</div>
+                        <div class="get-in-touch">
+							<a class="p-btn" style="width:100%;text-align:center">Links posted by bands</a></h3>
+                            <br/><br/>
+
+							<!---->
+							 <?php
+							 $GETCOUNTSMALL = 3;
+			
+for ($i = 0; $i < $GETCOUNTSMALL&& $i< count($linkids); $i++) {
+  
+  print "\tBand Name: " . $link_bnames[$i] . "<br/>";
+  echo "\tLink URL: <a href='http://$linkurls[$i]'> $linkurls[$i]</a><br/>" ;
+  echo "\tLink info: " . $linkinfos[$i] . "<br/><br/>";
+}
+?>
+						</div>
+                        
 						<!--//get-in-touch--->
 						<!---twitter-box----->
 						<div class="twitter-box">
 							<div class="twitter-box-head">
 								<h3><span> </span>Latest Posts</h3>
-								<div class="twitts-stat">
+								<div class="get-in-touch"">
 									<div class="twitts-stat-grid">
                                     <?php 
 									include "connectdb.php";
@@ -332,6 +305,8 @@ if ($stmt = $mysqli->prepare("select count(*) from rel_user_follows_user where f
 									});
 									</script>
 								<!----start-tweets-scroller---->
+                                <div class="latest-tweets-box">
+								
                                 <?php
 								 $get_n_user_posts_query = " SELECT count(*),user_posts.uname, user_posts.postid, user_posts.bname, concert.cname, user_posts.postinfo,user_posts.postedtime
                               FROM user_posts
@@ -346,18 +321,21 @@ if ($stmt = $mysqli->prepare("select count(*) from rel_user_follows_user where f
 					$stmt->bind_result($num,$uname, $postid, $bname, $cid, $postinfo,$posttime);
 					
 					while($stmt->fetch()){
-			
+							
   							
 							echo"	  <ul>";
 							echo"		  <li>";
 							echo"		  	<p>$postinfo</p>";
-							echo"  	<span>$posttime</span>";
+							echo"  	<span>Posted by:$uname  on $posttime</span>";
 								echo"	  </li>";
 								echo"</ul>";
 								
 						}
 				}
+				
 ?>
+
+</div>
 							
 									  
 							
@@ -365,183 +343,97 @@ if ($stmt = $mysqli->prepare("select count(*) from rel_user_follows_user where f
 						<!--//twitter-box----->
 					</div><!----//End-col-2 ----->
 					<!---- col-3 ----->
-					<div class="col-md-6 col-3">
+					<div class="col-md-6 col-3" style="float:right; width:45%;  ">
 						<!----video-player---->
 						<!-- video player -->
-						<link href="css/video-player.css" rel="stylesheet" type="text/css" />
-						<script type="text/javascript" src="js/popcorn.js"></script>
-						<script type="text/javascript" src="js/popcorn.player.js"></script>
-						<script type="text/javascript" src="js/popcorn.jplayer.js"></script>
-						<script type="text/javascript" src="js/popcorn.subtitle.js"></script>
-						  <script type="text/javascript">
-						//<![CDATA[
-						  $(document).ready(function(){
 						
-							var p = Popcorn.jplayer('#jquery_jplayer_1', {
-								media: {
-									m4v: "http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v",
-									ogv: "http://www.jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv",
-									webmv: "http://www.jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm",
-									poster: "images/video-img.jpg"
-								},
-								options: {
-									swfPath: "js",
-									supplied: "webmv, ogv, m4v",
-									size: {
-										width: "100%",
-										height: "284px",
-										cssClass: "jp-video-360p"
-									},
-									smoothPlayBar: true,
-									keyEnabled: true
-								}
-							})
-							.subtitle({
-								start: 2,
-								end: 6,
-								text: "This text is the Popcorn Subtitle Plugin"
-							})
-							.subtitle({
-								start: 6,
-								end: 10,
-								text: "Working with the Popcorn jPlayer Player Plugin"
-							})
-							.subtitle({
-								start: 10,
-								end: 15,
-								text: "Enabling jPlayer to function with the features of Popcorn"
-							})
-							.subtitle({
-								start: 16,
-								end: 32,
-								text: "Have fun playing with it!"
-							});
-						
-						});
-						//]]>
-						</script>
 						  <!--  End video player scrept -->
-						<div class="video-player">
-						     <div id="jp_container_1" class="jp-video jp-video-360p">
-							   <div class="jp-type-single">
-								<div id="jquery_jplayer_1" class="jp-jplayer"> </div>
-								<div class="jp-gui">
-									<div class="jp-video-play">
-										<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
-									</div>
-									 <div class="jp-interface">
-										<div class="jp-progress">
-											<div class="jp-seek-bar">
-												<div class="jp-play-bar"> </div>
-											</div>
-										</div>
-										<div class="jp-controls-holder">
-											<ul class="jp-controls">
-												<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-												<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-										   </ul>						
-										    <ul class="jp-toggles">
-												<li class=""><a href="javascript:;" class="jp-full-screen" tabindex="1" title="full screen">full screen</a></li>
-										    </ul>
-										<div class="volume-controls">
-											<ul class="jp-volume-bar-list">
-												<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-												<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-												<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-											  </ul>
-											<div class="jp-volume-bar">							  
-												<div class="jp-volume-bar-value"> </div>
-											</div>
-										</div>
-										<div class="video-time">
-											<div class="jp-current-time"> </div> <i class="line">/</i>
-											<div class="jp-duration"> </div>
-											<div class="clear"> </div>
-										 </div>
-									    </div>
-									  </div>
-								    </div>
-							       </div>
-						         </div>
-						</div>
+						
 						<!--//video-player---->
 						<!---col-3-grid-2---->
-						<div class="col-3-grid-2">
-							<!--- simple-dropdow ---->
-								<div class="col-md-6 simple-dropdow">
-									<ul>
-										<li class="s-menu">
-											<a class="cog" href="#"><i class="fa fa-cog"> </i></a><span class="s-drop1"><i class="fa fa-sort-desc"> </i></span>
-											<ul class="drop-sub">
-												<li><a href="#"><i class="fa fa-pencil"> </i>Edit post</a></li>
-												<li class="active1"><a href="#"><i class="fa fa-pencil"> </i>Remove post</a></li>
-												<li><a href="#"><i class="fa fa-pencil"> </i>Save changes</a></li>
-												<div class="clearfix"> </div>
-											</ul>
-										</li>
-									</ul>
-								</div>
+						
 							<!--- //simple-dropdow ---->
 							<!--- Wather-sample ---->
-							<div class="col-md-5 Wather-grid">
-								<img src="images/wather-icon.png" title="wather" />
-								<span><label> 72<small>o</small></label> Brookly</span>
-							</div>
-							<div class="clearfix"> </div>
-							<!--- Wather-sample ---->
-						</div>
+							
 						<!---//col-3-grid-2---->
 						<!---col-3-grid-3---->
 						<div class="col-3-grid-3 alert-box text-center">
 							<img src="images/right-icon.png" title="check" />
-							<h3>Congratulations!</h3>
-							<p>Your informtaion was successfully submitted.</p>
-							<a class="a-alert" href="#">Get Started</a>
+							<?php
+			print "<b>Suggestions:</b> " . "<br/>";
+for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_reco); $i++) {
+  print "$i: " . $rand_n_bands_reco[$i] . "<br/>";
+}
+print "<br/>";
+?>
 						</div>
-						<!---col-3-grid-3---->
+                        
+						<div class="get-in-touch">
+                       <center> <a class="p-btn" style="width:100%;">Your concert review and ratings</a></center>
+							<?php
+								 $get_n_user_posts_query = " SELECT c.cid,c.cname, u.review, u.rating from rel_user_attends_concert u natural join concert c where u.uname = ?"; 
+				if($stmt->prepare($get_n_user_posts_query)) {
+					$stmt->bind_param('s', $uname);
+					$stmt->execute();
+					$stmt->bind_result($cid,$cname,$review, $rating);
+					echo "</br>";
+					while($stmt->fetch()){
+							
+  							
+							if($review and $rating){
+								echo "<img src='images/concert_images/$cid.jpg' style='width:100px; height:100px;'/>";
+							echo"	Concert:$cname</br>";
+							echo "";
+							if($review)
+							echo"   Review:$review</br>";
+							
+							if($rating)
+							echo"   Rating:$rating/5</br></br>";}
+							
+								
+								
+						}
+				}
+				
+?>
+						</div><!---col-3-grid-3---->
+                        <div class="clearfix"> </div>
+                        <div class="get-in-touch">
+                       <center> <a class="p-btn" style="width:100%;">Review/Rate concerts attended</a></center>
+							<?php
+								 $get_n_user_posts_query = " SELECT distinct c.cid,c.cname from rel_user_attends_concert u natural join concert c where u.review is NULL or u.rating is NULL and u.uname = ?"; 
+				if($stmt->prepare($get_n_user_posts_query)) {
+					$stmt->bind_param('s', $uname);
+					$stmt->execute();
+					$stmt->bind_result($cid,$cname);
+					echo "</br>";
+					while($stmt->fetch()){
+							
+  							
+							
+							echo "<img src='images/concert_images/$cid.jpg' style='width:100px; height:100px;'/>";
+							echo"	Concert:$cname</br></br>";
+							
+							
+					}
+								
+						
+				}
+				
+?>
+						</div><!---col-3-grid-3---->
 						<!---col-3-grid-4---->
-						<div class="col-3-grid-4">
-							<!---- start-audio-plyer---->
-								<!---- start-audio-plyer-files---->
-								<link rel="stylesheet" href="css/bbplayer.css"/>
-								 <script src="js/bbplayer.js"></script>
-								<!---- //End-audio-plyer-files---->
-								<div class="audio-plyer">
-									<div class="bbplayer">
-									      <span class="bb-play"></span><span class="bb-rewind"></span><span class="bb-forward"></span>
-									      <span class="bb-trackTime">--:--</span> /
-									      <span class="bb-trackLength">--:--</span>
-									      <span class="bb-trackTitle">&nbsp;</span>
-									      <audio>
-									        <source src="media/Blue Browne.ogg" type="audio/ogg"></source>
-									        <source src="media/Blue Browne.mp3" type="audio/mpeg"></source>
-									        <source src="media/Georgia.ogg" type="audio/ogg"></source>
-									        <source src="media/Georgia.mp3" type="audio/mpeg"></source>
-									      </audio>
-									</div>
-								</div>
-								<!---- //End-audio-plyer---->
-						</div>
+						
 						<!---//col-3-grid-4---->
 						<!---col-3-grid-5---->
-						<div class="col-3-grid-5 timer-note">
-							<div class="col-md-3 timer-people">
-								<img src="images/01.jpg" title="name" />
-							</div>
-							<div class="col-md-9 timer-info">
-								<h3 class="t-name"> Patel Banoni</h3>
-								<span class="t-time"><label> </label> 4:35</span>
-								<div class="clearfix"> </div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus dui id libero auctor cursus.</p>
-								<b class="t-arrow"> </b>
-							</div>
+						<div class="col-3-grid-5 timer-note  style="float:right; width:45%;  "">
+							
+</div>
 							<div class="clearfix"> </div>
 						</div>
 						<!---//col-3-grid-5---->
 						<!----copy-right---->
-							<div class="copy-right">
-									<p>Template by <a href="http://w3layouts.com/">w3layouts</a></p>
-							</div>
+							
 						<!--//copy-right---->
 					</div>
 					<!---- col-3 ----->

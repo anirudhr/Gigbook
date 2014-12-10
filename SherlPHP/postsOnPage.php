@@ -10,7 +10,7 @@ session_start();
 
 <body>
 <?php
-	require("connectdb.php");
+	include "connectdb.php";
 	$bname=$_POST["bname"];
 	$cid=$_POST["cid"];
 	$uname = $_SESSION["name"];
@@ -18,13 +18,13 @@ session_start();
 	/* Create table doesn't return a resultset */
 
  
-	if($stmt = $mysqli->prepare("INSERT INTO user_posts (uname, bname, cid, postinfo)VALUES (?,?,?,?)")) {
+	if($stmt = $mysqli->prepare("INSERT INTO user_posts (uname, bname, cid, postinfo,postedtime)VALUES (?,?,?,?,now())")) {
 	
 	$stmt->bind_param('ssis',$uname, $bname,$cid,$posts);
 	
   $stmt->execute();
-   echo "<script language='javascript'>alert('abC');</script>";
-  echo "<script language='javascript'>window.location='userhomepage.php';</script>";
+   
+  echo "<script language='javascript'>window.location='userHome.php';</script>";
  
 }
 

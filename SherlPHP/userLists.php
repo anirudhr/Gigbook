@@ -63,20 +63,8 @@ $uname = $_SESSION['name'];
 					<span>Dashboard </span>
 				</div>
 				<!---usernotifications---->
-				<div style="float:right">
-					<ul class="user-profile list-unstyled">
-						<li><a href="#"> <?php echo "<img src='images/user/$uname.jpg' style='width:32px; height:32px;'title='admin' />"
- ?></a>
-							
-						</li>
-					</ul>
-					
-					<ul class="logout list-unstyled"	>				
-                    	<li><a href="logout.php"><span> </span></a></li>
-
-					</ul>
-					</ul>
-				</div>
+				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='images/user/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
+ ?></a> <a href="logout.php"><img src="images/logout.png" alt="LOGOUT"/></a></div>
 				<div class="clearfix"> </div>
 				<!--//usernotifications---->
 			</div>
@@ -86,7 +74,10 @@ $uname = $_SESSION['name'];
             <div style="background-color:#FFF">
             <h2>RECOMMENDATION LISTS</h2>
 <table border="0" width="100%" >
-<tr><td colspan="2"  ><input type="button" value="Edit lists" onclick="window.location='listCreation.php'"/></td></tr>
+<tr><td colspan="2"  ><input type="button" value="Edit lists" onclick="window.location='listCreation.php'"/></td><td>
+
+</td>
+</tr>
 <tr>
 <?php 
 $list = NULL;

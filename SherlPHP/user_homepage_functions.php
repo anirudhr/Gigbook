@@ -18,13 +18,11 @@ function get_n_concerts($mysqli, $uname) {//Function that returns an array of ar
 	
 	if(!$stmt->prepare($get_n_concerts_query)) {
 		throw new Exception("get_n_concerts: failed to prepare statement");
-		
 	}
 	else {
 		$stmt->bind_param('s', $uname);
 		if (!$stmt->execute()) {
 			throw new Exception("get_n_concerts: failed to execute");
-			
 		}
 		$cid = NULL;
 		$cname = NULL;
@@ -52,7 +50,6 @@ function get_n_bands_fan($mysqli, $uname) {//Function that returns an array of $
 	
 	if(!$stmt->prepare($get_n_bands_fan_query)) {
 		throw new Exception("get_n_bands_fan: failed to prepare");
-		
 	}
 	else {
 		$stmt->bind_param('s', $uname);
@@ -75,7 +72,6 @@ function get_n_bands_reco($mysqli, $uname) {//Function that returns up to $GETCO
   $get_n_bands_reco_query = "CALL sp_band_suggest_list(?, @bname)";
   if(!$stmt->prepare($get_n_bands_reco_query)) {
     throw new Exception("get_n_bands_reco: failed to prepare");
-		
   }
   $stmt->bind_param('s', $uname);
   $num_dup_check = 5; //Check for duplicate recommendations 5 times;
@@ -83,13 +79,11 @@ function get_n_bands_reco($mysqli, $uname) {//Function that returns up to $GETCO
   for ($count = 0; $count < $GETCOUNTSMALL; $count++) {
     if (!$stmt->execute()) {
       throw new Exception("get_n_bands_reco: failed to execute");
-      
     }
     $stmt->fetch();
     $result = $mysqli->query('SELECT @bname as bname');
     if (!$result) {
       throw new Exception("Get bname failed");
-      
     }
     $row = $result->fetch_assoc();
     $bname = $row['bname'];
@@ -110,7 +104,7 @@ function get_n_user_posts($mysqli, $uname) { //get posts by users that this user
   //global $GETCOUNTLARGE;
   //static $loadedposts = //string containing postids loaded so far
   $stmt = $mysqli->stmt_init();
-  $get_n_user_posts_query = " SELECT user_posts.uname, user_posts.postid, user_posts.bname, concert.cname, user_posts.postinfo
+  $get_n_user_posts_query = " SELECT user_posts.uname, user_posts.postid, user_posts.bname, concert.cname, user_posts.postinfo,user_posts.postedtime
                               FROM user_posts
                               JOIN rel_user_follows_user ON rel_user_follows_user.followee = user_posts.uname
                               JOIN concert ON concert.cid = user_posts.cid
@@ -118,33 +112,34 @@ function get_n_user_posts($mysqli, $uname) { //get posts by users that this user
                               ORDER BY user_posts.postedtime ASC"; //no limit
   if(!$stmt->prepare($get_n_user_posts_query)) {
 		throw new Exception("get_n_user_posts: failed to prepare");
-		
 	}
 	else {
 		$stmt->bind_param('s', $uname);
 		if (!$stmt->execute()) {
 			throw new Exception("get_n_user_posts: failed to execute");
-			
 		}
 		$uname = NULL;
 		$postid = NULL;
 		$bname = NULL;
 		$cid = NULL;
 		$postinfo = NULL;
-		$stmt->bind_result($uname, $postid, $bname, $cid, $postinfo);
+		$posttime = NULL;
+		$stmt->bind_result($uname, $postid, $bname, $cid, $postinfo,$posttime);
 		$unames = array();
 		$postids = array();
 		$bnames = array();
 		$cids = array();
 		$postinfos = array();
+		$posttimes = array();
 		while($stmt->fetch()) {
 			array_push($unames, $uname);
       array_push($postids, $postid);
       array_push($bnames, $bname);
       array_push($cids, $cid);
       array_push($postinfos, $postinfo);
+	  array_push($posttimes, $posttime);
 		}
-		return array($unames, $postids, $bnames, $cids, $postinfos);
+		return array($unames, $postids, $bnames, $cids, $postinfos,$posttimes);
 	}
 }
 
@@ -159,29 +154,29 @@ function get_n_band_links($mysqli, $uname) {//get links posted by bands the user
                               ORDER BY band_links.postedtime ASC";//no limits
   if(!$stmt->prepare($get_n_band_links_query)) {
 		throw new Exception("get_n_band_links_query: failed to prepare");
-		
 	}
-  $stmt->bind_param('s', $uname);
-  if (!$stmt->execute()) {
-    throw new Exception("get_n_band_links_query: failed to execute");
-		
-  }
-  $linkid = NULL;
-  $bname = NULL;
-  $linkurl = NULL;
-  $linkinfo = NULL;
-  $stmt->bind_result($linkid, $bname, $linkurl, $linkinfo);
-  $linkids = array();
-  $bnames = array();
-  $linkurls = array();
-  $linkinfos = array();
-  while($stmt->fetch()) {
-    array_push($linkids, $linkid);
-    array_push($bnames, $bname);
-    array_push($linkurls, $linkurl);
-    array_push($linkinfos, $linkinfo);
-  }
-  return array($linkids, $bnames, $linkurls, $linkinfos);
+	else {
+		$stmt->bind_param('s', $uname);
+		if (!$stmt->execute()) {
+			throw new Exception("get_n_band_links_query: failed to execute");
+		}
+		$linkid = NULL;
+		$bname = NULL;
+		$linkurl = NULL;
+		$linkinfo = NULL;
+		$stmt->bind_result($linkid, $bname, $linkurl, $linkinfo);
+		$linkids = array();
+		$bnames = array();
+		$linkurls = array();
+		$linkinfos = array();
+		while($stmt->fetch()) {
+			array_push($linkids, $linkid);
+			array_push($bnames, $bname);
+			array_push($linkurls, $linkurl);
+			array_push($linkinfos, $linkinfo);
+		}
+		return array($linkids, $bnames, $linkurls, $linkinfos);
+	}
 }
 ?>
 <!--/*:indentSize=2:tabSize=2:noTabs=true:wrap=soft:*/-->

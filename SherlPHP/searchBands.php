@@ -87,7 +87,7 @@ $uname = $_SESSION['name'];
             <h2>SEARCH RESULTS</h2>
 <?php
 
-require("connectdb.php");
+include "connectdb.php";
 
 	$band="%{$_POST['band']}%";
 	

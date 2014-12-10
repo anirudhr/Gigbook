@@ -10,26 +10,25 @@ session_start();
 
 <body>
 <?php
-	require("connectdb.php");
-	$band="%{$_POST['bname']}%";
-
+	include "connectdb.php";
+	$band=$_GET['band'];
+	echo $band;
 	$uname=$_SESSION['name'];
-	
+	echo $uname;
 	
 	/* Create table doesn't return a resultset */
 	if ($stmt1 = $mysqli->prepare("select distinct b.bname from band b where b.bname like ?")) {
-	
+	echo "in 1";
 	$stmt1->bind_param("s", $band);
   $stmt1->execute();
    $stmt1->bind_result($bname);
    while ($stmt1->fetch()) {
 	$bandname = $bname;
    }
- 
-	if($stmt2 = $mysqli->prepare("INSERT INTO rel_user_fan_band (uname, bname, fdate)VALUES (?,?,now())")) {
+ echo $bandname;
+	if($stmt2 = $mysqli->prepare("INSERT INTO rel_user_fan_band (uname, bname, becamefandate)VALUES (?,?,now())")) {
 	echo "statement 2 executed";
-echo $uname;
-echo $bandname;
+
 	$stmt2->bind_param('ss',$uname, $bandname);
 	
   $stmt2->execute();
@@ -37,7 +36,8 @@ echo $bandname;
  
 
 	}
-
+else
+echo "Unsuccesful";
 	}
 else
 echo "Unsuccesful";

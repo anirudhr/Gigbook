@@ -93,8 +93,8 @@ $uname = $_SESSION['name'];
 <form method="post" action="addToList.php">
 
 
-Choose a list to add to<br/>
-<?php require("connectdb.php");
+Choose a list to add to<br>
+<?php include "connectdb.php";
 
 if ($stmt = $mysqli->prepare("select distinct lname from recolist where uname=?")) {
 	$stmt->bind_param("s",$uname);
@@ -119,7 +119,7 @@ if ($stmt = $mysqli->prepare("select distinct lname from recolist where uname=?"
 <table border="0" width="100%">
 
 <?php
-require("connectdb.php");
+include "connectdb.php";
 if ($stmt = $mysqli->prepare("select cname,cid from concert")) {
   $stmt->execute();
   $stmt->bind_result($cname,$cid);

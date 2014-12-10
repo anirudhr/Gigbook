@@ -11,7 +11,7 @@ session_start();
 
 <body>
 <?php
-require("connectdb.php");
+include "connectdb.php";
 
 	$usrname=$_POST["username"];
 	$pswrd=$_POST["password"];
@@ -24,11 +24,21 @@ require("connectdb.php");
 	
 	if($usrname==$uname && $pswrd==$password)
 	{
-		session_start();
+		
 		$_SESSION['name']=$usrname;
 		setcookie('usrcookie',$usrname,time()+3600);
+		if($stmt = $mysqli->prepare("update `user`
+       set lastlogintime = NOW()
+	   where uname=?" )) {
+	
+	$stmt->bind_param('s', $uname);
+	
+  $stmt->execute();
+
+}
+
 		
-		echo "<script language='javascript'>window.location='profile.php';</script>";
+		echo "<script language='javascript'>window.location='userHome.php';</script>";
 	}
 	}
 	echo "<script language='javascript'>alert('login failed');</script>";

@@ -70,7 +70,7 @@ catch (Exception $e) {
 <form action="postsOnPage.php" method="post">
 Choose a band you wanna write about:
 <select name='bname'>
-<?php require("connectdb.php");
+<?php include "connectdb.php";
 
 if ($stmt = $mysqli->prepare("select distinct bname from band ")) {
 	
@@ -90,7 +90,7 @@ if ($stmt = $mysqli->prepare("select distinct bname from band ")) {
 
 Choose a concert you wanna write about:
 <select name='cid'>
-<?php require("connectdb.php");
+<?php include "connectdb.php";
 
 if ($stmt = $mysqli->prepare("select cname, cid from concert ")) {
 	

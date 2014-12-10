@@ -11,7 +11,7 @@ session_start();
 
 <body>
 <?php
-require("connectdb.php");
+include "connectdb.php";
 
 	$usrname=$_POST["bandname"];
 	$pswrd=$_POST["password"];
@@ -24,14 +24,14 @@ require("connectdb.php");
 	
 	if($usrname==$bname && $pswrd==$password)
 	{
-		session_start();
+		
 		$_SESSION['name']=$usrname;
 		setcookie('smartrs',$usrname,time()+3600);
-		echo "<script language='javascript'>alert('Welcome');</script>";
-		echo "<script language='javascript'>window.location='hello.php';</script>";
+		
+		echo "<script language='javascript'>window.location='bandHomePage.php';</script>";
 	}
 	}
-	echo "<script language='javascript'>alert('login failed');</script>";
+	
 	echo "<script language='javascript'>window.location='login.php';</script>";
 	
 }

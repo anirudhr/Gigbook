@@ -11,7 +11,7 @@ session_start();
 
 <body>
 <?php
-require("connectdb.php");
+include "connectdb.php";
 
 	$usrname=$_POST["bandname"];
 	$pswrd=$_POST["password"];

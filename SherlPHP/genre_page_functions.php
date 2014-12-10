@@ -4,12 +4,10 @@ function get_bands_playing_genre($mysqli, $gname) {// Returns array of band name
   $get_bands_playing_genre_query = "SELECT rel_band_plays_genre.bname FROM rel_band_plays_genre WHERE gname = ?";
   if(!$stmt->prepare($get_bands_playing_genre_query)) {
     throw new Exception("get_bands_playing_genre: failed to prepare");
-		
   }
   $stmt->bind_param('s', $gname);
   if (!$stmt->execute()) {
     throw new Exception("get_bands_playing_genre: failed to execute");
-		
   }
   $bname = NULL;
   $stmt->bind_result($bname);
@@ -21,7 +19,6 @@ function get_bands_playing_genre($mysqli, $gname) {// Returns array of band name
   $get_popularity_by_band_query = "CALL sp_band_popularity(?, @popularity)";
   if(!$stmt->prepare($get_popularity_by_band_query)) {
     throw new Exception("get_popularity_by_band_query: failed to prepare");
-		
   }
   else {
     $popularities_by_band = array();
@@ -29,13 +26,11 @@ function get_bands_playing_genre($mysqli, $gname) {// Returns array of band name
       $stmt->bind_param('s', $bandname);
       if (!$stmt->execute()) {
         throw new Exception("get_popularity_by_band_query: failed to execute");
-        
       }
       $stmt->fetch();
       $result = $mysqli->query('SELECT @popularity as popularity');
       if (!$result) {
         throw new Exception("Get popularity failed for band " . $bname);
-        
       }
       $row = $result->fetch_assoc();
       $popularities_by_band[$bandname] = $row['popularity'];

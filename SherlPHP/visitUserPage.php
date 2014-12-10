@@ -1,21 +1,32 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <?php
 // Start the session
 session_start();
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-
-
-
-</head>
-
-<body >
-
- <body>
-<?php
+<!DOCTYPE HTML>
+<html >
+	<head>
+	
+		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.min.js"></script>
+		 <!-- Custom Theme files -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+   		 <!----font-Awesome----->
+   		<link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+   		<!----font-Awesome----->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+	<body>
+   <?php
 include("connectdb.php");
 require("user_homepage_functions.php");
 $mainUser = $_SESSION['name'];
@@ -33,39 +44,123 @@ catch (Exception $e) {
   exit();
 }
  ?>
-<div id="wrapper" style="margin-left:auto; margin-right:auto; border:solid #669933; overflow:auto;"> 
- 
-  <div id="inner-1" style="float:left; width:60%;border:dotted #CC3300; ">
-    WELCOME <?= $mainUser; ?>
-  </div>
- 
-  <div id="inner-2" style="float:right; width:30%; border:dotted #CC3300;"> 
-    <form style="float:right;" action="searchUsers.php" method='post'>
-    <input type="text" placeholder="Search for users" name="followee"/>
-    <input type="submit" value="search"/>
-    <input type="button" value=" Logout" onclick="logout()"/>
-    </form>
-  </div>
-</div>
-<div id="homebody" style="margin-left:auto; margin-right:auto; border:solid #669933; overflow:auto; ">
-	<div id="sidebar" style="float:left; width:29%;border:dotted #CC3300; ">
-    	<div id="circular" style=" height:39%;border:dotted #CC3300; ">
-   			 <?php echo "<img src='images/user/$uname.jpg' style='width:200px; height:200px;'/>";?>
-    	</div>
-         <div id="linklist" style=" height:59%;border:dotted #CC3300; ">
-        	 <form action="follows.php" method="post">
-         <input type="hidden" name="followee" value="<?=$uname?>"/>
-        	<input type="submit" value="FOLLOW!"/>
-            </form>
-             
-			 
-    	</div>
-    
-  </div>
- 
-  <div id="inner-2" style="float:right; width:68%; border:dotted #CC3300;"> 
-  <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-         <?php 
+		<!-----container----->
+		<div class="container">
+			<div class="top-header">
+				<!----script-for-sidepanle-nav---->
+				
+				<div class="logo">
+					<span>Dashboard </span>
+				</div>
+				<!---usernotifications---->
+				<div style="float:right; width:100px;">
+					<a href="userHome.php"> <?php echo "<img src='images/user/$mainUser.jpg' style='width:50px; height:32px;'title='admin' />"
+ ?></a>
+							
+									
+                    	   <a href="logout.php"><img src="images/logout.png"/></a>
+				</div>
+				<div class="clearfix"> </div>
+				<!--//usernotifications---->
+			</div>
+			<div class="clearfix"> </div>
+			<!------ content ----->
+			<div class="content" style="margin-left:auto; margin-right:auto;   overflow:auto; ">
+				<div class="3-cols" style="float:left; width:29%;  ">
+					
+						<!---- user-profile ---->
+							<div class="user-profile1 text-center">
+                             <?php echo "<img src='images/user/$uname.jpg' style='width:110px; height:110px;' title='name'/>";
+							 
+$uname = $_GET['user'];
+include "connectdb.php";
+
+	
+	
+if ($stmt = $mysqli->prepare("select firstname,lastname,bio from user  where uname like ?")) {
+	
+	$stmt->bind_param("s", $uname);
+  $stmt->execute();
+  $stmt->bind_result($fname,$lname,$bio);
+
+	while($stmt->fetch()){
+  ?>
+
+								
+								<h3><?= $fname ?>    <?=$lname; ?>  </h3>
+								
+                                <?php
+	}}?>
+								<a class="p-btn" href="follows.php?follow=<?=$uname;?>">Follow</a>
+							</div>
+						<!-- //user-profile ---->
+						<!---- sign-in-box ---->
+						
+						<!----//sign-in-box ---->
+						<!----up-load-stats---->
+						
+						<!--//up-load-stats---->
+						<!----social-tags---->
+							<div class="social-tags">
+								<h4>Lets get Social</h4>
+								<ul class="list-unstyled list-inline">
+									<li class="active"><a href="#"><span><i class="fa fa-facebook"> </i></span></a></li>
+									<li><a href="#"><span><i class="fa fa-twitter"> </i></span></a></li>
+									<li ><a href="#"><span><i class="fa fa-linkedin"> </i></span></a></li>
+									
+								</ul>
+							</div>
+                            <div class="get-in-touch">
+                            <div class="get-in-touch"">
+									<div class="twitts-stat-grid">
+                                    <?php 
+									include "connectdb.php";
+
+	$uname = $_GET['user'];
+if ($stmt = $mysqli->prepare("select count(*) from rel_user_follows_user where followee like ?")) {
+	
+	$stmt->bind_param("s", $uname);
+  $stmt->execute();
+  $stmt->bind_result($num);
+
+	while($stmt->fetch()){?>
+										<span> Followers</span>
+										<label><?= $num; ?></label>
+                                        <?php }}
+										if ($stmt = $mysqli->prepare("select count(*) from rel_user_follows_user where follower like ?")) {
+	
+	$stmt->bind_param("s", $uname);
+  $stmt->execute();
+  $stmt->bind_result($num2);
+
+	while($stmt->fetch()){?>
+										
+                                        
+									</div>
+									<div class="twitts-stat-grid">
+										<span> Following</span>
+										<label><?= $num2; ?></label>
+                                        <?php }}?>
+									</div>
+									
+									<div class="clearfix"> </div>
+								</div>
+                            </div>
+						<!--//social-tags---->
+					</div><!----//End-col-1 ----->
+					<!---- col-2 ----->
+					<div class="col-2 col-md-3" style="float:right; width:70%;  ">
+                    
+						<!----chat-box---->
+						<div class="clearfix"> </div>
+                      
+						<!--//chat-box---->
+                       <div class="get-in-touch">
+							<a class="p-btn" style="width:100%;text-align:center">Profile</a>
+                            <br/><br/>
+
+							<!---->
+							<?php 
 		$result=$mysqli->query("Select * from user where uname='$uname'");
 	if(! $result)
 {
@@ -90,7 +185,7 @@ while($row=$result->fetch_assoc())
 	$firstname = $row["firstname"];
 	$lastname = $row["lastname"];
 	$city=$row["city"];
-	
+	$bio=$row["bio"];
 	$dob=$row["birthdate"];
 	}
      
@@ -101,9 +196,9 @@ while($row=$result->fetch_assoc())
 
 ?>
 
-<table border="0">
+<table border="0" width="100%">
 <tr>
-<td><label>Firstname:</label></td>
+<td><label>Firstname</label></td>
 <td><label><?=$firstname;?></label></td>
 </tr>
 <tr>
@@ -118,26 +213,20 @@ while($row=$result->fetch_assoc())
 <td><label>City</label></td>
 <td><label><?=$city;?></label></td>
 </tr>
+<tr>
 
 
 
-</table>
 
-        </div>
-    	<div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Next 3 upcoming concerts
-      <?php
-			
-print "Next n concerts:" . "<br/>";
-for ($i = 0; $i < $GETCOUNTSMALL && $i < count($next_n_concerts_cids); $i++) {
-  print "\tcid: " . $next_n_concerts_cids[$i] . "<br/>";
-  print "\tcname: " . $next_n_concerts_cnames[$i] . "<br/>";
-  print "bname: " . $next_n_concerts_bnames[$i] . "<br/>";
-}
-			?>
-        </div>
-        <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Bands user liked
+</table>	</div>
+                        
+						<!----get-in-touch--->
+						<div class="get-in-touch">
+							<a class="p-btn" style="width:100%;text-align:center"> Bands user likes</a>
+                            <br/><br/>
+
+							<!---->
+							
            <table border="0" width="100%" cellspacing="20">
 <tr><td colspan="2"  >
 </td>
@@ -155,7 +244,7 @@ if ($stmt = $mysqli->prepare("select bname from rel_user_fan_band where uname = 
 	  if ($count==2) 
 	{echo "<tr>"; $count=0;}
 	  ?>
-<td width="100"><?php echo "<img src='images/band/$bname.jpg' style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitBandPage.php?band=<?=$bname;?>"><?=$bname;?></a></td>
+<td width="120" height="120"><?php echo "<img src='images/band/$bname.jpg' style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitBandPage.php?band=<?=$bname;?>"><?=$bname;?></a></td>
 <?php
 $count=$count+1;
   }?>
@@ -167,9 +256,14 @@ $stmt->close();
   $mysqli->close();
  }
 ?>
-<div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        	Genres
-        <table border="0" width="100%" cellspacing="20">
+						</div>
+                        <div class="get-in-touch">
+							<a class="p-btn" style="width:100%;text-align:center">Genres user likes</a></h3>
+                            <br/><br/>
+
+
+							<!---->
+							 <table border="0" width="100%" cellspacing="20">
 
 
 
@@ -186,7 +280,7 @@ if ($stmt = $mysqli->prepare("select gname from rel_user_likes_genre where uname
 	  if ($count==2) 
 	{echo "<tr>"; $count=0;}
 	  ?>
-<td width="100"><?php echo "<img src='images/genre/$gname.jpg' style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><?= $gname; ?></td>
+<td width="120" height="120"><?php echo "<img src='images/genre/$gname.jpg' style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><?= $gname; ?></td>
 <?php
 $count=$count+1;
   }?>
@@ -198,14 +292,28 @@ $stmt->close();
   $mysqli->close();
  }
 ?>
-</div>
-  
-        
-            
-        </div>
-        <div id="inner-2" style="height:19%; border:dotted #CC3300;">
-        Posts 
-        <table border="0" width="100%" >
+						</div>
+                        
+						<!--//get-in-touch--->
+						<!---twitter-box----->
+						<div class="twitter-box">
+							<div class="twitter-box-head">
+								<h3><span> </span>Latest Posts</h3>
+								
+							</div>
+							<!---->
+							<!----start-tweets-scroller---->
+						  <script type="text/javascript" src="js/jquery.easy-ticker.js"></script>
+						  <script type="text/javascript">
+									$(document).ready(function(){
+										$('#demo').hide();
+										$('.vticker').easyTicker();
+									});
+									</script>
+								<!----start-tweets-scroller---->
+                                <div class="latest-tweets-box">
+								
+                                <table border="0" width="100%" >
 		
 <?php 
 include("connectdb.php");
@@ -233,12 +341,37 @@ $stmt->close();
   $mysqli->close();
  }
 ?>
-        </div>
-         
-        
-        
-  </div>
-
-</body>
+</div>
+							
+									  
+							
+						</div>
+						<!--//twitter-box----->
+					</div><!----//End-col-2 ----->
+					<!---- col-3 ----->
+					<div class="col-md-6 col-3" style="float:right; width:45%;  ">
+						<!----video-player---->
+						<!-- video player -->
+						
+						  <!--  End video player scrept -->
+						
+						<!--//video-player---->
+						<!---col-3-grid-2---->
+						
+							<!--- //simple-dropdow ---->
+							<!--- Wather-sample ---->
+							
+						<!---//col-3-grid-2---->
+						<!---col-3-grid-3---->
+						
+					<!---- col-3 ----->
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!---- //content ----->
+			
+		
+		<!---//container----->
+	</body>
 </html>
-        	
+
