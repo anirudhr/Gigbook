@@ -3,6 +3,44 @@
 $GETCOUNTSMALL = 3;
 $GETCOUNTLARGE = 10;
 
+function get_followee_reviews_ratings($mysqli, $uname) {
+  global $GETCOUNTSMALL;
+	$stmt = $mysqli->stmt_init();
+  
+  $get_followee_reviews_ratings_query = "  SELECT rel_user_attends_concert.uname , rel_user_attends_concert.cid , concert.cname, rel_user_attends_concert.review , rel_user_attends_concert.rating
+        FROM rel_user_attends_concert
+        JOIN rel_user_follows_user ON rel_user_follows_user.followee = rel_user_attends_concert.uname
+        JOIN concert on concert.cid = rel_user_attends_concert.cid
+        WHERE concert.ctime < NOW()
+        AND rel_user_follows_user.follower = ?";
+  if(!$stmt->prepare($get_followee_reviews_ratings_query)) {
+		throw new Exception("get_followee_reviews_ratings: failed to prepare statement");
+	}
+  $stmt->bind_param('s', $uname);
+  if (!$stmt->execute()) {
+    throw new Exception("get_followee_reviews_ratings: failed to execute");
+		}
+  $followee_uname = NULL;
+  $followee_cid = NULL;
+  $followee_cname = NULL;
+  $followee_review = NULL;
+  $followee_rating = NULL;
+  $stmt->bind_result($followee_uname, $followee_cid, $followee_cname, $followee_review, $followee_rating);
+  $followee_unames = array();
+  $followee_cids = array();
+  $followee_cnames = array();
+  $followee_reviews = array();
+  $followee_ratings = array();
+  while($stmt->fetch()) {
+    array_push($followee_unames, $followee_uname);
+    array_push($followee_cids, $followee_cid);
+    array_push($followee_cnames, $followee_cname);
+    array_push($followee_reviews, $followee_review);
+    array_push($followee_ratings, $followee_rating);
+  }
+  return array($followee_unames, $followee_cids, $followee_cnames, $followee_reviews, $followee_ratings);
+}
+
 function get_n_concerts($mysqli, $uname) {//Function that returns an array of arrays (cids, cnames, bnames) $GETCOUNTSMALL long. Use: list($cids, $cnames, $bnames) = get_n_concerts($mysqli, $usrname);
   global $GETCOUNTSMALL;
 	$stmt = $mysqli->stmt_init();
@@ -19,25 +57,23 @@ function get_n_concerts($mysqli, $uname) {//Function that returns an array of ar
 	if(!$stmt->prepare($get_n_concerts_query)) {
 		throw new Exception("get_n_concerts: failed to prepare statement");
 	}
-	else {
-		$stmt->bind_param('s', $uname);
-		if (!$stmt->execute()) {
-			throw new Exception("get_n_concerts: failed to execute");
-		}
-		$cid = NULL;
-		$cname = NULL;
-		$bname = NULL;
-		$stmt->bind_result($cid, $cname, $bname);
-    $cids = array();
-    $cnames = array();
-    $bnames = array();
-		while($stmt->fetch()) {
-			array_push($cids, $cid);
-			array_push($cnames, $cname);
-			array_push($bnames, $bname);
-		}
-		return array($cids, $cnames, $bnames);
-	}
+  $stmt->bind_param('s', $uname);
+  if (!$stmt->execute()) {
+    throw new Exception("get_n_concerts: failed to execute");
+  }
+  $cid = NULL;
+  $cname = NULL;
+  $bname = NULL;
+  $stmt->bind_result($cid, $cname, $bname);
+  $cids = array();
+  $cnames = array();
+  $bnames = array();
+  while($stmt->fetch()) {
+    array_push($cids, $cid);
+    array_push($cnames, $cname);
+    array_push($bnames, $bname);
+  }
+  return array($cids, $cnames, $bnames);
 }
 
 function get_n_bands_fan($mysqli, $uname) {//Function that returns an array of $GETCOUNTSMALL bnames which the user is a fan of
