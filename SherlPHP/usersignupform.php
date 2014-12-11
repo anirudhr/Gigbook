@@ -19,8 +19,9 @@
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active">Account Setup</li>
-		<li>Profile Picture</li>
+		
 		<li>Personal Details</li>
+        <li>Profile Picture</li>
 	</ul>
 	<!-- fieldsets -->
 	<fieldset>
@@ -31,16 +32,7 @@
 		<input type="password" name="cpass" placeholder="Confirm Password" required>
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
-	<fieldset>
-		<h2 class="fs-title">Profile Picture</h2>
-		<h3 class="fs-subtitle">Select image to upload:</h3>
-		<input type="file" name="uploadedimage" id="uploadedimage" style="color:#FFF">
-    
-		<input type="button" name="previous" class="previous action-button" value="Previous" />
-	
-        <input type="submit" name="submit" class="submit action-button" value="Submit" />
-	</fieldset>
-	<fieldset>
+    <fieldset>
 		<h2 class="fs-title">Personal Details</h2>
 		<h3 class="fs-subtitle">We will never sell it</h3>
 		<input type="text" name="fname" placeholder="First Name" />
@@ -54,6 +46,16 @@
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 			<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
+	<fieldset>
+		<h2 class="fs-title">Profile Picture</h2>
+		<h3 class="fs-subtitle">Select image to upload:</h3>
+		<input type="file" name="uploadedimage" id="uploadedimage" style="color:#FFF">
+    
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+	
+        <input type="submit" name="submit" class="submit action-button" value="Submit" />
+	</fieldset>
+	
     
 </form>
 
