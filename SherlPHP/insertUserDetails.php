@@ -50,7 +50,7 @@ if(move_uploaded_file($temp_name, $target_path)) {
 	$stmt->bind_param('sssssss', $uname,$lastname,$firstname,$pwd,$city,$dob,$email);
 	
   $stmt->execute();
- 
+  echo '<script type="text/javascript">window.location="login.php"</script>';
 }
 
  	

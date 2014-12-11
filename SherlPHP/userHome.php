@@ -423,7 +423,7 @@ print "<br/>";
                         <div class="get-in-touch">
                        <center> <a class="p-btn" style="width:100%;">Review/Rate concerts attended</a></center>
 							<?php
-								 $get_n_user_posts_query = " SELECT distinct c.cid,c.cname from rel_user_attends_concert u natural join concert c where u.review is NULL or u.rating is NULL and u.uname = ?"; 
+								 $get_n_user_posts_query = " SELECT distinct c.cid,c.cname from rel_user_attends_concert u natural join concert c where u.review is NULL or u.rating is NULL and u.uname = ? and c.ctime < NOW()"; 
 				if($stmt->prepare($get_n_user_posts_query)) {
 					$stmt->bind_param('s', $uname);
 					$stmt->execute();
