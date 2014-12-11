@@ -44,14 +44,17 @@ if (!empty($_FILES["uploadedimage"]["name"])) {
 	$target_path = "images/user/".$imagename;
 
 if(move_uploaded_file($temp_name, $target_path)) {
-	
-	if($stmt = $mysqli->prepare("INSERT INTO user (uname, lastname, firstname, password, lastlogintime,city, birthdate, email,joindate)VALUES (?,?,?,?,now(),?,?,?,now())")) {
+	$stmt = $mysqli->stmt_init();
+	if(!$stmt->prepare("INSERT INTO user (uname, lastname, firstname, password, lastlogintime,city, birthdate, email,joindate)VALUES (?,?,?,?,now(),?,?,?,now())")) {
+		throw new Exception("Insert prepare failed: " . $mysqli->error);
+	}
 	
 	$stmt->bind_param('sssssss', $uname,$lastname,$firstname,$pwd,$city,$dob,$email);
 	
-  $stmt->execute();
+  if (!$stmt->execute()) {
+  	  throw new Exception("Insert exec failed: " . $mysqli->error);
+  }
   echo '<script type="text/javascript">window.location="login.php"</script>';
-}
 
  	
 }else{
@@ -60,8 +63,6 @@ if(move_uploaded_file($temp_name, $target_path)) {
 } 
 
 }
-else
-echo "Unsuccesful";
 	
 
  

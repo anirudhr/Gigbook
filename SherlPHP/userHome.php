@@ -371,8 +371,6 @@ if ($stmt = $mysqli->prepare("select count(*) from rel_user_follows_user where f
 							
 						<!---//col-3-grid-2---->
 						<!---col-3-grid-3---->
-						<div class="col-3-grid-3 alert-box text-center">
-							<img src="images/right-icon.png" title="check" />
 <div class="get-in-touch">
                        <center> <a class="p-btn" style="width:100%; ">Suggestions</a></center>
 <?php
