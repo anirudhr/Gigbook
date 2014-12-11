@@ -90,5 +90,37 @@ function get_past_concert_info($mysqli, $cid) {//returns reviews, ratings, avera
   }
   return array($reviews, $ratings, $avg_rating);
 }
+function get_user_past_concerts($mysqli, $uname) {
+  $stmt = $mysqli->stmt_init();
+  $get_user_past_concerts_query = "  SELECT concert.cid, concert.cname, concert.ctime
+                                    FROM rel_user_attends_concert
+                                    JOIN concert ON concert.cid = rel_user_attends_concert.cid
+                                    WHERE uname = ?
+                                    AND concert.ctime < NOW()
+                                    ORDER BY concert.ctime DESC";
+  if(!$stmt->prepare($get_user_past_concerts_query)) {
+		throw new Exception("get_user_past_concerts_query for past: failed to prepare");
+		
+	}
+  $stmt->bind_param('s', $uname);
+  if (!$stmt->execute()) {
+    throw new Exception("get_user_past_concerts: failed to execute");
+    
+  }
+  $cid = NULL;
+  $cname = NULL;
+  $ctime = NULL;
+  $stmt->bind_result($cid, $cname, $ctime);
+  $cids = array();
+  $cnames = array();
+  $ctimes = array();
+  
+  while($stmt->fetch()) {
+    array_push($cids, $cid);
+    array_push($cnames, $cname);
+    array_push($ctimes, $ctime);
+  }
+  return array($cids, $cnames, $ctimes);
+}
 ?>
 <!--/*:indentSize=2:tabSize=2:noTabs=true:wrap=soft:*/-->
