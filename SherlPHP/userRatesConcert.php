@@ -3,7 +3,6 @@ Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
-:indentSize=4:tabSize=4:noTabs=true:wrap=soft:
 -->
 <?php
 // Start the session
@@ -30,15 +29,26 @@ session_start();
 function newContent(id)
 {
     $("#div1").load("newcontent.php?cid="+id);
+	
+}
+function newContent1(id)
+{
+	
+   
+	document.getElementById("div2").style.visibility="visible";
+	document.getElementById("conc").value=id;
+	
+	
 }
 </script>
         
 	</head>
 	<body>
    <?php
+   $uname=$_SESSION['name'];
 require("connectdb.php");
 require("concert_page_functions.php");
-$uname = $_SESSION['name'];
+$bname = $_SESSION['name'];
 $future_concert_cid = 17;
 $future_concert_ispast = NULL;
 $future_concert_bnames = array();
@@ -55,10 +65,32 @@ $future_concert_city = NULL;
 $future_concert_state = NULL;
 $future_concert_zip = NULL;
 
+$past_concert_cid = 1;
+$past_concert_ispast = NULL;
+$past_concert_bnames = array();
+$past_concert_cname = NULL;
+$past_concert_ctime = NULL;
+$past_concert_tkturl = NULL;
+$past_concert_cover = NULL;
+$past_concert_vname = NULL;
+$past_concert_url = NULL;
+$past_concert_capacity = NULL;
+$past_concert_building = NULL;
+$past_concert_street = NULL;
+$past_concert_city = NULL;
+$past_concert_state = NULL;
+$past_concert_zip = NULL;
+
+$past_concert_reviews = array();
+$past_concert_ratings = array();
+$past_concert_avg_rating = NULL;
 
 try {
   list($future_concert_bnames, $future_concert_cname, $future_concert_ctime, $future_concert_tkturl, $future_concert_cover, $future_concert_vname, $future_concert_url, $future_concert_capacity, $future_concert_building, $future_concert_street, $future_concert_city, $future_concert_state, $future_concert_zip) = get_concert_info($mysqli, $future_concert_cid);
   $future_concert_ispast = is_concert_past($mysqli, $future_concert_cid);
+  list($past_concert_bnames, $past_concert_cname, $past_concert_ctime, $past_concert_tkturl, $past_concert_cover, $past_concert_vname, $past_concert_url, $past_concert_capacity, $past_concert_building, $past_concert_street, $past_concert_city, $past_concert_state, $past_concert_zip) = get_concert_info($mysqli, $past_concert_cid);
+  $past_concert_ispast = is_concert_past($mysqli, $past_concert_cid);
+  list($past_concert_reviews, $past_concert_ratings, $past_concert_avg_rating) = get_past_concert_info($mysqli, $past_concert_cid);
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
@@ -83,14 +115,17 @@ catch (Exception $e) {
 						<a href="#menu-left"> </a>
 					</div>
 					<nav id="menu-left">
-				    <ul>
-				      <li class="active" ><a href="bandHomePage.php">Home</a></li>
-				      <li ><a href="bandProfile.php">Profile</a></li>
-				      <li><a href="bandPlaysGenre.php">Genres you play</a></li>
-				      
-				      <li><a href="userLists.php">Announce a new concert</a></li>
-			        </ul>
-			      </nav>
+						<ul>
+                        	<li class="active" ><a href="userHome.php">Home</a></li>
+							<li ><a href="profile.php">Profile</a></li>
+							<li ><a href="userFollows.php">Users you follow</a></li>
+							<li><a href="userLikesGenre.php">Genres you like</a></li>
+							<li><a href="userLikesBands.php">Bands you like</a></li>
+                            <li><a href="userLists.php">Recommendation Lists</a></li>
+                            <li><a href="userRatesConcert.php">Concerts</a></li>
+                            
+						</ul>
+					</nav>
 			  </div>
 				<div class="logo">
 					<span>Dashboard </span>
@@ -110,7 +145,23 @@ catch (Exception $e) {
 						<!---- user-profile ---->
 				<div class="user-profile1 text-center" id="div1">
                              <img src="images/01.jpg"/>
+								
+						  </div>
+					  <!-- //user-profile ---->
+					  <!---- sign-in-box ---->
+                       <div class="clearfix"> </div>
+						<div class="new_concert" id="concert_post">
+                        <div id="div2" style="visibility:hidden" class="get-in-touch">
+                         	<center> <a class="p-btn" style="width:100%;">Review/Rate </a>
+                         	</center>
+                            <form action="newrate.php" method="post">
+                            Concert:<input type="text" id="conc" name="conc" value="" onFocus="this.blur()"/><br/>
+                            Review:<textarea rows="4"  placeholder="write something to post" name="review" style="width:90%;"></textarea><br/>
+                            Rating:<input type="text" value="" name="rating" size="3"/>/5
+                            <input type="submit" value="SUBMIT"/> 
+                          </form>
 
+                        </div>
                         </div>
 					  <!----//sign-in-box ---->
 					  <!----up-load-stats---->
@@ -119,11 +170,11 @@ catch (Exception $e) {
 					  <!----social-tags----><!--//social-tags---->
 			  </div><!----//End-col-1 ----->
 					<!---- col-2 ----->
-					<div class="abc" style="float:right; width:60%">
+					<div class="abc" style="float:right; width:60%; border:dotted #FF0000 ">
 					  <!--//get-in-touch--->
 						<!---twitter-box-----><!--//twitter-box----->
                         <div class="get-in-touch">
-							<a class="p-btn" style="width:100%;text-align:center">Upcoming Concerts</a>
+							<a class="p-btn" style="width:100%;text-align:center">All upcoming Concerts</a>
                             <br/><br/>
 
 							<!---->
@@ -152,14 +203,13 @@ $stmt = $mysqli->stmt_init();
 						}
 				}echo "</table>";
 
-?>					
+?>
+						
                         </div>
-                        <div class="get-in-touch">
-							<a class="p-btn" style="width:100%;text-align:center">Concerts Attended</a>
-                            <br/><br/>
-
-							<!---->
-							  <?php
+                        <div class="clearfix"> </div>
+                       <div class="get-in-touch">
+                       <center> <a class="p-btn" style="width:100%;">Review/Rate concerts attended</a></center>
+							 <?php
 							     require("connectdb.php");
 							     $past_concert_cids = array();
 							     $past_concert_cnames = array();
@@ -170,17 +220,26 @@ $stmt = $mysqli->stmt_init();
                                 for($i=0; $i < count($past_concert_cids); $i++){
                                     $j = $i+1;
                                     echo "<tr>";
-                                    echo"	<td width='80px'>$j</td><td width='600px'><a onMouseOver='newContent($past_concert_cids[$i])'>$past_concert_cnames[$i]</a></td><td width='200px'>$past_concert_ctimes[$i]</td>";
+                                    echo"	<td width='80px'>$j</td><td width='600px'><a onMouseOver='newContent1($past_concert_cids[$i])'>$past_concert_cnames[$i]</a></td><td width='200px'>$past_concert_ctimes[$i]</td>";
                                     echo "</tr>";
                                 }
                             echo "</table>";
 
 ?>					
-                        </div>
+						</div>
+<div class="get-in-touch">
+							<a class="p-btn" style="width:100%;text-align:center">Concerts attended</a>
+                            <br/><br/>
+
+							<!---->
+							
+						</div>
 					<!----//End-col-2 ----->
 					<!---- col-3 ----->
 			  </div>
 			<!---- //content ----->
+			</div>
+		</div>
 		<!---//container----->
 	</body>
 </html>

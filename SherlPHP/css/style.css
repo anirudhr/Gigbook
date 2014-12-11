@@ -7,11 +7,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html, body{
   	 font-family: 'Raleway-Light';
     font-size: 100%;
-     background: url(../purple-abstract-wallpaper-guitar.jpg) no-repeat center center fixed; 
+     background: url(../guitar_abstract.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  color:#000;
 }
 body a{
 	transition:0.5s all;
@@ -50,6 +51,7 @@ body a{
 .container{
 	width:90%;
 	margin:0 auto;
+	opacity: 0.9;
 }
 /*-----side-nav----*/
 #header a, .header a {
@@ -85,7 +87,7 @@ body a{
 	right: 1.5%;
 }
 .logo span{
-	color: #7D8B94;
+	color: #000;
 	font-size: 1.3em;
 	 font-family: 'Raleway-SemiBold';
 }
@@ -111,7 +113,7 @@ ul.sub{
 	border-radius:0.3em;
 }
 ul.sub li a{
-	color: #FFF;
+	color: #000;
 	font-size: 0.8em;
 	padding: 0.2em 1em;
 	display: block;
@@ -119,7 +121,7 @@ ul.sub li a{
 	font-weight:600;
 }
 ul.sub li a:hover{
-	color:#21B8C6;
+	color:#000;
 }
 ul.sub{
 	margin: 0;
@@ -158,13 +160,13 @@ ul.sub li a:hover{
 	padding: 3em 1em 2em 1em;
 }
 .user-profile1 h3{
-	color: #88959E;
+	color: #000;
 	margin: 0.5em 0;
 	font-size: 1.2em;
 	font-family: 'Raleway-SemiBold';
 }
 .user-profile1 p{
-	color: #7D8E9A;
+	color: #000;
 	font-size: 0.875em;
 	margin: 0 0 2em 0;
 	display: block;
@@ -173,7 +175,7 @@ ul.sub li a:hover{
 }
 .p-btn{
 	background: #21B8C6;
-	color: #FFF;
+	color: #000;
 	text-transform: uppercase;
 	padding: 0.6em 3em;
 	display: inline-block;
@@ -183,7 +185,7 @@ ul.sub li a:hover{
 }
 .p-btn:hover{
 	background:#475965;
-	color:#FFF;
+	color:#000;
 	text-decoration:none;
 }
 /*----sign-in-box----*/
@@ -233,7 +235,7 @@ ul.sub li a:hover{
 }
 .sign-in-box h2{
 	font-family: 'Raleway-SemiBold';
-	color: #475965;
+	color: #000;
 	text-transform: uppercase;
 	font-size: 1em;
 	margin: 0;
@@ -243,7 +245,7 @@ ul.sub li a:hover{
 	background: #21B8C6;
 	border: none;
 	outline: none;
-	color: #FFF;
+	color: #000;
 	display: block;
 	width: 100%;
 	border-radius: 0.3em;
@@ -264,24 +266,24 @@ ul.sub li a:hover{
 }
 .sign-in-box input[type="submit"]:hover{
 	background: #475965;
-	color: #FFF;
+	color: #000;
 }
 .text-boxs{
 	margin:2em 0;
 }
 .member-sign{
 	font-size:0.875em;
-	color:#7D8E9A;
+	color:#000;
 }
 .member-signup{
 	font-size:1em;
-	color:#7D8E9A;
+	color:#000;
 	text-decoration:none;
 	font-family: 'Raleway-SemiBold';
 }
 .member-signup:hover,.member-sign:hover{
 	text-decoration:none;
-	color:#21B8C6;
+	color:#000;
 }
 .not-member{
 	margin:0.8em 0;
@@ -306,14 +308,14 @@ ul.sub li a:hover{
 	top: 3em;
 	right: 4.5em;
 	font-size: 1.6em;
-	color: #9099B7;
+	color: #000;
 	display: inline-block;
 }
 .chart h4 span{
-	color:#FFF;
+	color:#000;
 }
 .chart h3{
-	color: #475965;
+	color: #000;
 	font-size: 1.1em;
 	text-transform: uppercase;
 	font-family: 'Raleway-SemiBold';
@@ -337,7 +339,7 @@ ul.sub li a:hover{
 }
 .chart_list li a{
 	display: block;
-	color: #FFF;
+	color: #000;
 	font-size:0.875em;	
 	padding:4px 0;
 	-webkit-transition: all 0.5s ease-in-out;
@@ -354,7 +356,7 @@ ul.sub li a:hover{
 }
 .chart_list p{
 	font-size:1.5em;
-	color:#FFF;
+	color:#000;
 	padding-top:5px;
 }
 .chart_list em{
@@ -387,7 +389,7 @@ ul.sub li a:hover{
 }
 .up-load-stats h4{
 	 font-family: 'Raleway-Light';
-	color:#596873;
+	color:#000;
 }
 .social-tags{
 	background: #fff;
@@ -398,7 +400,7 @@ ul.sub li a:hover{
 	margin:0;
 }
 .social-tags ul li a i{
-	color:#D9E3EB;
+	color:#000;
 	font-size:1.3em;
 }
 .social-tags ul li a span{
@@ -421,12 +423,12 @@ ul.sub li a:hover{
 }
 .social-tags ul li a span:hover,.social-tags ul li.active a span{
 	background:#21B8C6;
-	color:#FFF;
+	color:#000;
 	border: 1px solid #21B8C6;
 }
 .social-tags h4{
 	text-align: center;
-	color: #475965;
+	color: #000;
 	margin: 0.5em 0 1em;
 	font-size: 1.5em;
 }
@@ -450,7 +452,7 @@ ul.sub li a:hover{
 	position:relative;
 }
 .chat-msg-on p{
-	color: #53646D;
+	color: #000;
 	font-size: 0.83em;
 	padding: 0.5em 0;
 	margin: 0;
@@ -469,7 +471,7 @@ ul.sub li a:hover{
 	background:#21B8C6;
 }
 .chat-msg-replay p{
-	color:#FFF;
+	color:#000;
 }
 .chat-msg-replay span{
 	width: 10px;
@@ -489,14 +491,14 @@ ul.sub li a:hover{
 	border-top:1px solid #EBEBEB;
 }
 .msg-type-box input[type="text"]{
-	color: #79848C;
+	color: #000;
 	font-size: 0.8em;
 	border: none;
 	outline: none;
 	width: 68.6%;
 }
 .msg-type-box input[type="submit"]{
-	color: #53646D;
+	color: #000;
 	font-size: 1em;
 	background: url(../images/send-bg.png) no-repeat 0px 0px;
 	border: none;
@@ -513,7 +515,7 @@ ul.sub li a:hover{
 	-ms-transition:0.5s all;
 }
 .msg-type-box input[type="submit"]:hover{
-	color:#21B8C6;
+	color:#000;
 }
 /*---get-in-touch---*/
 .get-in-touch{
@@ -522,7 +524,7 @@ ul.sub li a:hover{
 	
 }
 .get-in-touch h3{
-	color:#475965;
+	color:#000;
 	font-size:1.2em;
 	font-family: 'Raleway-SemiBold';
 	display:block;
@@ -532,26 +534,26 @@ ul.sub li a:hover{
 .get-in-touch-text-box span{
 	display: block;
 	font-family: 'Raleway-SemiBold';
-	color: #7D8E9A;
+	color: #000;
 	text-transform: uppercase;
 	font-size: 0.82em;
 	margin-bottom: 0.3em;
 }
 .get-in-touch-text-box:hover span,.get-in-touch-text-box:hover label{
-	color:#E64C65;
+	color:#000;
 }
 .get-in-touch-text-box:hover input[type="text"],.get-in-touch-text-box textarea:hover{
 	border:1px solid #E64C65;
 }
 .get-in-touch-text-box span label{
-	color:#21B8C6;
+	color:#000;
 	margin-left:0.2em;
 }
 .get-in-touch-text-box input[type="text"],.get-in-touch-text-box textarea{
 	border: 1px solid #D7DEE2;
 	font-family: 'Raleway-SemiBold';
 	padding: 0.6em 0.9em;
-	color: #4A545A;
+	color: #000;
 	width: 92%;
 	font-size: 0.875em;
 	outline: none;
@@ -593,7 +595,7 @@ ul.sub li a:hover{
 }
 .get-in-touch-text-boxs input[type="submit"]:hover{
 	background: #475965;
-	color: #FFF;
+	color: #000;
 }
 /*----twitter-box---*/
 .twitter-box{
@@ -602,7 +604,7 @@ ul.sub li a:hover{
 .twitter-box-head h3{
 	background: #21B8C6;
 	text-align: center;
-	color: #FFF;
+	color: #000;
 	font-family: 'Raleway-SemiBold';
 	text-transform: uppercase;
 	margin: 0;
@@ -635,13 +637,13 @@ ul.sub li a:hover{
 	font-family: 'Raleway-SemiBold';
 }
 .twitts-stat-grid span{
-	color: #7D8E9A;
+	color: #000;
 	text-transform: uppercase;
 	font-size: 0.7em;
 	display:block;
 }
 .twitts-stat-grid label{
-	color: #7D8E9A;
+	color: #000;
 	text-transform: uppercase;
 	font-size: 1.2em;
 }
@@ -663,21 +665,21 @@ ul.sub li a:hover{
 	padding:0;
 }
 .latest-tweets-box ul li p{
-	color:#7D8E9A;
+	color:#000;
 	font-size:0.875em;
 	line-height:1.6em;
 }
 .latest-tweets-box ul li p a{
-	color:#21B8C6;
+	color:#000;
 }
 .latest-tweets-box ul li p a:hover{
 	text-decoration:none;
-	color:#B2C0C9;
+	color:#000;
 }
 .latest-tweets-box ul li span{
 	display:block;
 	font-size:0.875em;
-	color:#B2C0C9;
+	color:#000;
 	padding:0.6em 0;
 }
 /*-----col-3-grid-2----*/
@@ -717,11 +719,11 @@ ul.sub li a:hover{
 }
 a.cog i{
 	font-size:2em;
-	color:#727F8C;
+	color:#000;
 }
 span.s-drop1{
 	font-size: 1.25em;
-	color: #727F8C;
+	color: #000;
 	vertical-align: super;
 	margin-left: 0.8em;
 }
@@ -732,12 +734,12 @@ span.s-drop1{
 	background:#FFF;
 	padding:1em;
 	display:block;
-	color:#727F8C;
+	color:#000;
 }
 .simple-dropdow ul li ul li a:hover,.simple-dropdow ul li ul li.active1 a{
 	text-decoration:none;
 	background:#21B8C6;
-	color:#FFF;
+	color:#000;
 }
 .simple-dropdow ul li ul li a i{
 	margin-right:0.5em;
@@ -760,7 +762,7 @@ span.s-drop1{
 }
 .Wather-grid span{
 	display: block;
-	color: #FFF;
+	color: #000;
 	font-size: 1.5em;
 }
 .Wather-grid span label{
@@ -784,16 +786,16 @@ span.s-drop1{
 }
 .alert-box h3{
 	font-family: 'Raleway-SemiBold';
-	color:#475965;
+	color:#000;
 }
 .alert-box p{
-	color:#475965;
+	color:#000;
 	font-size:1em;
 	margin:1em 0 2em;
 }
 .a-alert{
 	background: #21B8C6;
-	color: #FFF;
+	color: #000;
 	padding: 0.8em 2em;
 	font-family: 'Raleway-SemiBold';
 	text-transform: uppercase;
@@ -803,7 +805,7 @@ span.s-drop1{
 }
 .a-alert:hover{
 	background: #475965;
-	color: #FFF;
+	color: #000;
 	text-decoration:none;
 }
 /*---- start-audio-plyer----*/
@@ -824,7 +826,7 @@ span.s-drop1{
 	margin: 0 0 0.5em;
 	padding: 0;
 	font-family: 'Raleway-SemiBold';
-	color: #475965;
+	color: #000;
 	font-size: 1.2em;
 }
 .t-time{
@@ -843,7 +845,7 @@ span.s-drop1{
 	position:relative;
 }
 .timer-info p{
-	color: #7D8E9A;
+	color: #000;
 	margin: 0;
 	line-height: 1.7em;
 }

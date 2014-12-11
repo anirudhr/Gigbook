@@ -19,7 +19,7 @@
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active">Account Setup</li>
-		<li>Social Profiles</li>
+		
 		<li>Personal Details</li>
 	</ul>
 	<!-- fieldsets -->
@@ -31,15 +31,7 @@
 		<input type="password" name="cpass" placeholder="Confirm Password" required>
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
-	<fieldset>
-		<h2 class="fs-title">Social Profiles</h2>
-		<h3 class="fs-subtitle">Your presence on the social network</h3>
-		<input type="text" name="twitter" placeholder="Twitter" />
-		<input type="text" name="facebook" placeholder="Facebook" />
-		<input type="text" name="gplus" placeholder="Google Plus" />
-		<input type="button" name="previous" class="previous action-button" value="Previous" />
-		<input type="button" name="next" class="next action-button" value="Next" />
-	</fieldset>
+	
 
     <fieldset>
 		<h2 class="fs-title">Profile Picture</h2>

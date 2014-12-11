@@ -83,6 +83,8 @@ catch (Exception $e) {
 							<li><a href="userLikesGenre.php">Genres you like</a></li>
 							<li><a href="userLikesBands.php">Bands you like</a></li>
                             <li><a href="userLists.php">Recommendation Lists</a></li>
+                            <li><a href="userRatesConcert.php">Concerts</a></li>
+                            
 						</ul>
 					</nav>
 				</div>
@@ -419,8 +421,7 @@ print "<br/>";
                             Rating:<input type="text" value="" name="rating" size="3"/>/5
                             <input type="submit" value="SUBMIT"/> 
                           </form>
-                         </div>
-                        <div class="get-in-touch">
+                          <div class="get-in-touch">
                        <center> <a class="p-btn" style="width:100%;">Review/Rate concerts attended</a></center>
 							<?php
 								 $get_n_user_posts_query = " SELECT distinct c.cid,c.cname from rel_user_attends_concert u natural join concert c where u.review is NULL or u.rating is NULL and u.uname = ? and c.ctime < NOW()"; 
@@ -443,7 +444,9 @@ print "<br/>";
 				}
 				
 ?>
-						</div><!---col-3-grid-3---->
+						</div>
+                         </div>
+                        <!---col-3-grid-3---->
 						<!---col-3-grid-4---->
 						
 						<!---//col-3-grid-4---->

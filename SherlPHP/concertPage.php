@@ -246,38 +246,23 @@ $stmt = $mysqli->stmt_init();
                             <br/><br/>
 
 							<!---->
-							 <?php
-			
+ <?php
+							     require("connectdb.php");
+							     $past_concert_cids = array();
+							     $past_concert_cnames = array();
+							     $past_concert_ctimes = array();
+							     list($past_concert_cids, $past_concert_cnames, $past_concert_ctimes) = get_band_past_concerts($mysqli, $bname);
+                                echo "</br>";
+                                echo "<table border='0' width='100%'>";
+                                for($i=0; $i < count($past_concert_cids); $i++){
+                                    $j = $i+1;
+                                    echo "<tr>";
+                                    echo"	<td width='80px'>$j</td><td width='600px'><a onMouseOver='newContent($past_concert_cids[$i])'>$past_concert_cnames[$i]</a></td><td width='200px'>$past_concert_ctimes[$i]</td>";
+                                    echo "</tr>";
+                                }
+                            echo "</table>";
 
-print "<b>Past Concert:</b><br/>";
-print "ID: ". $past_concert_cid . "<br/>";
-print "Is concert past: " . $past_concert_ispast . "<br/>";
-print "Band(s): ";
-foreach ($past_concert_bnames as $past_concert_bname) {
-  print $past_concert_bname . ", ";
-}
-print "Name: " . $past_concert_cname . "<br/>";
-print "Time: " . $past_concert_ctime . "<br/>";
-print "URL: " . $past_concert_tkturl ."<br/>";
-print "Cover: " . $past_concert_cover ."<br/>";
-print "Venue URL: " . $past_concert_url ."<br/>";
-print "Venue capacity: " . $past_concert_capacity ."<br/>";
-print "Venue name: " . $past_concert_vname ."<br/>";
-print "Venue deets: " . $past_concert_building . " " . $past_concert_street . ", " . $past_concert_city . ", " . $past_concert_state . ", " . $past_concert_zip ."<br/>";
-print "Average rating: " . $past_concert_avg_rating . "<br/>";
-print "Reviews and ratings:<br/>";
-foreach ($past_concert_reviews as $index => $review) {
-  print $past_concert_ratings[$index] . "/5 | " . $review . "<br/>";
-}
 ?>
-
-<div class="get-in-touch">
-							<a class="p-btn" style="width:100%;text-align:center">Concerts attended</a>
-                            <br/><br/>
-
-							<!---->
-							
-						</div>
 					<!----//End-col-2 ----->
 					<!---- col-3 ----->
 			  </div>
