@@ -11,7 +11,7 @@ session_start();
 <!DOCTYPE HTML>
 <html >
 	<head>
-		<title>Gigbook: Home</title>
+		<title>cyan Flat ui kit Website Template | Home :: w3layouts</title>
 		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="js/jquery.min.js"></script>
@@ -24,8 +24,13 @@ session_start();
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		</script>
+        <script type="text/javascript">
+		
+		</script>
+        
+        
 	</head>
-	<body>
+	<body onload="postFunc()">
    <?php
 require("connectdb.php");
 require("band_homepage_functions.php");
@@ -81,7 +86,7 @@ catch (Exception $e) {
 				      <li ><a href="bandProfile.php">Profile</a></li>
 				      <li><a href="bandPlaysGenre.php">Genres you play</a></li>
 				      
-				      <li><a href="userLists.php">Announce a new concert</a></li>
+				      <li><a href="concertPage.php">Announce a new concert</a></li>
 			        </ul>
 			      </nav>
 			  </div>

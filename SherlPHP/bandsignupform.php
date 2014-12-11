@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Band Signup</title>
+<title>Untitled Document</title>
 <link rel="stylesheet" type="text/css" href="signupstyle.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="signup.js"></script>

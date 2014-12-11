@@ -24,6 +24,18 @@ session_start();
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		</script>
+         <script type="text/javascript">
+
+function newContent(id)
+{
+	
+   
+	document.getElementById("div2").style.visibility="visible";
+	document.getElementById("conc").value=id;
+	
+	
+}
+</script>
 	</head>
 	<body>
     <?php
@@ -259,7 +271,7 @@ for ($i = 0; $i < $GETCOUNTSMALL&& $i< count($linkids); $i++) {
 						<div class="twitter-box">
 							<div class="twitter-box-head">
 								<h3><span> </span>Latest Posts</h3>
-								<div class="get-in-touch"">
+								<div class="get-in-touch">
 									<div class="twitts-stat-grid">
                                     <?php 
 									include "connectdb.php";
@@ -369,7 +381,7 @@ print "<br/>";
 						</div>
                         
 						<div class="get-in-touch">
-                       <center> <a class="p-btn" style="width:100%;">Your concert review and ratings</a></center>
+                       <center> <a class="p-btn" style="width:100%; ">Your concert review and ratings</a></center>
 							<?php
 								 $get_n_user_posts_query = " SELECT c.cid,c.cname, u.review, u.rating from rel_user_attends_concert u natural join concert c where u.uname = ?"; 
 				if($stmt->prepare($get_n_user_posts_query)) {
@@ -398,6 +410,16 @@ print "<br/>";
 ?>
 						</div><!---col-3-grid-3---->
                         <div class="clearfix"> </div>
+                        <div id="div2" style="visibility:hidden" class="get-in-touch">
+                         	<center> <a class="p-btn" style="width:100%;">Review/Rate </a>
+                         	</center>
+                            <form action="newrate.php" method="post">
+                            Concert:<input type="text" id="conc" name="conc" value="" onFocus="this.blur()"/><br/>
+                            Review:<textarea rows="4"  placeholder="write something to post" name="review" style="width:90%;"></textarea><br/>
+                            Rating:<input type="text" value="" name="rating" size="3"/>/5
+                            <input type="submit" value="SUBMIT"/> 
+                          </form>
+                         </div>
                         <div class="get-in-touch">
                        <center> <a class="p-btn" style="width:100%;">Review/Rate concerts attended</a></center>
 							<?php
@@ -412,7 +434,7 @@ print "<br/>";
   							
 							
 							echo "<img src='images/concert_images/$cid.jpg' style='width:100px; height:100px;'/>";
-							echo"	Concert:$cname</br></br>";
+							echo"	</br><a onMouseOver='newContent($cid)' >$cname</a></br></br>";
 							
 							
 					}

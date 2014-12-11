@@ -37,7 +37,7 @@ function newContent(id)
    <?php
 require("connectdb.php");
 require("concert_page_functions.php");
-$bname = $_SESSION['name'];
+
 $future_concert_cid = 17;
 $future_concert_ispast = NULL;
 $future_concert_bnames = array();

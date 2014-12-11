@@ -11,7 +11,7 @@ session_start();
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Gigbook: Users</title>
+		<title>cyan Flat ui kit Website Template | Home :: w3layouts</title>
 		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="js/jquery.min.js"></script>

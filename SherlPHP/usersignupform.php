@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Gigbook: User Signup</title>
+<title>Untitled Document</title>
 <link rel="stylesheet" type="text/css" href="signupstyle.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="signup.js"></script>
@@ -19,7 +19,7 @@
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active">Account Setup</li>
-		<li>Social Profiles</li>
+		<li>Profile Picture</li>
 		<li>Personal Details</li>
 	</ul>
 	<!-- fieldsets -->
@@ -32,13 +32,13 @@
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
 	<fieldset>
-		<h2 class="fs-title">Social Profiles</h2>
-		<h3 class="fs-subtitle">Your presence on the social network</h3>
-		<input type="text" name="twitter" placeholder="Twitter" />
-		<input type="text" name="facebook" placeholder="Facebook" />
-		<input type="text" name="gplus" placeholder="Google Plus" />
+		<h2 class="fs-title">Profile Picture</h2>
+		<h3 class="fs-subtitle">Select image to upload:</h3>
+		<input type="file" name="uploadedimage" id="uploadedimage" style="color:#FFF">
+    
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
-		<input type="button" name="next" class="next action-button" value="Next" />
+	
+        <input type="submit" name="submit" class="submit action-button" value="Submit" />
 	</fieldset>
 	<fieldset>
 		<h2 class="fs-title">Personal Details</h2>
@@ -54,15 +54,7 @@
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 			<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
-    <fieldset>
-		<h2 class="fs-title">Profile Picture</h2>
-		<h3 class="fs-subtitle">Select image to upload:</h3>
-		<input type="file" name="uploadedimage" id="uploadedimage" style="color:#FFF">
     
-		<input type="button" name="previous" class="previous action-button" value="Previous" />
-	
-        <input type="submit" name="submit" class="submit action-button" value="Submit" />
-	</fieldset>
 </form>
 
 </body>

@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 </head>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
 
+function newContent()
+{
+    $("#div1").load("newcontent.php");
+}
+</script>
 <body>
-
-<?PHP
-
-session_start();
-session_destroy();
-
-
- echo "<script language='javascript'>window.location='login.php';</script>";
-?>
 </body>
+<div id="div1"></div>
+<div id="div2"><input type="button" value="load" onclick="newContent()"/></div>
 </html>

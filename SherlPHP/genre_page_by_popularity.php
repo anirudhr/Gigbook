@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Gigbook: Genres</title>
+<title>Untitled Document</title>
 </head>
 
 <body bgcolor="#000000">
