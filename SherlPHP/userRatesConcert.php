@@ -29,15 +29,26 @@ session_start();
 function newContent(id)
 {
     $("#div1").load("newcontent.php?cid="+id);
+	
+}
+function newContent1(id)
+{
+	
+   
+	document.getElementById("div2").style.visibility="visible";
+	document.getElementById("conc").value=id;
+	
+	
 }
 </script>
         
 	</head>
 	<body>
    <?php
+   $uname=$_SESSION['name'];
 require("connectdb.php");
 require("concert_page_functions.php");
-
+$bname = $_SESSION['name'];
 $future_concert_cid = 17;
 $future_concert_ispast = NULL;
 $future_concert_bnames = array();
@@ -107,6 +118,7 @@ catch (Exception $e) {
 				    <ul>
 				      <li class="active" ><a href="bandHomePage.php">Home</a></li>
 				      <li ><a href="bandProfile.php">Profile</a></li>
+
 				      <li><a href="bandPlaysGenre.php">Genres you play</a></li>
 				      
 				      <li><a href="userLists.php">Announce a new concert</a></li>
@@ -137,64 +149,15 @@ catch (Exception $e) {
 					  <!---- sign-in-box ---->
                        <div class="clearfix"> </div>
 						<div class="new_concert" id="concert_post">
-                        <div class="get-in-touch">
-							<a class="p-btn" style="width:100%;text-align:center">Post a new concert</a>
-                            <?php include ("connectdb.php");
-							$bname=$_SESSION['name'];
-							?>
-                            <br/><br/>
-                            <table border="0" >
-                            <tr >
-                            <form action="postConcerts.php" method="post">
-"							<tr><td><input type="hidden" value="<?=$bname;?>" name="bname"/></td></tr>
-                            
-							<td><label>Enter concert name:</label></td>
-                            <td> <input type="text" value="" name="cname"/></td>
-							</tr>
-                            
-                           <tr>
-                            <td><label>Date and Time</label></td><td> <input type="date" name="cdate"/><input type="time" name="ctime"/></td>
-                            </tr>
-                            <tr>
-                            <td><label>Cover </label></td><td><input type="text" value="" name="cover"/></td>
-                       		</tr>
-                            <tr>
-                            <td><label>Ticket URL </label></td><td><input type="text" value="" name="tkturl"/></td>
-                            </tr>
-                            <tr>
-                            <td><label>Availability </label></td><td><input type="text" value="" name="avail"/><br/></td>
-                            </tr>
-                            <tr>
-                           
-                            
-                            <td><label>Venue name</label> </td>
-<td><select name='vid'>
-<?php include "connectdb.php";
-
-if ($stmt = $mysqli->prepare("select distinct vid, vname from venue ")) {
-	
-  $stmt->execute();
-  $stmt->bind_result($vid,$vname);
-  echo "<option value=' '></option>\n";
-  while($stmt->fetch()) {
-	$vname = htmlspecialchars($vname);
-	echo "<option value='$vid'>$vname</option>\n";	
-  }
-  $stmt->close();
-  $mysqli->close();
-}
-?>
-</select></td>
- </tr>
- </table>                          
-     <input type="submit" value="POST"/>
-     </form>
-                            
-                            
-                            
-							<!---->
-							  
-</div>
+                        <div id="div2" style="visibility:hidden" class="get-in-touch">
+                         	<center> <a class="p-btn" style="width:100%;">Review/Rate </a>
+                         	</center>
+                            <form action="newrate.php" method="post">
+                            Concert:<input type="text" id="conc" name="conc" value="" onFocus="this.blur()"/><br/>
+                            Review:<textarea rows="4"  placeholder="write something to post" name="review" style="width:90%;"></textarea><br/>
+                            Rating:<input type="text" value="" name="rating" size="3"/>/5
+                            <input type="submit" value="SUBMIT"/> 
+                          </form>
 
                         </div>
 					  <!----//sign-in-box ---->
@@ -208,7 +171,7 @@ if ($stmt = $mysqli->prepare("select distinct vid, vname from venue ")) {
 					  <!--//get-in-touch--->
 						<!---twitter-box-----><!--//twitter-box----->
                         <div class="get-in-touch">
-							<a class="p-btn" style="width:100%;text-align:center">Upcoming Concerts</a>
+							<a class="p-btn" style="width:100%;text-align:center">All upcoming Concerts</a>
                             <br/><br/>
 
 							<!---->
@@ -241,36 +204,30 @@ $stmt = $mysqli->stmt_init();
 						
                         </div>
                         <div class="clearfix"> </div>
-                        <div class="get-in-touch">
-							<a class="p-btn" style="width:100%;text-align:center">Old Concerts</a>
-                            <br/><br/>
-
-							<!---->
-							 <?php
-			
-
-print "<b>Past Concert:</b><br/>";
-print "ID: ". $past_concert_cid . "<br/>";
-print "Is concert past: " . $past_concert_ispast . "<br/>";
-print "Band(s): ";
-foreach ($past_concert_bnames as $past_concert_bname) {
-  print $past_concert_bname . ", ";
-}
-print "Name: " . $past_concert_cname . "<br/>";
-print "Time: " . $past_concert_ctime . "<br/>";
-print "URL: " . $past_concert_tkturl ."<br/>";
-print "Cover: " . $past_concert_cover ."<br/>";
-print "Venue URL: " . $past_concert_url ."<br/>";
-print "Venue capacity: " . $past_concert_capacity ."<br/>";
-print "Venue name: " . $past_concert_vname ."<br/>";
-print "Venue deets: " . $past_concert_building . " " . $past_concert_street . ", " . $past_concert_city . ", " . $past_concert_state . ", " . $past_concert_zip ."<br/>";
-print "Average rating: " . $past_concert_avg_rating . "<br/>";
-print "Reviews and ratings:<br/>";
-foreach ($past_concert_reviews as $index => $review) {
-  print $past_concert_ratings[$index] . "/5 | " . $review . "<br/>";
-}
+                       <div class="get-in-touch">
+                       <center> <a class="p-btn" style="width:100%;">Review/Rate concerts attended</a></center>
+							<?php
+								 $get_n_user_posts_query = " SELECT distinct c.cid,c.cname from rel_user_attends_concert u natural join concert c where u.review is NULL or u.rating is NULL and u.uname = ? and c.ctime < NOW()"; 
+				if($stmt->prepare($get_n_user_posts_query)) {
+					$stmt->bind_param('s', $uname);
+					$stmt->execute();
+					$stmt->bind_result($cid,$cname);
+					echo "</br>";
+					while($stmt->fetch()){
+							
+  							
+							
+							echo "<img src='images/concert_images/$cid.jpg' style='width:100px; height:100px;'/>";
+							echo"	</br><a onMouseOver='newContent1($cid)' >$cname</a></br></br>";
+							
+							
+					}
+								
+						
+				}
+				
 ?>
-
+						</div>
 <div class="get-in-touch">
 							<a class="p-btn" style="width:100%;text-align:center">Concerts attended</a>
                             <br/><br/>
