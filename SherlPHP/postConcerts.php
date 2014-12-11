@@ -16,15 +16,7 @@ if($stmt = $mysqli->prepare("INSERT INTO concert (cname,vid,ctime,postedtime,tkt
  
 
 }
-if($stmt2 = $mysqli->prepare("select cid from concert where cname = ? )")) {
-	
-	$stmt2->bind_param('s', $cname);
-	
-  $stmt2->execute();
-  $stmt2->bind_result('i',$cid);
-  echo $cid;
 
-}
 
  
 

@@ -45,6 +45,7 @@ if(move_uploaded_file($temp_name, $target_path)) {
 	$stmt->bind_param('ss', $uname,$pwd);
 	
   $stmt->execute();
+   echo '<script type="text/javascript">window.location="login.php"</script>';
  
 }
 
