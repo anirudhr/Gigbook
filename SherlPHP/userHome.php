@@ -50,7 +50,7 @@ $linkids = array();
 try {
   list($next_n_concerts_cids, $next_n_concerts_cnames, $next_n_concerts_bnames) = get_n_concerts($mysqli, $uname);
   $rand_n_bands_fan = get_n_bands_fan($mysqli, $uname);
-  //$rand_n_bands_reco = get_n_bands_reco($mysqli, $uname);
+  $rand_n_bands_reco = get_n_bands_reco($mysqli, $uname);
   list($linkids, $link_bnames, $linkurls, $linkinfos)=get_n_band_links($mysqli, $uname);
 }
 catch (Exception $e) {
@@ -373,10 +373,12 @@ if ($stmt = $mysqli->prepare("select count(*) from rel_user_follows_user where f
 						<!---col-3-grid-3---->
 						<div class="col-3-grid-3 alert-box text-center">
 							<img src="images/right-icon.png" title="check" />
-							<?php
-			print "<b>Suggestions:</b> " . "<br/>";
+<div class="get-in-touch">
+                       <center> <a class="p-btn" style="width:100%; ">Suggestions</a></center>
+<?php
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_reco); $i++) {
-  print "$i: " . $rand_n_bands_reco[$i] . "<br/>";
+	$bname_reco = $rand_n_bands_reco[$i];
+  echo  "<img src='images/band/" . $bname_reco . ".jpg' style='width:100px; height:100px;'/><a href='visitBandPage.php?band=" . $bname_reco . "'>" . $bname_reco . "<br/>";
 }
 print "<br/>";
 ?>
