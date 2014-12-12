@@ -40,6 +40,7 @@ if (!isset($_COOKIE['usrcookie'])) {
 $bname = $_COOKIE['usrcookie'];
 #######################*/
 $bname = $_GET['band'];
+$uname = $_SESSION['name'];
 $next_n_concerts_cids = array(); $next_n_concerts_cnames = array(); $next_n_concerts_bnames = array();
 $old_concerts_cids = array(); $old_concerts_cnames = array(); $old_concerts_bnames = array();
 $linkids = array(); $linkurls = array(); $linkinfos = array();
@@ -92,7 +93,8 @@ catch (Exception $e) {
 					<span>Dashboard </span>
 				</div>
 				<!---usernotifications---->
-				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='bands/$bname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
+                
+				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='users/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
  ?></a> <a href="logout.php"><img src="images/logout.png"/></a> </div>
 				<div class="clearfix"> </div>
 				<!--//usernotifications---->

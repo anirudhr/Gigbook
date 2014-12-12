@@ -3,9 +3,9 @@
 USE gigbook_schema;
 DELIMITER //
 DROP PROCEDURE IF EXISTS sp_user_reputation;
-CREATE PROCEDURE sp_user_reputation(IN username VARCHAR(50), OUT reputation FLOAT)
+CREATE PROCEDURE sp_user_reputation(IN username VARCHAR(50))
 BEGIN
-    DECLARE repA , repB, repC, repD, repE, repF FLOAT DEFAULT 0;
+    DECLARE repA , repB, repC, repD, repE, repF, reputation FLOAT DEFAULT 0;
     DECLARE age, num_review, num_rating, num_reco, num_user_input, num_follower INT DEFAULT 0;
     
     SELECT DATEDIFF(NOW(), user.joindate) INTO age FROM user WHERE user.uname = username;
@@ -51,5 +51,6 @@ BEGIN
     END IF;
     
     SET reputation = repA + repB + repC + repD + repE + repF;
+    SELECT reputation;
 END//
 DELIMITER ;

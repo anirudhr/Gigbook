@@ -32,7 +32,6 @@ session_start();
 	$stmt2->bind_param('ss',$uname,$followeename);
 	
   $stmt2->execute();
-  echo "<script language='javascript'>alert('abc');</script>";
   echo "<script language='javascript'>javascript:history.go(-1)</script>";
  
 

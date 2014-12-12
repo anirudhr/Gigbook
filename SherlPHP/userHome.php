@@ -5,6 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
+//:indentSize=4:tabSize=4:noTabs=true:wrap=soft:
 // Start the session
 session_start();
 ?>
@@ -26,14 +27,9 @@ session_start();
 		</script>
          <script type="text/javascript">
 
-function newContent(id)
-{
-	
-   
-	document.getElementById("div2").style.visibility="visible";
+function newContent(id) {
+    document.getElementById("div2").style.visibility="visible";
 	document.getElementById("conc").value=id;
-	
-	
 }
 </script>
 	</head>
@@ -48,10 +44,12 @@ $rand_n_bands_reco = array();
 $linkids = array();
 
 try {
+  $user_rep = get_user_rep($mysqli, $uname);
   list($next_n_concerts_cids, $next_n_concerts_cnames, $next_n_concerts_bnames) = get_n_concerts($mysqli, $uname);
   $rand_n_bands_fan = get_n_bands_fan($mysqli, $uname);
   $rand_n_bands_reco = get_n_bands_reco($mysqli, $uname);
   list($linkids, $link_bnames, $linkurls, $linkinfos)=get_n_band_links($mysqli, $uname);
+  list($followee_unames, $followee_cids, $followee_cnames, $followee_reviews, $followee_ratings)=get_followee_reviews_ratings($mysqli, $uname);
 }
 catch (Exception $e) {
   print 'Caught exception: ' . $e->getMessage() . "<br/>";
@@ -144,6 +142,63 @@ if ($stmt = $mysqli->prepare("select firstname,lastname,bio from user  where una
 									
 								</ul>
 							</div>
+							<!--INSERT HERE-->
+							              <?php require('connectdb.php');
+              //$user_rep = 16;
+              if ($user_rep > 15) {
+              	echo "
+              	<div class='new_concert' id='concert_post'>
+              	<div class='get-in-touch'>
+              	<a class='p-btn' style='width:100%;text-align:center'>Post a new concert</a>
+              	<br/><br/>
+              	<table border='0' >
+              	<form action='postConcerts.php' method='post'>
+              	<tr >
+              	<td><label>Enter concert name:</label></td>
+              	<td> <input type='text' value='' name='cname'/></td>
+              	</tr>
+              	<tr >
+              	<td><label>Enter band name:</label></td>
+              	<td> <input type='text' value='' name='bname'/></td>
+              	</tr>
+              	<tr>
+              	<td><label>Date and Time</label></td><td> <input type='date' name='cdate'/><input type='time' name='ctime'/></td>
+              	</tr>
+              	<tr>
+              	<td><label>Cover </label></td><td><input type='text' value='' name='cover'/></td>
+              	</tr>
+              	<tr>
+              	<td><label>Ticket URL </label></td><td><input type='text' value='' name='tkturl'/></td>
+              	</tr>
+              	<tr>
+              	<td><label>Availability </label></td><td><input type='text' value='' name='avail'/><br/></td>
+              	</tr>
+              	<tr> 
+              	<td><label>Venue name</label> </td>
+              	<td><select name='vid'>
+              	";
+              	if ($stmt = $mysqli->prepare('select distinct vid, vname from venue ')) {
+              	$stmt->execute();
+              	$stmt->bind_result($vid,$vname);
+              	echo "<option value=' '></option>\n";
+              	while($stmt->fetch()) {
+              		$vname = htmlspecialchars($vname);
+              		print "<option value='" . $vid . "'>" . $vname . "</option>\n"; 
+              	}
+              	$stmt->close();
+              	$mysqli->close();
+              	}
+              	echo "</select></td>
+              	</tr>
+              	</table>                          
+              	<input type='submit' value='POST'/>
+              	</form>
+              	</div>
+              	</div>";
+              }
+              ?>
+							<!--END-->
+							
 						<!--//social-tags---->
 					</div><!----//End-col-1 ----->
 					<!---- col-2 ----->
@@ -154,9 +209,10 @@ if ($stmt = $mysqli->prepare("select firstname,lastname,bio from user  where una
 							<div class="people-on-chat">
 								<div class="chat-msg">
                                 <div class="msg-type-box">
-									<?PHP
+									<?php
+									require("connectdb.php");
 									if ($stmt = $mysqli->prepare("select u.postinfo, u.bname, c.cname,u.postedtime from user_posts u natural join concert c where u.uname = ?")) {
-	
+	//:indentSize=4:tabSize=4:noTabs=true:wrap=soft:
 	$stmt->bind_param("s", $uname);
   $stmt->execute();
   $stmt->bind_result($postinfo,$bname,$cname,$ptime);
@@ -266,6 +322,30 @@ for ($i = 0; $i < $GETCOUNTSMALL&& $i< count($linkids); $i++) {
   echo "\tLink info: " . $linkinfos[$i] . "<br/><br/>";
 }
 ?>
+						</div>
+						
+						 <div class="get-in-touch">
+							<a class="p-btn" style="width:100%;text-align:center">Reviews from whom you follow</a></h3>
+                             <?php
+							 $GETCOUNTSMALL = 3;
+			
+for ($i = 0; $i < $GETCOUNTSMALL&& $i< count($followee_cids); $i++) {
+  //echo"	  <ul>";
+							//echo"		  <li>";
+							echo"<p>Name :		  	$followee_unames[$i]</p>";
+							echo"<p>Concert :		$followee_cnames[$i]</p>";
+							if($followee_reviews[$i])
+							echo"<p>Review :		$followee_reviews[$i]</p>";
+							if($followee_ratings[$i])
+							echo"<p>Rating :		$followee_ratings[$i] / 5</p>";
+							
+								//echo"	  </li>";
+								//echo"</ul>";
+}
+?>
+
+							<!---->
+							
 						</div>
                         
 						<!--//get-in-touch--->

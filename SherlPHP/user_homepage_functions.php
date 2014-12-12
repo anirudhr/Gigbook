@@ -3,6 +3,22 @@
 $GETCOUNTSMALL = 3;
 $GETCOUNTLARGE = 10;
 
+function get_user_rep($mysqli, $uname) {
+  $stmt = $mysqli->stmt_init();
+  $get_user_rep_query = "CALL sp_user_reputation(?)";
+  if(!$stmt->prepare($get_user_rep_query)) {
+		throw new Exception("get_user_rep_query: failed to prepare statement");
+	}
+  $stmt->bind_param('s', $uname);
+  if (!$stmt->execute()) {
+    throw new Exception("get_user_rep_query: failed to execute");
+  }
+  $rep = NULL;
+  $stmt->bind_result($rep);
+	$stmt->fetch();
+	return $rep;
+}
+
 function get_followee_reviews_ratings($mysqli, $uname) {
   global $GETCOUNTSMALL;
 	$stmt = $mysqli->stmt_init();

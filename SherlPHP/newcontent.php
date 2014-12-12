@@ -24,11 +24,11 @@ $cid=$_GET['cid'];
   }
 
 
-$get_n_user_posts_query = " SELECT cname,vname,building,street,city,state,zip,url, ctime ,capacity, postedtime,tkturl, cover, availability from concert natural join venue where cid=?"; 
+$get_n_user_posts_query = " SELECT cname,vname,building,street,city,state,zip,url, ctime ,capacity, postedtime,tkturl, cover, availability, mapurl from concert natural join venue where cid=?"; 
 				if ($stmt = $mysqli->prepare($get_n_user_posts_query)) {
 					$stmt->bind_param('i', $cid);
 					$stmt->execute();
-					$stmt->bind_result($cname,$vname,$building,$street,$city,$state,$zip,$url,$ctime,$cap,$postedtime,$tkturl,$cover,$avail);
+					$stmt->bind_result($cname,$vname,$building,$street,$city,$state,$zip,$url,$ctime,$cap,$postedtime,$tkturl,$cover,$avail,$mapurl);
 					echo "</br>";
 					echo "<table border='0' style='text-align:left'>";
 					while($stmt->fetch()){
@@ -56,6 +56,8 @@ $get_n_user_posts_query = " SELECT cname,vname,building,street,city,state,zip,ur
 							echo"	<td>URL :</td><td><a href='http://$url'>$url</a></td>";
 							echo "</tr>";
 							echo "<tr>";
+							echo"	<td>Map :</td><td><a href='" . $mapurl . "'><input type='button' value='Locate on Maps'/></a></td>";
+							echo "</tr>";
 							
 							
 							
