@@ -23,7 +23,7 @@
 	</ul>
 	<fieldset>-->
 		<h2 class="fs-title">Create your account</h2>
-		<h3 class="fs-subtitle">This is step 1</h3>
+		<!--<h3 class="fs-subtitle">This is step 1</h3>-->
 		<input type="text" name="uname" placeholder="Username" required>
 		<input type="password" name="pass" placeholder="Password" required>
 		<input type="password" name="cpass" placeholder="Confirm Password" required>

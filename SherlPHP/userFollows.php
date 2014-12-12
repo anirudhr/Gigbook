@@ -63,7 +63,7 @@ $uname = $_SESSION['name'];
 					<span>Dashboard </span>
 				</div>
 				<!---usernotifications---->
-				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='images/user/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
+				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='users/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
  ?></a> <a href="logout.php"><img src="images/logout.png" alt="LOGOUT"/></a></div>
 				<div class="clearfix"> </div>
 				<!--//usernotifications---->
@@ -93,7 +93,7 @@ if ($stmt = $mysqli->prepare("select followee from rel_user_follows_user where f
 	  if ($count==2) 
 	{echo "<tr >"; $count=0;}
 	  ?>
-<td width="120" height="120"><?php echo "<img src=images/user/$followee.jpg style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitUserPage.php?user=<?= $followee; ?>"><?= $followee; ?></a></td>
+<td width="120" height="120"><?php echo "<img src=users/$followee.jpg style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitUserPage.php?user=<?= $followee; ?>"><?= $followee; ?></a></td>
 <?php
 $count=$count+1;
   }?>

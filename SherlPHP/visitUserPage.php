@@ -54,7 +54,7 @@ catch (Exception $e) {
 				</div>
 				<!---usernotifications---->
 				<div style="float:right; width:100px;">
-					<a href="userHome.php"> <?php echo "<img src='images/user/$mainUser.jpg' style='width:50px; height:32px;'title='admin' />"
+					<a href="userHome.php"> <?php echo "<img src='users/$mainUser.jpg' style='width:50px; height:32px;'title='admin' />"
  ?></a>
 							
 									
@@ -70,7 +70,7 @@ catch (Exception $e) {
 					
 						<!---- user-profile ---->
 							<div class="user-profile1 text-center">
-                             <?php echo "<img src='images/user/$uname.jpg' style='width:110px; height:110px;' title='name'/>";
+                             <?php echo "<img src='users/$uname.jpg' style='width:110px; height:110px;' title='name'/>";
 							 
 $uname = $_GET['user'];
 include "connectdb.php";

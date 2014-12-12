@@ -14,31 +14,28 @@
 </head>
 
 <body>
-<!-- multistep form -->
 <form id="msform" action="insertBandDetails.php" method="post" enctype="multipart/form-data">
-	<!-- progressbar -->
-	<ul id="progressbar">
+	<!--<ul id="progressbar">
 		<li class="active">Account Setup</li>
 		
 		<li>Personal Details</li>
 	</ul>
-	<!-- fieldsets -->
-	<fieldset>
+	<fieldset>-->
 		<h2 class="fs-title">Create your account</h2>
-		<h3 class="fs-subtitle">This is step 1</h3>
-		<input type="text" name="uname" placeholder="Bandname" required>
+		<!--<h3 class="fs-subtitle">This is step 1</h3>-->
+		<input type="text" name="bname" placeholder="Bandname" required>
 		<input type="password" name="pass" placeholder="Password" required>
 		<input type="password" name="cpass" placeholder="Confirm Password" required>
-		<input type="button" name="next" class="next action-button" value="Next" />
+		<!--<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
 	
 
-    <fieldset>
+    <fieldset>-->
 		<h2 class="fs-title">Profile Picture</h2>
 		<h3 class="fs-subtitle">Select image to upload:</h3>
 		<input type="file" name="uploadedimage" id="uploadedimage" style="color:#FFF">
     
-		<input type="button" name="previous" class="previous action-button" value="Previous" />
+		<!--<input type="button" name="previous" class="previous action-button" value="Previous" />-->
 	
         <input type="submit" name="submit" class="submit action-button" value="Submit" />
 	</fieldset>

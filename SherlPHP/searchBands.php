@@ -65,7 +65,7 @@ $uname = $_SESSION['name'];
 				<!---usernotifications---->
 				<div style="float:right">
 					<ul class="user-profile list-unstyled">
-						<li><a href="#"> <?php echo "<img src='images/user/$uname.jpg' style='width:32px; height:32px;'title='admin' />"
+						<li><a href="#"> <?php echo "<img src='users/$uname.jpg' style='width:32px; height:32px;'title='admin' />"
  ?></a>
 							
 						</li>

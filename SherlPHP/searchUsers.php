@@ -63,7 +63,7 @@ $uname = $_SESSION['name'];
 					<span>Dashboard </span>
 				</div>
 				<!---usernotifications---->
-				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='images/user/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
+				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='users/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
  ?></a> <a href="logout.php"><img src="images/logout.png" alt="LOGOUT"/></a></div>
 				<div class="clearfix"> </div>
 				<!--//usernotifications---->
@@ -105,7 +105,7 @@ if ($stmt = $mysqli->prepare("select u.uname, u.firstname,u.lastname from user u
 		?>
         
         <tr >
-        <td width="100"><?php echo "<img src='images/user/$myrow[uname].jpg' style='width:100px; height:100px;'/>";?></td>
+        <td width="100"><?php echo "<img src='users/$myrow[uname].jpg' style='width:100px; height:100px;'/>";?></td>
        
         <td><a href="visitUserPage.php?user=<?=$myrow['uname'];?>" style="text-decoration:none;"><?=$myrow['firstname'];?>  <?=$myrow['lastname'];?></a><br /><br />
 </td>

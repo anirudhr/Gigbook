@@ -92,7 +92,7 @@ catch (Exception $e) {
 					<span>Dashboard </span>
 				</div>
 				<!---usernotifications---->
-				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='images/user/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
+				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='users/$uname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
  ?></a> <a href="logout.php"><img src="images/logout.png"/></a> </div>
 				<div class="clearfix"> </div>
 				<!--//usernotifications---->
@@ -104,7 +104,7 @@ catch (Exception $e) {
 					
 						<!---- user-profile ---->
 							<div class="user-profile1 text-center">
-                             <?php echo "<img src='images/user/$uname.jpg' style='width:90%' title='name'/>";
+                             <?php echo "<img src='users/$uname.jpg' style='width:90%' title='name'/>";
 							 
 
 include "connectdb.php";
