@@ -14,7 +14,31 @@
 </head>
 
 <body>
-<form id="msform" action="insertBandDetails.php" method="post" enctype="multipart/form-data">
+<script type="text/javascript">
+  function checkForm(form) {
+    if(form.pass.value == form.cpass.value) {
+      if(form.pass.value.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+        form.pass.focus();
+        return false;
+      }
+      if(form.pass.value == form.username.value) {
+        alert("Error: Password must be different from username!");
+        form.pass.focus();
+        return false;
+      }
+    }
+    else {
+      alert("Error: Please check that you've entered and confirmed your password!");
+      form.pass.focus();
+      return false;
+    }
+
+    alert("You entered a valid password: " + form.pass.value);
+    return true;
+  }
+</script>
+<form id="msform" action="insertBandDetails.php" method="post" enctype="multipart/form-data" onsubmit="return checkForm(this);">
 	<!--<ul id="progressbar">
 		<li class="active">Account Setup</li>
 		
