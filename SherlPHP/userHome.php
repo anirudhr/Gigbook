@@ -376,7 +376,7 @@ if ($stmt = $mysqli->prepare("select count(*) from rel_user_follows_user where f
 <?php
 for ($i = 0; $i < $GETCOUNTSMALL && $i < count($rand_n_bands_reco); $i++) {
 	$bname_reco = $rand_n_bands_reco[$i];
-  echo  "<img src='images/band/" . $bname_reco . ".jpg' style='width:100px; height:100px;'/><a href='visitBandPage.php?band=" . $bname_reco . "'>" . $bname_reco . "<br/>";
+  echo  "<img src='bands/" . $bname_reco . ".jpg' style='width:100px; height:100px;'/><a href='visitBandPage.php?band=" . $bname_reco . "'>" . $bname_reco . "<br/>";
 }
 print "<br/>";
 ?>

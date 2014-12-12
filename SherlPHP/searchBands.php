@@ -117,7 +117,7 @@ if ($stmt = $mysqli->prepare("select b.bname,b.bio from band b where b.bname lik
 		?>
         
         <tr >
-        <td width="100"><?php echo "<img src='images/band/$myrow[bname].jpg' style='width:100px; height:100px;'/>";?></td>
+        <td width="100"><?php echo "<img src='bands/$myrow[bname].jpg' style='width:100px; height:100px;'/>";?></td>
        
         <td>BAND NAME:<a href="visitBandPage.php?band=<?=$myrow['bname'];?>"><?=$myrow['bname'];?></a><br /><br />
 

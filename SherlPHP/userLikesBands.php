@@ -92,7 +92,7 @@ if ($stmt = $mysqli->prepare("select bname from rel_user_fan_band where uname = 
 	  if ($count==2) 
 	{echo "<tr>"; $count=0;}
 	  ?>
-<td width="120" height="120"><?php echo "<img src='images/band/$bname.jpg' style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitBandPage.php?band=<?=$bname;?>"><?=$bname;?></a></td>
+<td width="120" height="120"><?php echo "<img src='bands/$bname.jpg' style='width:100px; height:100px;'/>";?></td><td  style="text-align:left;"><a href="visitBandPage.php?band=<?=$bname;?>"><?=$bname;?></a></td>
 <?php
 $count=$count+1;
   }?>

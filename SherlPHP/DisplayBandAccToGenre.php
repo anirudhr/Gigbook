@@ -112,7 +112,7 @@ if($stmt = $mysqli->prepare("select distinct bname from rel_band_plays_genre whe
    <tr>
    <?php
     while ($stmt->fetch()) {?>
-	<td width="25%"><?php echo "<img src='images/band/$bname.jpg' style='width:100px; height:100px;'/>";?></td>
+	<td width="25%"><?php echo "<img src='bands/$bname.jpg' style='width:100px; height:100px;'/>";?></td>
     <td width="25%"><a href=""><?=$bname;?></a> </td>
     <td width="25%"><input type="submit" value="BECOME A FAN" /></td>
     <td width="25%"><input type="button" value="CHECK THEIR PAGE"/></td>

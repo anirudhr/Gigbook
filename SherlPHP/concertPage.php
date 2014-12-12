@@ -117,7 +117,7 @@ catch (Exception $e) {
 					<span>Dashboard </span>
 				</div>
 				<!---usernotifications---->
-				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='images/band/$bname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
+				<div style="float:right; width:100px;"> <a href="userHome.php"> <?php echo "<img src='bands/$bname.jpg' style='width:50px; height:32px;'title='admin' alt='HOME' />"
  ?></a> <a href="logout.php"><img src="images/logout.png"/></a> </div>
 				<div class="clearfix"> </div>
 				<!--//usernotifications---->

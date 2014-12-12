@@ -29,7 +29,7 @@ $gname=$_GET['gname'];
    try {
   $popularities_by_band = get_bands_playing_genre($mysqli, $gname);
   foreach ($popularities_by_band as $bname => $popularity) {
-	 echo "<img src='images/band/$bname.jpg' style='width:100px; height:100px;'";
+	 echo "<img src='bands/$bname.jpg' style='width:100px; height:100px;'";
    	echo "$popularity . ' : ' . $bname ";
   		}
    }
