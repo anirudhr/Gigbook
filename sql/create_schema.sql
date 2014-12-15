@@ -76,12 +76,25 @@ CREATE TABLE venue  (   vid INT AUTO_INCREMENT,
                         url varchar(64) NULL,
                         lat FLOAT( 10, 6 ) NOT NULL,
                         lng FLOAT( 10, 6 ) NOT NULL,
+                        mapurl VARCHAR(500) NOT NULL,
                         PRIMARY KEY (vid),
                         UNIQUE (vname, city),
                         UNIQUE (lat, lng),
                         UNIQUE (building, street, city, state, zip)
                     );
-INSERT INTO `venue` (`vid`, `vname`, `building`, `street`, `city`, `state`, `zip`, `capacity`, `url`, `lat`, `lng`) VALUES
+                    
+INSERT INTO `venue` (`vid`, `vname`, `building`, `street`, `city`, `state`, `zip`, `capacity`, `url`, `lat`, `lng`, `mapurl`) VALUES
+(1, 'Lincoln Hall', '2424', 'N Lincoln Avenue', 'Chicago', 'IL', '60614', 8000, 'www.lincolnhallchicago.com', 41.925919, -87.649818, 'https://www.google.com/maps/place/Lincoln+Hall/@41.925978,-87.649757,15z/data=!4m2!3m1!1s0x0:0xa0e57eaefdb2fc9d'),
+(2, 'Madison Square', '4', 'Pennsylvania Plaza', 'New York', 'NY', '10001', 18200, 'www.thegarden.com/', 40.750481, -73.993446, 'https://www.google.com/maps/place/madison+square+garden/@40.750504,-73.993439,15z/data=!4m2!3m1!1s0x0:0x33df10e49762f8e4?sa=X&ei=OwqLVML8PILLsASV4oCYBQ&sqi=2&ved=0CKsBEPwSMBM'),
+(3, 'Rockwood music hall', '196', 'Allen Street', 'New York', 'NY', '10002', 5500, 'www.rockwoodmusichall.com/', 40.722294, -73.988571, 'https://www.google.com/maps/place/Rockwood+Music+Hall/@40.72229,-73.988544,15z/data=!4m2!3m1!1s0x0:0x6de059cf4b23edff?sa=X&ei=7QmLVMvFNqq1sATt4IHYBg&sqi=2&ved=0CI0BEPwSMAs'),
+(4, 'Terminal 5', '610', 'W 56th Street', 'New York', 'NY', '10019', 7000, 'www.terminal5nyc.com', 40.769657, -73.992805, 'https://www.google.com/maps/place/terminal+5/@40.769778,-73.993118,15z/data=!4m2!3m1!1s0x0:0xc1d0de757d8177b6?sa=X&ei=DQqLVK2yJLPjsAS-_oGADA&ved=0CJkBEPwSMBI'),
+(5, 'Peculier Pub', '145', 'Bleecker St', 'New York', 'NY', '10012', 50, 'www.peculier.pub', 40.728291, -73.999168, 'https://www.google.com/maps/place/Peculier+Pub/@40.72828,-73.999149,15z/data=!4m2!3m1!1s0x0:0xd012fd1500581ff'),
+(6, 'Bar Great Harry', '280', 'Smith Street', 'Brooklyn', 'NY', '11231', 75, 'bgh.nyc', 40.682404, -73.993584, 'https://www.google.com/maps/place/Bar+Great+Harry/@40.682424,-73.993583,15z/data=!4m2!3m1!1s0x0:0xbaf6b254ae4ff223'),
+(7, 'Alewife', '514', '51st Ave', 'LIC', 'NY', '11101', 200, 'www.alewife.com', 40.742203, -73.956108, 'https://www.google.com/maps/place/Alewife/@40.74221,-73.956091,15z/data=!4m2!3m1!1s0x0:0xcee4a8fc118f81f7'),
+(8, 'Carnegie Hall', '881', '7th Ave', 'New York', 'NY', '10019', 2500, 'www.carrots.org', 40.765118, -73.979950, 'https://www.google.com/maps/place/Carnegie+Hall/@40.765126,-73.979924,15z/data=!4m2!3m1!1s0x0:0x3d14b15e5c7a9477'),
+(9, 'BAM Howard Gilman Opera House', '30', 'Lafayette Ave', 'Brooklyn', 'NY', '11217', 50000, 'bam.org', 40.686493, -73.977875, 'https://www.google.com/maps/place/BAM+Peter+Jay+Sharp+Building/@40.686489,-73.977706,15z/data=!4m2!3m1!1s0x0:0x93b2b536d094bf28'),
+(10, 'Entwine', '765', 'Washington St', 'New York', 'NY', '10014', 15, 'entwine.nyc', 40.737385, -74.008034, 'https://www.google.com/maps/place/Entwine/@40.737392,-74.008023,15z/data=!4m2!3m1!1s0x0:0xbb97640ea8e00df6');
+/* INSERT INTO `venue` (`vid`, `vname`, `building`, `street`, `city`, `state`, `zip`, `capacity`, `url`, `lat`, `lng`, `mapurl`) VALUES
 (1, 'Lincoln Hall', '2424', 'N Lincoln Avenue', 'Chicago', 'IL', '60614', 8000, 'www.lincolnhallchicago.com', 41.925919, -87.649818),
 (2, 'Madison Square', '4', 'Pennsylvania Plaza', 'New York', 'NY', '10001', 18200, 'www.thegarden.com/', 40.750479, -73.993448),
 (3, 'Rockwood music hall', '196', 'Allen Street', 'New York', 'NY', '10002', 5500, 'www.rockwoodmusichall.com/', 40.722293, -73.988574),
@@ -92,7 +105,7 @@ INSERT INTO `venue` (`vid`, `vname`, `building`, `street`, `city`, `state`, `zip
 (8, 'Carnegie Hall', 881, '7th Ave', 'New York', 'NY', '10019', 2500, 'www.carrots.org', 40.765116, -73.979947),
 (9, 'BAM Howard Gilman Opera House', 30, 'Lafayette Ave', 'Brooklyn', 'NY', '11217', 50000, 'bam.org', 40.686493, -73.977872),
 (10, 'Entwine', 765, 'Washington St', 'New York', 'NY', '10014', 15, 'entwine.nyc', 40.737386, -74.008035)
-;
+; */
 
 CREATE TABLE concert    (   cid INT AUTO_INCREMENT,
                             cname VARCHAR(50) NULL,

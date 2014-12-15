@@ -21,6 +21,8 @@ BEGIN
                                                 SELECT gname FROM genre
                                                 WHERE gparent = inp_gparent
                                                 OR gparent = inp_gname
+                                                OR gname = inp_gname
+                                                OR gname = inp_gparent
                                             )
         AND bname NOT IN    (
                                 SELECT rel_user_fan_band.bname FROM rel_user_fan_band
@@ -29,7 +31,8 @@ BEGIN
         ORDER BY RAND() LIMIT 1;
     ELSE
         SELECT bname INTO out_bname FROM rel_band_plays_genre
-        WHERE rel_band_plays_genre.gname = inp_gname
+        WHERE rel_band_plays_genre.gname IN (   SELECT gname FROM genre WHERE gname = inp_gname OR gparent = inp_gname
+                                            )
         AND bname NOT IN    (
                                 SELECT rel_user_fan_band.bname FROM rel_user_fan_band
                                 WHERE uname = inp_uname
